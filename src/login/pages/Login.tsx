@@ -8,6 +8,7 @@ import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -167,11 +168,9 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                 </div>
                                 <div className={kcClsx("kcFormOptionsWrapperClass")}>
                                     {realm.resetPasswordAllowed && (
-                                        <span>
-                                            <a tabIndex={6} href={url.loginResetCredentialsUrl}>
-                                                {msg("doForgotPassword")}
-                                            </a>
-                                        </span>
+                                        <Button tabIndex={6} variant="text" href={url.loginResetCredentialsUrl}>
+                                            {msg("doForgotPassword")}
+                                        </Button>
                                     )}
                                 </div>
                             </div>
