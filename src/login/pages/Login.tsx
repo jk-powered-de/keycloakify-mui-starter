@@ -57,10 +57,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                         <div id="kc-social-providers" className={kcClsx("kcFormSocialAccountSectionClass")}>
                             <hr />
                             <h2>{msg("identity-provider-login-label")}</h2>
-                            <ul className={kcClsx("kcFormSocialAccountListClass", social.providers.length > 3 && "kcFormSocialAccountListGridClass")}>
+                            <div className={kcClsx("kcFormSocialAccountListClass", social.providers.length > 3 && "kcFormSocialAccountListGridClass")}>
                                 {social.providers.map((...[p, , providers]) => (
-                                    <li key={p.alias}>
-                                        <a
+                                    <span key={p.alias}>
+                                        <Button
+                                            sx={{ width: "100%" }}
+                                            variant="outlined"
+
                                             id={`social-${p.alias}`}
                                             className={kcClsx(
                                                 "kcFormSocialAccountListButtonClass",
@@ -68,16 +71,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             )}
                                             type="button"
                                             href={p.loginUrl}
-                                        >
-                                            {p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true"></i>}
-                                            <span
-                                                className={clsx(kcClsx("kcFormSocialAccountNameClass"), p.iconClasses && "kc-social-icon-text")}
-                                                dangerouslySetInnerHTML={{ __html: kcSanitize(p.displayName) }}
-                                            ></span>
-                                        </a>
-                                    </li>
+                                            startIcon={p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true"></i>}
+                                    >
+                                        {kcSanitize(p.displayName)}
+                                    </Button>
+                                    </span>
                                 ))}
-                            </ul>
+                            </div>
                         </div>
                     )}
                 </>
