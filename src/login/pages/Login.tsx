@@ -136,7 +136,16 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                         aria-invalid={messagesPerField.existsError("username", "password")}
                                         className={kcClsx("kcInputClass")}
                                         error={messagesPerField.existsError("username", "password")}
-                                        helperText={kcSanitize(messagesPerField.getFirstError("username", "password"))}
+                                        helperText={messagesPerField.existsError("username", "password") && (
+                                                <span
+                                                    id="input-error"
+                                                    className={kcClsx("kcInputErrorMessageClass")}
+                                                    aria-live="polite"
+                                                    dangerouslySetInnerHTML={{
+                                                        __html: kcSanitize(messagesPerField.getFirstError("username", "password"))
+                                                    }}
+                                                />
+                                            )}
                                     />
                                 </div>
                             )}
