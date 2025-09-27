@@ -10,7 +10,7 @@ import {
     Checkbox,
     FormControl,
     FormControlLabel,
-    FormGroup, IconButton, InputAdornment,
+    FormGroup, FormHelperText, IconButton, InputAdornment,
     InputLabel,
     OutlinedInput,
     TextField
@@ -145,7 +145,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                 <FormControl variant="outlined">
                                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                     <OutlinedInput
-                                        error={usernameHidden && messagesPerField.existsError("username", "password")}
+                                        error={messagesPerField.existsError("username", "password")}
                                         label={msg("password")}
                                         tabIndex={3}
                                         id="password"
@@ -170,6 +170,17 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             </InputAdornment>
                                         }
                                     />
+                                    {usernameHidden && messagesPerField.existsError("username", "password") && (
+                                        <FormHelperText>
+                                            <span
+                                            className={kcClsx("kcInputErrorMessageClass")}
+                                            aria-live="polite"
+                                            dangerouslySetInnerHTML={{
+                                            __html: kcSanitize(messagesPerField.getFirstError("username", "password"))
+                                        }}
+                                            />
+                                        </FormHelperText>
+                                    )}
                                 </FormControl>
                             </div>
 
