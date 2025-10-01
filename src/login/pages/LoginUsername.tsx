@@ -4,6 +4,7 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function LoginUsername(props: PageProps<Extract<KcContext, { pageId: "login-username.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -129,15 +130,17 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
                             </div>
 
                             <div id="kc-form-buttons" className={kcClsx("kcFormGroupClass")}>
-                                <input
+                                <Button
+                                    sx={{ width: "100%" }}
                                     tabIndex={4}
+                                    variant="contained"
+                                    type="submit"
                                     disabled={isLoginButtonDisabled}
-                                    className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
                                     name="login"
                                     id="kc-login"
-                                    type="submit"
-                                    value={msgStr("doLogIn")}
-                                />
+                                >
+                                    {msgStr("doLogIn")}
+                                </Button>
                             </div>
                         </form>
                     )}
