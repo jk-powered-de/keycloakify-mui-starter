@@ -3,6 +3,7 @@ import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { TextField } from "@mui/material";
 
 export default function LoginResetPassword(props: PageProps<Extract<KcContext, { pageId: "login-reset-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -58,6 +59,36 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                                 }}
                             />
                         )}
+
+
+                        <TextField
+                            label={!realm.loginWithEmailAllowed
+                                ? msg("username")
+                                : !realm.registrationEmailAsUsername
+                                    ? msg("usernameOrEmail")
+                                    : msg("email")}
+                            variant="outlined"
+                            id="username"
+                            name="username"
+                            type="text"
+                            autoFocus
+                            className={kcClsx("kcInputClass")}
+                            defaultValue={auth.attemptedUsername ?? ""}
+                            aria-invalid={messagesPerField.existsError("username")}
+
+
+                            error={messagesPerField.existsError("username")}
+                            helperText={messagesPerField.existsError("username") && (
+                                <span
+                                    id="input-error-username"
+                                    className={kcClsx("kcInputErrorMessageClass")}
+                                    aria-live="polite"
+                                    dangerouslySetInnerHTML={{
+                                        __html: kcSanitize(messagesPerField.get("username"))
+                                    }}
+                                />
+                            )}
+                        />
                     </div>
                 </div>
                 <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
