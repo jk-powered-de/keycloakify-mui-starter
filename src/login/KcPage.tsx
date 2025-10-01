@@ -63,7 +63,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
                             <LoginResetPassword
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
-                                doUseDefaultCss={true}
+                                doUseDefaultCss={false}
                             />
                         );
 
