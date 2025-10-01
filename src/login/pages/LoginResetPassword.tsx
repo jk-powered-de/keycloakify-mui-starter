@@ -30,37 +30,7 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
         >
             <form id="kc-reset-password-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
                 <div className={kcClsx("kcFormGroupClass")}>
-                    <div className={kcClsx("kcLabelWrapperClass")}>
-                        <label htmlFor="username" className={kcClsx("kcLabelClass")}>
-                            {!realm.loginWithEmailAllowed
-                                ? msg("username")
-                                : !realm.registrationEmailAsUsername
-                                  ? msg("usernameOrEmail")
-                                  : msg("email")}
-                        </label>
-                    </div>
                     <div className={kcClsx("kcInputWrapperClass")}>
-                        <input
-                            type="text"
-                            id="username"
-                            name="username"
-                            className={kcClsx("kcInputClass")}
-                            autoFocus
-                            defaultValue={auth.attemptedUsername ?? ""}
-                            aria-invalid={messagesPerField.existsError("username")}
-                        />
-                        {messagesPerField.existsError("username") && (
-                            <span
-                                id="input-error-username"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.get("username"))
-                                }}
-                            />
-                        )}
-
-
                         <TextField
                             label={!realm.loginWithEmailAllowed
                                 ? msg("username")
@@ -75,8 +45,6 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                             className={kcClsx("kcInputClass")}
                             defaultValue={auth.attemptedUsername ?? ""}
                             aria-invalid={messagesPerField.existsError("username")}
-
-
                             error={messagesPerField.existsError("username")}
                             helperText={messagesPerField.existsError("username") && (
                                 <span
