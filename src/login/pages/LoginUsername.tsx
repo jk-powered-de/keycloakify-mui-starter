@@ -5,7 +5,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
-import { Checkbox, FormControlLabel, FormGroup } from "@mui/material";
+import { Checkbox, FormControlLabel, FormGroup, TextField } from "@mui/material";
 
 export default function LoginUsername(props: PageProps<Extract<KcContext, { pageId: "login-username.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -84,32 +84,31 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
                             method="post"
                         >
                             {!usernameHidden && (
-                                <div className={kcClsx("kcFormGroupClass")}>
-                                    <label htmlFor="username" className={kcClsx("kcLabelClass")}>
-                                        {!realm.loginWithEmailAllowed
-                                            ? msg("username")
-                                            : !realm.registrationEmailAsUsername
-                                              ? msg("usernameOrEmail")
-                                              : msg("email")}
-                                    </label>
-                                    <input
-                                        tabIndex={2}
-                                        id="username"
-                                        className={kcClsx("kcInputClass")}
-                                        name="username"
-                                        defaultValue={login.username ?? ""}
-                                        type="text"
-                                        autoFocus
-                                        autoComplete="username"
-                                        aria-invalid={messagesPerField.existsError("username")}
-                                    />
-                                    {messagesPerField.existsError("username") && (
+                            <div className={kcClsx("kcFormGroupClass")}>
+                                <TextField
+                                    label={!realm.loginWithEmailAllowed
+                                        ? msg("username")
+                                        : !realm.registrationEmailAsUsername
+                                            ? msg("usernameOrEmail")
+                                            : msg("email")}
+                                    variant="outlined"
+                                    tabIndex={2}
+                                    id="username"
+                                    defaultValue={login.username ?? ""}
+                                    type={"text"}
+                                    autoComplete={"username"}
+                                    autoFocus
+                                    aria-invalid={messagesPerField.existsError("username")}
+                                    className={kcClsx("kcInputClass")}
+                                    error={messagesPerField.existsError("username")}
+                                    helperText={messagesPerField.existsError("username") && (
                                         <span id="input-error" className={kcClsx("kcInputErrorMessageClass")} aria-live="polite">
                                             {messagesPerField.getFirstError("username")}
                                         </span>
                                     )}
-                                </div>
-                            )}
+                                />
+                            </div>
+                        )}
 
                             <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
                                 <div id="kc-form-options">
