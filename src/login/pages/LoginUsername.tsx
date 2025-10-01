@@ -48,8 +48,11 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
                             <h2>{msg("identity-provider-login-label")}</h2>
                             <ul className={kcClsx("kcFormSocialAccountListClass", social.providers.length > 3 && "kcFormSocialAccountListGridClass")}>
                                 {social.providers.map((...[p, , providers]) => (
-                                    <li key={p.alias}>
-                                        <a
+                                    <span key={p.alias}>
+                                        <Button
+                                            sx={{ width: "100%" }}
+                                            variant="outlined"
+
                                             id={`social-${p.alias}`}
                                             className={kcClsx(
                                                 "kcFormSocialAccountListButtonClass",
@@ -57,13 +60,11 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
                                             )}
                                             type="button"
                                             href={p.loginUrl}
+                                            startIcon={p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true"></i>}
                                         >
-                                            {p.iconClasses && <i className={clsx(kcClsx("kcCommonLogoIdP"), p.iconClasses)} aria-hidden="true"></i>}
-                                            <span className={clsx(kcClsx("kcFormSocialAccountNameClass"), p.iconClasses && "kc-social-icon-text")}>
-                                                {p.displayName}
-                                            </span>
-                                        </a>
-                                    </li>
+                                        {p.displayName}
+                                    </Button>
+                                    </span>
                                 ))}
                             </ul>
                         </div>
