@@ -1,13 +1,20 @@
-import type { JSX } from "keycloakify/tools/JSX";
 import { useState } from "react";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { clsx } from "keycloakify/tools/clsx";
-import { useIsPasswordRevealed } from "keycloakify/tools/useIsPasswordRevealed";
-import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx";
+import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import * as React from "react";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import Visibility from "@mui/icons-material/Visibility";
+import { FormHelperText } from "@mui/material";
 
 export default function LoginPassword(props: PageProps<Extract<KcContext, { pageId: "login-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -22,6 +29,20 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
     const { msg, msgStr } = i18n;
 
     const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(false);
+
+    // Password visibility #start
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+
+    const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+    // Password visibility #end
 
     return (
         <Template
@@ -44,34 +65,47 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
                         method="post"
                     >
                         <div className={clsx(kcClsx("kcFormGroupClass"), "no-bottom-margin")}>
-                            <hr />
-                            <label htmlFor="password" className={kcClsx("kcLabelClass")}>
-                                {msg("password")}
-                            </label>
-
-                            <PasswordWrapper kcClsx={kcClsx} i18n={i18n} passwordInputId="password">
-                                <input
+                            <FormControl variant="outlined">
+                                <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                <OutlinedInput
+                                    error={messagesPerField.existsError("username", "password")}
+                                    label={msg("password")}
                                     tabIndex={2}
                                     id="password"
                                     className={kcClsx("kcInputClass")}
                                     name="password"
-                                    type="password"
-                                    autoFocus
+                                    type={showPassword ? 'text' : 'password'}
                                     autoComplete="on"
                                     aria-invalid={messagesPerField.existsError("username", "password")}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label={
+                                                    showPassword ? 'hide the password' : 'display the password'
+                                                }
+                                                onClick={handleClickShowPassword}
+                                                onMouseDown={handleMouseDownPassword}
+                                                onMouseUp={handleMouseUpPassword}
+                                                edge="end"
+                                            >
+                                                {showPassword ? <VisibilityOff /> : <Visibility />}
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
                                 />
-                            </PasswordWrapper>
-
-                            {messagesPerField.existsError("password") && (
-                                <span
-                                    id="input-error-password"
-                                    className={kcClsx("kcInputErrorMessageClass")}
-                                    aria-live="polite"
-                                    dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(messagesPerField.get("password"))
-                                    }}
-                                />
-                            )}
+                                {messagesPerField.existsError("password") && (
+                                    <FormHelperText>
+                                            <span
+                                                id="input-error-password"
+                                                className={kcClsx("kcInputErrorMessageClass")}
+                                                aria-live="polite"
+                                                dangerouslySetInnerHTML={{
+                                                    __html: kcSanitize(messagesPerField.get("password"))
+                                                }}
+                                            />
+                                    </FormHelperText>
+                                )}
+                            </FormControl>
                         </div>
                         <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
                             <div id="kc-form-options" />
@@ -100,28 +134,5 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
                 </div>
             </div>
         </Template>
-    );
-}
-
-function PasswordWrapper(props: { kcClsx: KcClsx; i18n: I18n; passwordInputId: string; children: JSX.Element }) {
-    const { kcClsx, i18n, passwordInputId, children } = props;
-
-    const { msgStr } = i18n;
-
-    const { isPasswordRevealed, toggleIsPasswordRevealed } = useIsPasswordRevealed({ passwordInputId });
-
-    return (
-        <div className={kcClsx("kcInputGroup")}>
-            {children}
-            <button
-                type="button"
-                className={kcClsx("kcFormPasswordVisibilityButtonClass")}
-                aria-label={msgStr(isPasswordRevealed ? "hidePassword" : "showPassword")}
-                aria-controls={passwordInputId}
-                onClick={toggleIsPasswordRevealed}
-            >
-                <i className={kcClsx(isPasswordRevealed ? "kcFormPasswordVisibilityIconHide" : "kcFormPasswordVisibilityIconShow")} aria-hidden />
-            </button>
-        </div>
     );
 }
