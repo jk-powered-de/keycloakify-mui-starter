@@ -8,6 +8,7 @@ import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import { Alert } from "@mui/material";
+import { LocaleMenu } from "./helper-components/LocaleMenu.tsx";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -62,7 +63,14 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             <div className={kcClsx("kcFormCardClass")}>
                 <header className={kcClsx("kcFormHeaderClass")}>
                     {enabledLanguages.length > 1 && (
-                        <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
+                        <LocaleMenu
+                            enabledLanguages={enabledLanguages}
+                            currentLanguage={currentLanguage}
+                            msgStr={msgStr}
+                        />
+
+                        /* ToDo: Remove if its working */
+                        /*<div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
                             <div id="kc-locale-wrapper" className={kcClsx("kcLocaleWrapperClass")}>
                                 <div id="kc-locale-dropdown" className={clsx("menu-button-links", kcClsx("kcLocaleDropDownClass"))}>
                                     <button
@@ -93,7 +101,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div>*/
                     )}
                     {(() => {
                         const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
