@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function FrontchannelLogout(props: PageProps<Extract<KcContext, { pageId: "frontchannel-logout.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -49,9 +50,15 @@ export default function FrontchannelLogout(props: PageProps<Extract<KcContext, {
                 ))}
             </ul>
             {logout.logoutRedirectUri !== undefined && (
-                <a id="continue" className="btn btn-primary" href={logout.logoutRedirectUri}>
-                    {msg("doContinue")}
-                </a>
+                <Button
+                id="continue"
+                sx={{ width: "100%" }}
+                className="btn btn-primary"
+                variant="outlined"
+                href={logout.logoutRedirectUri}
+        >
+            {msg("doContinue")}
+        </Button>
             )}
         </Template>
     );
