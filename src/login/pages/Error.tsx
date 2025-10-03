@@ -2,6 +2,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function Error(props: PageProps<Extract<KcContext, { pageId: "error.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -22,11 +23,13 @@ export default function Error(props: PageProps<Extract<KcContext, { pageId: "err
             <div id="kc-error-message">
                 <p className="instruction" dangerouslySetInnerHTML={{ __html: kcSanitize(message.summary) }} />
                 {!skipLink && client !== undefined && client.baseUrl !== undefined && (
-                    <p>
-                        <a id="backToApplication" href={client.baseUrl}>
-                            {msg("backToApplication")}
-                        </a>
-                    </p>
+                    <Button
+                        id="backToApplication"
+                        variant="outlined"
+                        href={client.baseUrl}
+                    >
+                        {msg("backToApplication")}
+                    </Button>
                 )}
             </div>
         </Template>
