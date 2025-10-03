@@ -3,6 +3,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
+import { TextField } from "@mui/material";
 
 export default function Code(props: PageProps<Extract<KcContext, { pageId: "code.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -28,7 +29,15 @@ export default function Code(props: PageProps<Extract<KcContext, { pageId: "code
                 {code.success ? (
                     <>
                         <p>{msg("copyCodeInstruction")}</p>
-                        <input id="code" className={kcClsx("kcTextareaClass")} defaultValue={code.code} />
+                        <TextField id="code"
+                                   className={kcClsx("kcTextareaClass")}
+                                   variant="outlined"
+                                   defaultValue={code.code}
+                                   slotProps={{
+                                       input: {
+                                           readOnly: true,
+                                       },
+                                   }}/>
                     </>
                 ) : (
                     code.error && (
