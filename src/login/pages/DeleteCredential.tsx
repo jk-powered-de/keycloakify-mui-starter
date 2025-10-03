@@ -35,13 +35,14 @@ export default function DeleteCredential(props: PageProps<Extract<KcContext, { p
                         type="submit"
                 >{msgStr("doConfirmDelete")}
                 </Button>
-                <input
-                    className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
-                    name="cancel-aia"
-                    value={msgStr("doCancel")}
-                    id="kc-decline"
-                    type="submit"
-                />
+                <Button variant="outlined"
+                        className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
+                        name="cancel-aia"
+                        id="kc-decline"
+                        type="submit"
+                        sx={{ width: "100%" }}
+                >{msgStr("doCancel")}
+                </Button>
             </form>
             <div className="clearfix" />
         </Template>
