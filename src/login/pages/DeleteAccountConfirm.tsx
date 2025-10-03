@@ -3,6 +3,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import { Alert } from "@mui/material";
 
 export default function DeleteAccountConfirm(props: PageProps<Extract<KcContext, { pageId: "delete-account-confirm.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -19,9 +20,13 @@ export default function DeleteAccountConfirm(props: PageProps<Extract<KcContext,
     return (
         <Template kcContext={kcContext} i18n={i18n} doUseDefaultCss={doUseDefaultCss} classes={classes} headerNode={msg("deleteAccountConfirm")}>
             <form action={url.loginAction} className="form-vertical" method="post">
-                <div className="alert alert-warning" style={{ marginTop: "0", marginBottom: "30px" }}>
-                    <span className="pficon pficon-warning-triangle-o"></span>
-                    {msg("irreversibleAction")}
+                <div className="alert alert-warning">
+                    <Alert
+                        severity="warning"
+                        variant="outlined"
+                    >
+                        {msg("irreversibleAction")}
+                    </Alert>
                 </div>
                 <p>{msg("deletingImplies")}</p>
                 <ul
