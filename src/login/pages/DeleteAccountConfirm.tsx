@@ -43,15 +43,14 @@ export default function DeleteAccountConfirm(props: PageProps<Extract<KcContext,
                     >{msgStr("doConfirmDelete")}
                     </Button>
                     {triggered_from_aia && (
-                        <button
-                            className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
-                            style={{ marginLeft: "calc(100% - 220px)" }}
-                            type="submit"
-                            name="cancel-aia"
-                            value="true"
-                        >
-                            {msgStr("doCancel")}
-                        </button>
+                        <Button variant="outlined"
+                                className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
+                                type="submit"
+                                name="cancel-aia"
+                                value="true"
+                                sx={{ width: "100%" }}
+                        >{msgStr("doCancel")}
+                        </Button>
                     )}
                 </div>
             </form>
