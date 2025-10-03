@@ -72,7 +72,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
                             <Terms
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
-                                doUseDefaultCss={true}
+                                doUseDefaultCss={false}
                             />
                         );
 
