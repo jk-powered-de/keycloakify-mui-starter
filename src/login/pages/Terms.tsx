@@ -35,13 +35,14 @@ export default function Terms(props: PageProps<Extract<KcContext, { pageId: "ter
                         type="submit"
                 >{msgStr("doAccept")}
                 </Button>
-                <input
-                    className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
-                    name="cancel"
-                    id="kc-decline"
-                    type="submit"
-                    value={msgStr("doDecline")}
-                />
+                <Button variant="outlined"
+                        sx={{ width: "100%" }}
+                        className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
+                        name="cancel"
+                        id="kc-decline"
+                        type="submit"
+                >{msgStr("doDecline")}
+                </Button>
             </form>
             <div className="clearfix" />
         </Template>
