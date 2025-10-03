@@ -2,6 +2,7 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function DeleteCredential(props: PageProps<Extract<KcContext, { pageId: "delete-credential.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -26,13 +27,14 @@ export default function DeleteCredential(props: PageProps<Extract<KcContext, { p
         >
             <div id="kc-delete-text">{msg("deleteCredentialMessage", credentialLabel)}</div>
             <form className="form-actions" action={url.loginAction} method="POST">
-                <input
-                    className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
-                    name="accept"
-                    id="kc-accept"
-                    type="submit"
-                    value={msgStr("doConfirmDelete")}
-                />
+                <Button variant="contained"
+                        sx={{ width: "100%" }}
+                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
+                        name="accept"
+                        id="kc-accept"
+                        type="submit"
+                >{msgStr("doConfirmDelete")}
+                </Button>
                 <input
                     className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
                     name="cancel-aia"
