@@ -121,13 +121,11 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
                         >{msg("recovery-codes-action-cancel")}</Button>
                     </>
                 ) : (
-                    <input
-                        type="submit"
-                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                        id="saveRecoveryAuthnCodesBtn"
-                        value={msgStr("recovery-codes-action-complete")}
-                        disabled
-                    />
+                    <Button variant="contained"
+                            type="submit"
+                            className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
+                            id="saveRecoveryAuthnCodesBtn"
+                    >{msgStr("recovery-codes-action-complete")}</Button>
                 )}
             </form>
         </Template>
