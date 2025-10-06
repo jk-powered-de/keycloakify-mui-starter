@@ -102,6 +102,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                                 doUseDefaultCss={false}
                             />
                         );
+                    case "delete-account-confirm.ftl":
+                        return (
+                            <DeleteAccountConfirm
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
 
                     default:
                         return (
