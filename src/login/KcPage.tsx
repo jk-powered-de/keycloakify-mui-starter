@@ -6,6 +6,7 @@ import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "./Template";
 import "./main.css";
 
+import DeleteAccountConfirm from "./pages/DeleteAccountConfirm.tsx";
 const UserProfileFormFields = lazy(() => import("./UserProfileFormFields"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
