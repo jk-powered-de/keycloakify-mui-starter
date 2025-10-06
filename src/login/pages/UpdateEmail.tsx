@@ -7,6 +7,9 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 type UpdateEmailProps = PageProps<Extract<KcContext, { pageId: "update-email.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -87,12 +90,15 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
     return (
         <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
             <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                <div className="checkbox">
-                    <label>
-                        <input type="checkbox" id="logout-sessions" name="logout-sessions" value="on" defaultChecked={true} />
-                        {msg("logoutOtherSessions")}
-                    </label>
-                </div>
+                <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked />}
+                                      label={msg("logoutOtherSessions")}
+                                      className="checkbox"
+                                      id="logout-sessions"
+                                      name="logout-sessions"
+                                      value="on"
+                    />
+                </FormGroup>
             </div>
         </div>
     );
