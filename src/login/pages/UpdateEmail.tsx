@@ -6,6 +6,7 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 type UpdateEmailProps = PageProps<Extract<KcContext, { pageId: "update-email.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -53,17 +54,15 @@ export default function UpdateEmail(props: UpdateEmailProps) {
                     <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
 
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <input
-                            disabled={!isFormSubmittable}
-                            className={kcClsx(
-                                "kcButtonClass",
-                                "kcButtonPrimaryClass",
-                                !isAppInitiatedAction && "kcButtonBlockClass",
-                                "kcButtonLargeClass"
-                            )}
-                            type="submit"
-                            value={msgStr("doSubmit")}
-                        />
+                        <Button variant="contained"
+                                disabled={!isFormSubmittable}
+                                className={kcClsx(
+                                    "kcButtonClass",
+                                    "kcButtonPrimaryClass",
+                                    !isAppInitiatedAction && "kcButtonBlockClass",
+                                    "kcButtonLargeClass"
+                                )}
+                                type="submit">{msgStr("doSubmit")}</Button>
                         {isAppInitiatedAction && (
                             <button
                                 className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
