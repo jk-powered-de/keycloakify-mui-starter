@@ -4,6 +4,9 @@ import { useScript } from "keycloakify/login/pages/LoginRecoveryAuthnCodeConfig.
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Alert from "@mui/material/Alert";
+import AlertTitle from '@mui/material/AlertTitle';
+
 
 export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<KcContext, { pageId: "login-recovery-authn-code-config.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -30,16 +33,11 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
             headerNode={msg("recovery-code-config-header")}
         >
             <div className={clsx("pf-c-alert", "pf-m-warning", "pf-m-inline", kcClsx("kcRecoveryCodesWarning"))} aria-label="Warning alert">
-                <div className="pf-c-alert__icon">
-                    <i className="pficon-warning-triangle-o" aria-hidden="true" />
-                </div>
-                <h4 className="pf-c-alert__title">
-                    <span className="pf-screen-reader">Warning alert:</span>
-                    {msg("recovery-code-config-warning-title")}
-                </h4>
-                <div className="pf-c-alert__description">
-                    <p>{msg("recovery-code-config-warning-message")}</p>
-                </div>
+                <Alert severity="warning"
+                        variant="outlined">
+                    <AlertTitle>{msg("recovery-code-config-warning-title")}</AlertTitle>
+                    {msg("recovery-code-config-warning-message")}
+                </Alert>
             </div>
 
             <ol id={olRecoveryCodesListId} className={kcClsx("kcRecoveryCodesList")}>
