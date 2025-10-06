@@ -19,6 +19,7 @@ const Error = lazy(() => import("./pages/Error"));
 const Code = lazy(() => import("./pages/Code"));
 const DeleteCredential = lazy(() => import("./pages/DeleteCredential"));
 const FrontchannelLogout = lazy(() => import("./pages/FrontchannelLogout"));
+const IdpReviewUserProfile = lazy(() => import("./pages/IdpReviewUserProfile"));
 
 const doMakeUserConfirmPassword = true;
 
@@ -127,6 +128,16 @@ export default function KcPage(props: { kcContext: KcContext }) {
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
+                            />
+                        );
+                    case "idp-review-user-profile.ftl":
+                        return (
+                            <IdpReviewUserProfile
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                                UserProfileFormFields={UserProfileFormFields}
+                                doMakeUserConfirmPassword={doMakeUserConfirmPassword}
                             />
                         );
 
