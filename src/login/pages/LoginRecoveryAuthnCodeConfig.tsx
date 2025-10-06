@@ -10,6 +10,9 @@ import Button from "@mui/material/Button";
 import PrintIcon from '@mui/icons-material/Print';
 import DownloadIcon from '@mui/icons-material/Download';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 
 export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<KcContext, { pageId: "login-recovery-authn-code-config.ftl" }>, I18n>) {
@@ -79,17 +82,18 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
 
             {/* confirmation checkbox */}
             <div className={kcClsx("kcFormOptionsClass")}>
-                <input
-                    className={kcClsx("kcCheckInputClass")}
-                    type="checkbox"
-                    id="kcRecoveryCodesConfirmationCheck"
-                    name="kcRecoveryCodesConfirmationCheck"
-                    onChange={event => {
-                        //@ts-expect-error: This is inherited from the original code
-                        document.getElementById("saveRecoveryAuthnCodesBtn").disabled = !event.target.checked;
-                    }}
+                <FormGroup>
+                <FormControlLabel control={<Checkbox />}
+                                  label={msg("recovery-codes-confirmation-message")}
+                                  className={kcClsx("kcCheckInputClass")}
+                                  id="kcRecoveryCodesConfirmationCheck"
+                                  name="kcRecoveryCodesConfirmationCheck"
+                                  onChange={event => {
+                                      //@ts-expect-error: This is inherited from the original code
+                                      document.getElementById("saveRecoveryAuthnCodesBtn").disabled = !event.target.checked;
+                                  }}
                 />
-                <label htmlFor="kcRecoveryCodesConfirmationCheck">{msg("recovery-codes-confirmation-message")}</label>
+                </FormGroup>
             </div>
 
             <form action={kcContext.url.loginAction} className={kcClsx("kcFormGroupClass")} id="kc-recovery-codes-settings-form" method="post">
