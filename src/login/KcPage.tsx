@@ -35,6 +35,7 @@ const LoginOauth2DeviceVerifyUserCode = lazy(
     () => import("./pages/LoginOauth2DeviceVerifyUserCode")
 );
 const WebauthnAuthenticate = lazy(() => import("./pages/WebauthnAuthenticate"));
+const WebauthnRegister = lazy(() => import("./pages/WebauthnRegister"));
 
 const doMakeUserConfirmPassword = true;
 
@@ -124,6 +125,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "webauthn-authenticate.ftl":
                         return (
                             <WebauthnAuthenticate
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "webauthn-register.ftl":
+                        return (
+                            <WebauthnRegister
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
