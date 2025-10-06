@@ -9,6 +9,7 @@ import AlertTitle from '@mui/material/AlertTitle';
 import Button from "@mui/material/Button";
 import PrintIcon from '@mui/icons-material/Print';
 import DownloadIcon from '@mui/icons-material/Download';
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 
 
 export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<KcContext, { pageId: "login-recovery-authn-code-config.ftl" }>, I18n>) {
@@ -67,9 +68,13 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
                         endIcon={<DownloadIcon />}>
                     {msg("recovery-codes-download")}
                 </Button>
-                <button id="copyRecoveryCodes" className={clsx("pf-c-button", "pf-m-link")} type="button">
-                    <i className="pficon-blueprint" aria-hidden="true" /> {msg("recovery-codes-copy")}
-                </button>
+                <Button variant="contained"
+                        id="copyRecoveryCodes"
+                        className={clsx("pf-c-button", "pf-m-link")}
+                        type="button"
+                        endIcon={<ContentCopyIcon />}>
+                    {msg("recovery-codes-copy")}
+                </Button>
             </div>
 
             {/* confirmation checkbox */}
