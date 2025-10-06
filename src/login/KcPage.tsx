@@ -23,6 +23,9 @@ const IdpReviewUserProfile = lazy(() => import("./pages/IdpReviewUserProfile"));
 const LoginIdpLinkConfirmOverride = lazy(
     () => import("./pages/LoginIdpLinkConfirmOverride")
 );
+const LoginRecoveryAuthnCodeConfig = lazy(
+    () => import("./pages/LoginRecoveryAuthnCodeConfig")
+);
 
 const doMakeUserConfirmPassword = true;
 
@@ -146,6 +149,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "login-idp-link-confirm-override.ftl":
                         return (
                             <LoginIdpLinkConfirmOverride
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "login-recovery-authn-code-config.ftl":
+                        return (
+                            <LoginRecoveryAuthnCodeConfig
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
