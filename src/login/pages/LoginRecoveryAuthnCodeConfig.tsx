@@ -13,6 +13,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import { List, ListItem, ListItemText, Typography } from "@mui/material";
 
 
 export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<KcContext, { pageId: "login-recovery-authn-code-config.ftl" }>, I18n>) {
@@ -47,13 +48,22 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
                 </Alert>
             </div>
 
-            <ol id={olRecoveryCodesListId} className={kcClsx("kcRecoveryCodesList")}>
-                {recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesList.map((code, index) => (
-                    <li key={index}>
-                        <span>{index + 1}:</span> {code.slice(0, 4)}-{code.slice(4, 8)}-{code.slice(8)}
-                    </li>
-                ))}
-            </ol>
+            <List id={olRecoveryCodesListId} className={kcClsx("kcRecoveryCodesList")}>
+                {recoveryAuthnCodesConfigBean.generatedRecoveryAuthnCodesList.map((code, index) => {
+                    const formatted = `${code.slice(0, 4)}-${code.slice(4, 8)}-${code.slice(8)}`;
+                    return (
+                        <ListItem key={index}>
+                            <ListItemText
+                                primary={
+                                    <Typography variant="body1" sx={{ fontFamily: "monospace", letterSpacing: 1 }}>
+                                        {index + 1}: {formatted}
+                                    </Typography>
+                                }
+                            />
+                        </ListItem>
+                    );
+                })}
+            </List>
 
             {/* actions */}
             <div className={kcClsx("kcRecoveryCodesActions")}>
