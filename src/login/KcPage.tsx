@@ -20,9 +20,6 @@ const Code = lazy(() => import("./pages/Code"));
 const DeleteCredential = lazy(() => import("./pages/DeleteCredential"));
 const FrontchannelLogout = lazy(() => import("./pages/FrontchannelLogout"));
 const IdpReviewUserProfile = lazy(() => import("./pages/IdpReviewUserProfile"));
-const LoginPasskeysConditionalAuthenticate = lazy(
-    () => import("./pages/LoginPasskeysConditionalAuthenticate")
-);
 const LoginIdpLinkConfirmOverride = lazy(
     () => import("./pages/LoginIdpLinkConfirmOverride")
 );
