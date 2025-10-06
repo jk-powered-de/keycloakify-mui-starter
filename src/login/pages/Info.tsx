@@ -2,6 +2,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function Info(props: PageProps<Extract<KcContext, { pageId: "info.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -53,9 +54,12 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
 
                     if (pageRedirectUri) {
                         return (
-                            <p>
-                                <a href={pageRedirectUri}>{msg("backToApplication")}</a>
-                            </p>
+                            <Button
+                                variant="text"
+                                href={pageRedirectUri}
+                            >
+                                {msg("backToApplication")}
+                            </Button>
                         );
                     }
                     if (actionUri) {
