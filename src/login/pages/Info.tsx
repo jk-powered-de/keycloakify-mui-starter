@@ -64,9 +64,12 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
                     }
                     if (actionUri) {
                         return (
-                            <p>
-                                <a href={actionUri}>{msg("proceedWithAction")}</a>
-                            </p>
+                            <Button
+                                variant="text"
+                                href={actionUri}
+                            >
+                                {msg("proceedWithAction")}
+                            </Button>
                         );
                     }
 
