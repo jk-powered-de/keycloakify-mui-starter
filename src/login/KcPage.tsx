@@ -26,6 +26,9 @@ const LoginIdpLinkConfirmOverride = lazy(
 const LoginRecoveryAuthnCodeConfig = lazy(
     () => import("./pages/LoginRecoveryAuthnCodeConfig")
 );
+const LoginRecoveryAuthnCodeInput = lazy(
+    () => import("./pages/LoginRecoveryAuthnCodeInput")
+);
 
 const doMakeUserConfirmPassword = true;
 
@@ -83,6 +86,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "login-passkeys-conditional-authenticate.ftl":
                         return (
                             <LoginPasskeysConditionalAuthenticate
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "login-recovery-authn-code-input.ftl":
+                        return (
+                            <LoginRecoveryAuthnCodeInput
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
