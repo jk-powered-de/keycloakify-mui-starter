@@ -3,6 +3,7 @@ import { PageProps } from "keycloakify/login/pages/PageProps";
 import { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
 export default function LoginOauth2DeviceVerifyUserCode(
     props: PageProps<Extract<KcContext, { pageId: "login-oauth2-device-verify-user-code.ftl" }>, I18n>
@@ -32,22 +33,17 @@ export default function LoginOauth2DeviceVerifyUserCode(
                 method="post"
             >
                 <div className={kcClsx("kcFormGroupClass")}>
-                    <div className={kcClsx("kcLabelWrapperClass")}>
-                        <label htmlFor="device-user-code" className={kcClsx("kcLabelClass")}>
-                            {msg("verifyOAuth2DeviceUserCode")}
-                        </label>
-                    </div>
-
-                    <div className={kcClsx("kcInputWrapperClass")}>
-                        <input
-                            id="device-user-code"
-                            name="device_user_code"
-                            autoComplete="off"
-                            type="text"
-                            className={kcClsx("kcInputClass")}
-                            autoFocus
-                        />
-                    </div>
+                    <TextField
+                        label={msg("verifyOAuth2DeviceUserCode")}
+                        variant="outlined"
+                        id="device-user-code"
+                        name="device_user_code"
+                        autoComplete="off"
+                        type="text"
+                        className={kcClsx("kcInputClass")}
+                        autoFocus
+                        sx={{width: "100%"}}
+                    />
                 </div>
 
                 <div className={kcClsx("kcFormGroupClass")}>
