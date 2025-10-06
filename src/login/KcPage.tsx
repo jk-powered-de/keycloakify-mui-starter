@@ -19,6 +19,7 @@ const LoginPasskeysConditionalAuthenticate = lazy(
 const Terms = lazy(() => import("./pages/Terms"));
 const Error = lazy(() => import("./pages/Error"));
 const Code = lazy(() => import("./pages/Code"));
+const LoginX509Info = lazy(() => import("./pages/LoginX509Info"));
 const Info = lazy(() => import("./pages/Info"));
 const UpdateEmail = lazy(() => import("./pages/UpdateEmail"));
 const WebauthnError = lazy(() => import("./pages/WebauthnError"));
@@ -160,6 +161,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "delete-account-confirm.ftl":
                         return (
                             <DeleteAccountConfirm
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "login-x509-info.ftl":
+                        return (
+                            <LoginX509Info
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
