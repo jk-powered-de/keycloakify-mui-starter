@@ -70,13 +70,13 @@ export default function LoginX509Info(props: PageProps<Extract<KcContext, { page
                                 {msgStr("doContinue")}
                             </Button>
                             {x509.formData.isUserEnabled && (
-                                <input
-                                    className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
-                                    name="cancel"
-                                    id="kc-cancel"
-                                    type="submit"
-                                    value={msgStr("doIgnore")}
-                                />
+                                <Button variant="outlined"
+                                        className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
+                                        name="cancel"
+                                        id="kc-cancel"
+                                        type="submit">
+                                    {msgStr("doIgnore")}
+                                </Button>
                             )}
                         </div>
                     </div>
