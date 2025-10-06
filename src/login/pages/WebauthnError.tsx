@@ -29,22 +29,22 @@ export default function WebauthnError(props: PageProps<Extract<KcContext, { page
                 <input type="hidden" id="executionValue" name="authenticationExecution" />
                 <input type="hidden" id="isSetRetry" name="isSetRetry" />
             </form>
-            <input
-                tabIndex={4}
-                onClick={() => {
-                    // @ts-expect-error: Trusted Keycloak's code
-                    document.getElementById("isSetRetry").value = "retry";
-                    // @ts-expect-error: Trusted Keycloak's code
-                    document.getElementById("executionValue").value = "${execution}";
-                    // @ts-expect-error: Trusted Keycloak's code
-                    document.getElementById("kc-error-credential-form").requestSubmit();
-                }}
-                type="button"
-                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                name="try-again"
-                id="kc-try-again"
-                value={msgStr("doTryAgain")}
-            />
+            <Button variant="contained"
+                    tabIndex={4}
+                    onClick={() => {
+                        // @ts-expect-error: Trusted Keycloak's code
+                        document.getElementById("isSetRetry").value = "retry";
+                        // @ts-expect-error: Trusted Keycloak's code
+                        document.getElementById("executionValue").value = "${execution}";
+                        // @ts-expect-error: Trusted Keycloak's code
+                        document.getElementById("kc-error-credential-form").requestSubmit();
+                    }}
+                    type="button"
+                    className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                    name="try-again"
+                    id="kc-try-again">
+                {msgStr("doTryAgain")}
+            </Button>
             {isAppInitiatedAction && (
                 <form action={url.loginAction} className={kcClsx("kcFormClass")} id="kc-webauthn-settings-form" method="post">
                     <Button variant="outlined"
