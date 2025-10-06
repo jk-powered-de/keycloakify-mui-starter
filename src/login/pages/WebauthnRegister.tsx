@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import KeyIcon from '@mui/icons-material/Key';
 
 export default function WebauthnRegister(props: PageProps<Extract<KcContext, { pageId: "webauthn-register.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -33,7 +34,7 @@ export default function WebauthnRegister(props: PageProps<Extract<KcContext, { p
             classes={classes}
             headerNode={
                 <>
-                    <span className={kcClsx("kcWebAuthnKeyIcon")} />
+                    <KeyIcon fontSize={"large"}/>
                     {msg("webauthn-registration-title")}
                 </>
             }
