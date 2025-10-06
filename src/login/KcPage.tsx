@@ -20,6 +20,12 @@ const Code = lazy(() => import("./pages/Code"));
 const DeleteCredential = lazy(() => import("./pages/DeleteCredential"));
 const FrontchannelLogout = lazy(() => import("./pages/FrontchannelLogout"));
 const IdpReviewUserProfile = lazy(() => import("./pages/IdpReviewUserProfile"));
+const LoginPasskeysConditionalAuthenticate = lazy(
+    () => import("./pages/LoginPasskeysConditionalAuthenticate")
+);
+const LoginIdpLinkConfirmOverride = lazy(
+    () => import("./pages/LoginIdpLinkConfirmOverride")
+);
 
 const doMakeUserConfirmPassword = true;
 
@@ -138,6 +144,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                                 doUseDefaultCss={false}
                                 UserProfileFormFields={UserProfileFormFields}
                                 doMakeUserConfirmPassword={doMakeUserConfirmPassword}
+                            />
+                        );
+                    case "login-idp-link-confirm-override.ftl":
+                        return (
+                            <LoginIdpLinkConfirmOverride
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
                             />
                         );
 
