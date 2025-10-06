@@ -29,6 +29,9 @@ const LoginRecoveryAuthnCodeConfig = lazy(
 const LoginRecoveryAuthnCodeInput = lazy(
     () => import("./pages/LoginRecoveryAuthnCodeInput")
 );
+const LoginOauth2DeviceVerifyUserCode = lazy(
+    () => import("./pages/LoginOauth2DeviceVerifyUserCode")
+);
 
 const doMakeUserConfirmPassword = true;
 
@@ -86,6 +89,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "login-passkeys-conditional-authenticate.ftl":
                         return (
                             <LoginPasskeysConditionalAuthenticate
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "login-oauth2-device-verify-user-code.ftl":
+                        return (
+                            <LoginOauth2DeviceVerifyUserCode
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
