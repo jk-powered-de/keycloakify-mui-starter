@@ -144,12 +144,15 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
     return (
         <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
             <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                <div className="checkbox">
-                    <label>
-                        <input type="checkbox" id="logout-sessions" name="logout-sessions" value="on" defaultChecked={true} />
-                        {msg("logoutOtherSessions")}
-                    </label>
-                </div>
+                <FormGroup>
+                    <FormControlLabel control={<Checkbox defaultChecked />}
+                                      label={msg("logoutOtherSessions")}
+                                      className="checkbox"
+                                      id="logout-sessions"
+                                      name="logout-sessions"
+                                      value="on"
+                    />
+                </FormGroup>
             </div>
         </div>
     );
