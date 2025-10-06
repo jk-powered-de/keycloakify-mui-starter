@@ -2,6 +2,7 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function LogoutConfirm(props: PageProps<Extract<KcContext, { pageId: "logout-confirm.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -39,9 +40,12 @@ export default function LogoutConfirm(props: PageProps<Extract<KcContext, { page
                 </form>
                 <div id="kc-info-message">
                     {!logoutConfirm.skipLink && client.baseUrl && (
-                        <p>
-                            <a href={client.baseUrl}>{msg("backToApplication")}</a>
-                        </p>
+                        <Button
+                            variant="text"
+                            href={client.baseUrl}
+                        >
+                            {msg("backToApplication")}
+                        </Button>
                     )}
                 </div>
             </div>
