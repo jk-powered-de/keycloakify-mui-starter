@@ -19,6 +19,7 @@ const LoginPasskeysConditionalAuthenticate = lazy(
 const Terms = lazy(() => import("./pages/Terms"));
 const Error = lazy(() => import("./pages/Error"));
 const Code = lazy(() => import("./pages/Code"));
+const WebauthnError = lazy(() => import("./pages/WebauthnError"));
 const DeleteCredential = lazy(() => import("./pages/DeleteCredential"));
 const FrontchannelLogout = lazy(() => import("./pages/FrontchannelLogout"));
 const IdpReviewUserProfile = lazy(() => import("./pages/IdpReviewUserProfile"));
@@ -157,6 +158,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "delete-account-confirm.ftl":
                         return (
                             <DeleteAccountConfirm
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "webauthn-error.ftl":
+                        return (
+                            <WebauthnError
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
