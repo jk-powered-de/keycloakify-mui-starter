@@ -2,6 +2,7 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function WebauthnError(props: PageProps<Extract<KcContext, { pageId: "webauthn-error.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -46,15 +47,12 @@ export default function WebauthnError(props: PageProps<Extract<KcContext, { page
             />
             {isAppInitiatedAction && (
                 <form action={url.loginAction} className={kcClsx("kcFormClass")} id="kc-webauthn-settings-form" method="post">
-                    <button
-                        type="submit"
-                        className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                        id="cancelWebAuthnAIA"
-                        name="cancel-aia"
-                        value="true"
-                    >
-                        {msgStr("doCancel")}
-                    </button>
+                    <Button variant="outlined"
+                            type="submit"
+                            className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                            id="cancelWebAuthnAIA"
+                            name="cancel-aia"
+                            value="true">{msgStr("doCancel")}</Button>
                 </form>
             )}
         </Template>
