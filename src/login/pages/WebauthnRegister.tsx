@@ -46,12 +46,11 @@ export default function WebauthnRegister(props: PageProps<Extract<KcContext, { p
                     <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
                 </div>
             </form>
-            <input
-                type="submit"
-                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                id={authButtonId}
-                value={msgStr("doRegisterSecurityKey")}
-            />
+            <Button variant="contained"
+                    type="submit"
+                    className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                    id={authButtonId}
+            >{msgStr("doRegisterSecurityKey")}</Button>
 
             {!isSetRetry && isAppInitiatedAction && (
                 <form action={url.loginAction} className={kcClsx("kcFormClass")} id="kc-webauthn-settings-form" method="post">
