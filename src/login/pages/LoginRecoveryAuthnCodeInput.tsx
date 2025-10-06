@@ -4,6 +4,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
 export default function LoginRecoveryAuthnCodeInput(props: PageProps<Extract<KcContext, { pageId: "login-recovery-authn-code-input.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -28,13 +29,10 @@ export default function LoginRecoveryAuthnCodeInput(props: PageProps<Extract<KcC
         >
             <form id="kc-recovery-code-login-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
                 <div className={kcClsx("kcFormGroupClass")}>
-                    <div className={kcClsx("kcLabelWrapperClass")}>
-                        <label htmlFor="recoveryCodeInput" className={kcClsx("kcLabelClass")}>
-                            {msg("auth-recovery-code-prompt", `${recoveryAuthnCodesInputBean.codeNumber}`)}
-                        </label>
-                    </div>
                     <div className={kcClsx("kcInputWrapperClass")}>
-                        <input
+                        <TextField
+                            label= {msg("auth-recovery-code-prompt", `${recoveryAuthnCodesInputBean.codeNumber}`)}
+                            variant="outlined"
                             tabIndex={1}
                             id="recoveryCodeInput"
                             name="recoveryCodeInput"
@@ -43,17 +41,18 @@ export default function LoginRecoveryAuthnCodeInput(props: PageProps<Extract<KcC
                             type="text"
                             className={kcClsx("kcInputClass")}
                             autoFocus
+                            error={messagesPerField.existsError("recoveryCodeInput")}
+                            helperText={messagesPerField.existsError("recoveryCodeInput") && (
+                                <span
+                                    id="input-error"
+                                    className={kcClsx("kcInputErrorMessageClass")}
+                                    aria-live="polite"
+                                    dangerouslySetInnerHTML={{
+                                        __html: kcSanitize(messagesPerField.get("recoveryCodeInput"))
+                                    }}
+                                />
+                            )}
                         />
-                        {messagesPerField.existsError("recoveryCodeInput") && (
-                            <span
-                                id="input-error"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.get("recoveryCodeInput"))
-                                }}
-                            />
-                        )}
                     </div>
                 </div>
 
