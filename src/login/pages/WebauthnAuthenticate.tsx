@@ -5,6 +5,7 @@ import { useScript } from "keycloakify/login/pages/WebauthnAuthenticate.useScrip
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { Button } from "@mui/material";
 
 export default function WebauthnAuthenticate(props: PageProps<Extract<KcContext, { pageId: "webauthn-authenticate.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -123,13 +124,12 @@ export default function WebauthnAuthenticate(props: PageProps<Extract<KcContext,
                         </>
                     )}
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <input
-                            id={authButtonId}
-                            type="button"
-                            autoFocus
-                            value={msgStr("webauthn-doAuthenticate")}
-                            className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                        />
+                        <Button variant="contained"
+                                id={authButtonId}
+                                type="button"
+                                autoFocus
+                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                        >{msgStr("webauthn-doAuthenticate")}</Button>
                     </div>
                 </div>
             </div>
