@@ -39,9 +39,14 @@ export default function LoginPasskeysConditionalAuthenticate(
                     <div id="kc-registration">
                         <span>
                             ${msg("noAccount")}{" "}
-                            <a tabIndex={6} href={url.registrationUrl}>
-                                {msg("doRegister")}
-                            </a>
+                            <Button
+                                sx={{ width: "100%" }}
+                                tabIndex={6}
+                                variant="contained"
+                                href={url.registrationUrl}
+                            >
+                                    {msg("doRegister")}
+                            </Button>
                         </span>
                     </div>
                 )
