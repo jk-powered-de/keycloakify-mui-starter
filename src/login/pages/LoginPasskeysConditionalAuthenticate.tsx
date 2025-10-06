@@ -5,6 +5,7 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import { useScript } from "keycloakify/login/pages/LoginPasskeysConditionalAuthenticate.useScript";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function LoginPasskeysConditionalAuthenticate(
     props: PageProps<Extract<KcContext, { pageId: "login-passkeys-conditional-authenticate.ftl" }>, I18n>
@@ -160,13 +161,12 @@ export default function LoginPasskeysConditionalAuthenticate(
                             </form>
                         )}
                         <div id="kc-form-passkey-button" className={kcClsx("kcFormButtonsClass")} style={{ display: "none" }}>
-                            <input
-                                id={authButtonId}
-                                type="button"
-                                autoFocus
-                                value={msgStr("passkey-doAuthenticate")}
-                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                            />
+                            <Button variant="contained"
+                                    id={authButtonId}
+                                    autoFocus
+                                    type="button"
+                                    className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                            >{msgStr("passkey-doAuthenticate")}</Button>
                         </div>
                     </div>
                 </div>
