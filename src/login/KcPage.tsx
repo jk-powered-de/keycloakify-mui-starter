@@ -12,7 +12,12 @@ const Register = lazy(() => import("./pages/Register"));
 const LoginUsername = lazy(() => import("./pages/LoginUsername"));
 const LoginPassword = lazy(() => import("./pages/LoginPassword"));
 const LoginResetPassword = lazy(() => import("./pages/LoginResetPassword"));
-const LoginPasskeysConditionalAuthenticate = lazy(() => import("./pages/LoginPasskeysConditionalAuthenticate"));
+const LoginPasskeysConditionalAuthenticate = lazy(
+    () => import("./pages/LoginPasskeysConditionalAuthenticate")
+);
+const LoginOauth2DeviceVerifyUserCode = lazy(
+    () => import("./pages/LoginOauth2DeviceVerifyUserCode")
+);
 
 const doMakeUserConfirmPassword = true;
 
@@ -70,6 +75,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "login-passkeys-conditional-authenticate.ftl":
                         return (
                             <LoginPasskeysConditionalAuthenticate
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "login-oauth2-device-verify-user-code.ftl":
+                        return (
+                            <LoginOauth2DeviceVerifyUserCode
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
