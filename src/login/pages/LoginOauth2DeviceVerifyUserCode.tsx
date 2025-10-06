@@ -2,6 +2,7 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import { PageProps } from "keycloakify/login/pages/PageProps";
 import { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from "@mui/material/Button";
 
 export default function LoginOauth2DeviceVerifyUserCode(
     props: PageProps<Extract<KcContext, { pageId: "login-oauth2-device-verify-user-code.ftl" }>, I18n>
@@ -56,11 +57,11 @@ export default function LoginOauth2DeviceVerifyUserCode(
 
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
                         <div className={kcClsx("kcFormButtonsWrapperClass")}>
-                            <input
-                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
-                                type="submit"
-                                value={msgStr("doSubmit")}
-                            />
+                            <Button variant="contained"
+                                    sx={{width: "100%"}}
+                                    className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
+                                    type="submit">{msgStr("doSubmit")}
+                            </Button>
                         </div>
                     </div>
                 </div>
