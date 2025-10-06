@@ -12,8 +12,11 @@ const Register = lazy(() => import("./pages/Register"));
 const LoginUsername = lazy(() => import("./pages/LoginUsername"));
 const LoginPassword = lazy(() => import("./pages/LoginPassword"));
 const LoginResetPassword = lazy(() => import("./pages/LoginResetPassword"));
-const LoginPasskeysConditionalAuthenticate = lazy(() => import("./pages/LoginPasskeysConditionalAuthenticate"));
+const LoginPasskeysConditionalAuthenticate = lazy(
+    () => import("./pages/LoginPasskeysConditionalAuthenticate")
+);
 const Terms = lazy(() => import("./pages/Terms"));
+const WebauthnAuthenticate = lazy(() => import("./pages/WebauthnAuthenticate"));
 
 const doMakeUserConfirmPassword = true;
 
@@ -79,6 +82,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "terms.ftl":
                         return (
                             <Terms
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "webauthn-authenticate.ftl":
+                        return (
+                            <WebauthnAuthenticate
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
