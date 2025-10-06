@@ -6,6 +6,7 @@ import { useScript } from "keycloakify/login/pages/LoginPasskeysConditionalAuthe
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import { TextField } from "@mui/material";
 
 export default function LoginPasskeysConditionalAuthenticate(
     props: PageProps<Extract<KcContext, { pageId: "login-passkeys-conditional-authenticate.ftl" }>, I18n>
@@ -137,25 +138,25 @@ export default function LoginPasskeysConditionalAuthenticate(
                             >
                                 {!usernameHidden && (
                                     <div className={kcClsx("kcFormGroupClass")}>
-                                        <label htmlFor="username" className={kcClsx("kcLabelClass")}>
-                                            {msg("passkey-autofill-select")}
-                                        </label>
-                                        <input
+                                        <TextField
+                                            variant="outlined"
                                             tabIndex={1}
                                             id="username"
                                             aria-invalid={messagesPerField.existsError("username")}
                                             className={kcClsx("kcInputClass")}
                                             name="username"
                                             defaultValue={login.username ?? ""}
+                                            label={msg("passkey-autofill-select")}
                                             autoComplete="username webauthn"
-                                            type="text"
+                                            type={"text"}
                                             autoFocus
-                                        />
-                                        {messagesPerField.existsError("username") && (
-                                            <span id="input-error-username" className={kcClsx("kcInputErrorMessageClass")} aria-live="polite">
+                                            error={messagesPerField.existsError("username")}
+                                            helperText={messagesPerField.existsError("username") && (
+                                                <span id="input-error-username" className={kcClsx("kcInputErrorMessageClass")} aria-live="polite">
                                                 {messagesPerField.get("username")}
                                             </span>
-                                        )}
+                                            )}
+                                        />
                                     </div>
                                 )}
                             </form>
