@@ -105,13 +105,13 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
 
                 {isAppInitiatedAction ? (
                     <>
-                        <input
-                            type="submit"
-                            className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
-                            id="saveRecoveryAuthnCodesBtn"
-                            value={msgStr("recovery-codes-action-complete")}
-                            disabled
-                        />
+                        <Button variant="contained"
+                                type="submit"
+                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
+                                id="saveRecoveryAuthnCodesBtn"
+                                disabled
+                        >{msgStr("recovery-codes-action-complete")}</Button>
+
                         <button
                             type="submit"
                             className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
