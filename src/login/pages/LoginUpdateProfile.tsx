@@ -6,6 +6,7 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { Button } from "@mui/material";
 
 type LoginUpdateProfileProps = PageProps<Extract<KcContext, { pageId: "login-update-profile.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -49,17 +50,18 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
                         <div className={kcClsx("kcFormOptionsWrapperClass")} />
                     </div>
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <input
-                            disabled={!isFormSubmittable}
-                            className={kcClsx(
-                                "kcButtonClass",
-                                "kcButtonPrimaryClass",
-                                !isAppInitiatedAction && "kcButtonBlockClass",
-                                "kcButtonLargeClass"
-                            )}
-                            type="submit"
-                            value={msgStr("doSubmit")}
-                        />
+                        <Button variant="contained"
+                                disabled={!isFormSubmittable}
+                                className={kcClsx(
+                                    "kcButtonClass",
+                                    "kcButtonPrimaryClass",
+                                    !isAppInitiatedAction && "kcButtonBlockClass",
+                                    "kcButtonLargeClass"
+                                )}
+                                type="submit"
+                                sx={{width: "100%"}}
+                        >{msgStr("doSubmit")}
+                        </Button>
                         {isAppInitiatedAction && (
                             <button
                                 className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
