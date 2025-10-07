@@ -2,6 +2,28 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import KeyIcon from "@mui/icons-material/Key";
+import PasswordIcon from "@mui/icons-material/Password";
+import SmartphoneIcon from "@mui/icons-material/Smartphone";
+import SecurityIcon from "@mui/icons-material/Security";
+import LockIcon from "@mui/icons-material/Lock";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+function getAuthenticatorIcon(iconCssClass: string | undefined) {
+    switch (iconCssClass) {
+        case "kcAuthenticatorPasswordClass":
+            return <PasswordIcon />;
+        case "kcAuthenticatorOTPClass":
+            return <SmartphoneIcon />;
+        case "kcAuthenticatorWebAuthnClass":
+            return <KeyIcon />;
+        case "kcAuthenticatorKeyClass":
+            return <SecurityIcon />;
+        default:
+            return <LockIcon />;
+    }
+}
 
 export default function SelectAuthenticator(props: PageProps<Extract<KcContext, { pageId: "select-authenticator.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -20,29 +42,45 @@ export default function SelectAuthenticator(props: PageProps<Extract<KcContext, 
             headerNode={msg("loginChooseAuthenticator")}
         >
             <form id="kc-select-credential-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
-                <div className={kcClsx("kcSelectAuthListClass")}>
+                    <List className={kcClsx("kcSelectAuthListClass")}>
+
                     {auth.authenticationSelections.map((authenticationSelection, i) => (
-                        <button
-                            key={i}
-                            className={kcClsx("kcSelectAuthListItemClass")}
-                            type="submit"
-                            name="authenticationExecution"
-                            value={authenticationSelection.authExecId}
-                        >
-                            <div className={kcClsx("kcSelectAuthListItemIconClass")}>
-                                <i className={kcClsx("kcSelectAuthListItemIconPropertyClass", authenticationSelection.iconCssClass)} />
-                            </div>
-                            <div className={kcClsx("kcSelectAuthListItemBodyClass")}>
-                                <div className={kcClsx("kcSelectAuthListItemHeadingClass")}>{advancedMsg(authenticationSelection.displayName)}</div>
-                                <div className={kcClsx("kcSelectAuthListItemDescriptionClass")}>{advancedMsg(authenticationSelection.helpText)}</div>
-                            </div>
-                            <div className={kcClsx("kcSelectAuthListItemFillClass")} />
-                            <div className={kcClsx("kcSelectAuthListItemArrowClass")}>
-                                <i className={kcClsx("kcSelectAuthListItemArrowIconClass")} />
-                            </div>
-                        </button>
+                        <ListItem disablePadding
+                                  key={i}
+                                  className={kcClsx("kcSelectAuthListItemClass")}
+                                    >
+                            <ListItemButton
+                                key={i}
+                                component="button"
+                                type="submit"
+                                name="authenticationExecution"
+                                value={authenticationSelection.authExecId}
+                                sx={{ borderRadius: 1, mb: 1 }}
+                            >
+                                <ListItemIcon>
+                                    {getAuthenticatorIcon(authenticationSelection.iconCssClass)}
+                                </ListItemIcon>
+
+                                <ListItemText
+                                    primary={
+                                        <Typography variant="body1" fontWeight="medium">
+                                            {advancedMsg(authenticationSelection.displayName)}
+                                        </Typography>
+                                    }
+                                    secondary={
+                                        authenticationSelection.helpText ? (
+                                            <Typography variant="body2" color="text.secondary">
+                                                {advancedMsg(authenticationSelection.helpText)}
+                                            </Typography>
+                                        ) : null
+                                    }
+                                />
+
+                                <ArrowForwardIosIcon fontSize="small" />
+                            </ListItemButton>
+                        </ListItem>
                     ))}
-                </div>
+            </List>
             </form>
         </Template>
     );
