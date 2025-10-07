@@ -2,6 +2,7 @@ import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 import { PageProps } from "keycloakify/login/pages/PageProps";
 import { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from '@mui/material/Button';
 
 export default function LoginOauthGrant(props: PageProps<Extract<KcContext, { pageId: "login-oauth-grant.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, classes, Template } = props;
@@ -91,6 +92,14 @@ export default function LoginOauthGrant(props: PageProps<Extract<KcContext, { pa
                                     type="submit"
                                     value={msgStr("doNo")}
                                 />
+                                <Button variant="contained"
+                                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
+                                        name="accept"
+                                        id="kc-login"
+                                        type="submit"
+                                        sx={{width:"100%"}}>
+                                    {msgStr("doYes")}
+                                </Button>
                             </div>
                         </div>
                     </div>
