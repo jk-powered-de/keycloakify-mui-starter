@@ -6,6 +6,7 @@ import type { I18n } from "../i18n";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Button from '@mui/material/Button';
 
 export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pageId: "login-config-totp.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -180,12 +181,11 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                             </button>
                         </>
                     ) : (
-                        <input
-                            type="submit"
-                            className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
-                            id="saveTOTPBtn"
-                            value={msgStr("doSubmit")}
-                        />
+                        <Button variant="contained"
+                                type="submit"
+                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
+                                id="saveTOTPBtn"
+                        >{msgStr("doSubmit")}</Button>
                     )}
                 </form>
             </>
