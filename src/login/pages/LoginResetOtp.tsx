@@ -1,10 +1,13 @@
-import { Fragment } from "react";
 import { getKcClsx } from "keycloakify/login/lib/kcClsx";
 
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { Button } from "@mui/material";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 
 export default function LoginResetOtp(props: PageProps<Extract<KcContext, { pageId: "login-reset-otp.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -31,25 +34,19 @@ export default function LoginResetOtp(props: PageProps<Extract<KcContext, { page
                 <div className={kcClsx("kcInputWrapperClass")}>
                     <div className={kcClsx("kcInfoAreaWrapperClass")}>
                         <p id="kc-otp-reset-form-description">{msg("otp-reset-description")}</p>
+                        <FormControl>
+                            <RadioGroup
+                                defaultValue={configuredOtpCredentials.selectedCredentialId}
+                            >
                         {configuredOtpCredentials.userOtpCredentials.map((otpCredential, index) => (
-                            <Fragment key={otpCredential.id}>
-                                <input
-                                    id={`kc-otp-credential-${index}`}
-                                    className={kcClsx("kcLoginOTPListInputClass")}
-                                    type="radio"
-                                    name="selectedCredentialId"
-                                    value={otpCredential.id}
-                                    defaultChecked={otpCredential.id === configuredOtpCredentials.selectedCredentialId}
-                                />
-                                <label htmlFor={`kc-otp-credential-${index}`} className={kcClsx("kcLoginOTPListClass")} tabIndex={index}>
-                                    <span className={kcClsx("kcLoginOTPListItemHeaderClass")}>
-                                        <span className={kcClsx("kcLoginOTPListItemIconBodyClass")}>
-                                            <i className={kcClsx("kcLoginOTPListItemIconClass")} aria-hidden="true"></i>
-                                        </span>
-                                        <span className={kcClsx("kcLoginOTPListItemTitleClass")}>{otpCredential.userLabel}</span>
-                                    </span>
-                                </label>
-                            </Fragment>
+                            <FormControlLabel key={otpCredential.id}
+                                              control={<Radio />}
+                                              label={otpCredential.userLabel}
+                                              id={`kc-otp-credential-${index}`}
+                                              className={kcClsx("kcLoginOTPListInputClass")}
+                                              name="selectedCredentialId"
+                                              value={otpCredential.id}
+                            />
                         ))}
                         <div className={kcClsx("kcFormGroupClass")}>
                             <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
@@ -61,6 +58,8 @@ export default function LoginResetOtp(props: PageProps<Extract<KcContext, { page
                                 </Button>
                             </div>
                         </div>
+                            </RadioGroup>
+                        </FormControl>
                     </div>
                 </div>
             </form>
