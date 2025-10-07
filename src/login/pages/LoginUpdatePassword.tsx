@@ -8,6 +8,7 @@ import type { I18n } from "../i18n";
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Button from '@mui/material/Button';
 
 export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, { pageId: "login-update-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -96,16 +97,16 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                 <div className={kcClsx("kcFormGroupClass")}>
                     <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <input
-                            className={kcClsx(
-                                "kcButtonClass",
-                                "kcButtonPrimaryClass",
-                                !isAppInitiatedAction && "kcButtonBlockClass",
-                                "kcButtonLargeClass"
-                            )}
-                            type="submit"
-                            value={msgStr("doSubmit")}
-                        />
+                        <Button variant="contained"
+                                className={kcClsx(
+                                    "kcButtonClass",
+                                    "kcButtonPrimaryClass",
+                                    !isAppInitiatedAction && "kcButtonBlockClass",
+                                    "kcButtonLargeClass"
+                                )}
+                                type="submit">
+                            {msgStr("doSubmit")}
+                        </Button>
                         {isAppInitiatedAction && (
                             <button
                                 className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
