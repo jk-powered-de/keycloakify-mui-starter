@@ -9,7 +9,10 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from '@mui/material/Button';
-import { FormGroup, FormControlLabel } from "@mui/material";
+import FormControl from '@mui/material/FormControl';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 
 type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n> & {
@@ -142,31 +145,39 @@ function TermsAcceptance(props: {
             </div>
             <div className="form-group">
                 <div className={kcClsx("kcLabelWrapperClass")}>
-                    <input
-                        type="checkbox"
-                        id="termsAccepted"
-                        name="termsAccepted"
-                        className={kcClsx("kcCheckboxInputClass")}
-                        checked={areTermsAccepted}
-                        onChange={e => onAreTermsAcceptedValueChange(e.target.checked)}
-                        aria-invalid={messagesPerField.existsError("termsAccepted")}
-                    />
-                    <label htmlFor="termsAccepted" className={kcClsx("kcLabelClass")}>
-                        {msg("acceptTerms")}
-                    </label>
+                    <FormControl error={messagesPerField.existsError("termsAccepted")} component="fieldset">
+                        <FormGroup>
+                            <FormControlLabel
+                                required
+                                control={
+                                    <Checkbox
+                                        checked={areTermsAccepted}
+                                        onChange={(_, checked) => onAreTermsAcceptedValueChange(checked)}
+                                    />
+                                }
+                                label={msg("acceptTerms")}
+                                id="termsAccepted"
+                                name="termsAccepted"
+                                className={kcClsx("kcCheckboxInputClass")}
+                                aria-invalid={messagesPerField.existsError("termsAccepted")}
+                            />
+                        </FormGroup>
+                        {messagesPerField.existsError("termsAccepted") && (
+                            <div className={kcClsx("kcLabelWrapperClass")}>
+                                <FormHelperText>
+                                    <span
+                                        id="input-error-terms-accepted"
+                                        className={kcClsx("kcInputErrorMessageClass")}
+                                        aria-live="polite"
+                                        dangerouslySetInnerHTML={{
+                                            __html: kcSanitize(messagesPerField.get("termsAccepted"))
+                                        }}
+                                    />
+                                </FormHelperText>
+                            </div>
+                        )}
+                    </FormControl>
                 </div>
-                {messagesPerField.existsError("termsAccepted") && (
-                    <div className={kcClsx("kcLabelWrapperClass")}>
-                        <span
-                            id="input-error-terms-accepted"
-                            className={kcClsx("kcInputErrorMessageClass")}
-                            aria-live="polite"
-                            dangerouslySetInnerHTML={{
-                                __html: kcSanitize(messagesPerField.get("termsAccepted"))
-                            }}
-                        />
-                    </div>
-                )}
             </div>
         </>
     );
