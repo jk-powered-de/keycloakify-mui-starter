@@ -131,30 +131,28 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
 
                     <div className={kcClsx("kcFormGroupClass")}>
                         <div className={kcClsx("kcInputWrapperClass")}>
-                            <label htmlFor="userLabel" className={kcClsx("kcLabelClass")}>
-                                {msg("loginTotpDeviceName")}
-                            </label>{" "}
-                            {totp.otpCredentials.length >= 1 && <span className="required">*</span>}
-                        </div>
-                        <div className={kcClsx("kcInputWrapperClass")}>
-                            <input
+                            <TextField
+                                label= {msg("loginTotpDeviceName")}
+                                required={totp.otpCredentials.length >= 1}
+                                variant="outlined"
                                 type="text"
                                 id="userLabel"
                                 name="userLabel"
                                 autoComplete="off"
                                 className={kcClsx("kcInputClass")}
                                 aria-invalid={messagesPerField.existsError("userLabel")}
+                                error={messagesPerField.existsError("userLabel")}
+                                helperText={messagesPerField.existsError("userLabel") && (
+                                    <span
+                                        id="input-error-otp-label"
+                                        className={kcClsx("kcInputErrorMessageClass")}
+                                        aria-live="polite"
+                                        dangerouslySetInnerHTML={{
+                                            __html: kcSanitize(messagesPerField.get("userLabel"))
+                                        }}
+                                    />
+                                )}
                             />
-                            {messagesPerField.existsError("userLabel") && (
-                                <span
-                                    id="input-error-otp-label"
-                                    className={kcClsx("kcInputErrorMessageClass")}
-                                    aria-live="polite"
-                                    dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(messagesPerField.get("userLabel"))
-                                    }}
-                                />
-                            )}
                         </div>
                     </div>
 
