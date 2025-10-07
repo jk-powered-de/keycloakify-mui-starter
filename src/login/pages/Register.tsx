@@ -8,6 +8,7 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import Button from '@mui/material/Button';
 
 type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -79,7 +80,7 @@ export default function Register(props: RegisterProps) {
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
                             <span>
-                                <a href={url.loginUrl}>{msg("backToLogin")}</a>
+                                <Button variant="text" href={url.loginUrl}>{msg("backToLogin")}</Button>
                             </span>
                         </div>
                     </div>
