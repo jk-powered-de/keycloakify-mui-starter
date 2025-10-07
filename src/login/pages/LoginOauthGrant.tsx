@@ -78,20 +78,6 @@ export default function LoginOauthGrant(props: PageProps<Extract<KcContext, { pa
 
                         <div id="kc-form-buttons">
                             <div className={kcClsx("kcFormButtonsWrapperClass")}>
-                                <input
-                                    className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
-                                    name="accept"
-                                    id="kc-login"
-                                    type="submit"
-                                    value={msgStr("doYes")}
-                                />
-                                <input
-                                    className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
-                                    name="cancel"
-                                    id="kc-cancel"
-                                    type="submit"
-                                    value={msgStr("doNo")}
-                                />
                                 <Button variant="contained"
                                         className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
                                         name="accept"
@@ -99,6 +85,14 @@ export default function LoginOauthGrant(props: PageProps<Extract<KcContext, { pa
                                         type="submit"
                                         sx={{width:"100%"}}>
                                     {msgStr("doYes")}
+                                </Button>
+                                <Button variant="outlined"
+                                        className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
+                                        name="cancel"
+                                        id="kc-cancel"
+                                        type="submit"
+                                        sx={{width:"100%"}}>
+                                    {msgStr("doNo")}
                                 </Button>
                             </div>
                         </div>
