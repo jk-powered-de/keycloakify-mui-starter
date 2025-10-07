@@ -29,15 +29,16 @@ export default function LoginIdpLinkConfirm(props: PageProps<Extract<KcContext, 
                             value="updateProfile"
                     >{msg("confirmLinkIdpReviewProfile")}
                     </Button>
-                    <button
-                        type="submit"
-                        className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                        name="submitAction"
-                        id="linkAccount"
-                        value="linkAccount"
+                    <Button variant="contained"
+                            sx={{width: "100%"}}
+                            type="submit"
+                            className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                            name="submitAction"
+                            id="linkAccount"
+                            value="linkAccount"
                     >
                         {msg("confirmLinkIdpContinue", idpAlias)}
-                    </button>
+                    </Button>
                 </div>
             </form>
         </Template>
