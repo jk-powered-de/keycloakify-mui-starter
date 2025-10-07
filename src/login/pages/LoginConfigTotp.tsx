@@ -50,9 +50,11 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                     <span id="kc-totp-secret-key">{totp.totpSecretEncoded}</span>
                                 </p>
                                 <p>
-                                    <a href={totp.qrUrl} id="mode-barcode">
+                                    <Button variant="text"
+                                            href={totp.qrUrl}
+                                            id="mode-barcode">
                                         {msg("loginTotpScanBarcode")}
-                                    </a>
+                                    </Button>
                                 </p>
                             </li>
                             <li>
