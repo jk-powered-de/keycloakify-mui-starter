@@ -9,6 +9,14 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
+import * as React from "react";
+import {
+    FormControl, FormHelperText, IconButton, InputAdornment,
+    InputLabel,
+    OutlinedInput,
+} from "@mui/material";
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, { pageId: "login-update-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -21,6 +29,20 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
     const { msg, msgStr } = i18n;
 
     const { url, messagesPerField, isAppInitiatedAction } = kcContext;
+
+    // Password visibility #start
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    const handleClickShowPassword = () => setShowPassword((show) => !show);
+
+    const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+
+    const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+    };
+    // Password visibility #end
 
     return (
         <Template
@@ -65,34 +87,47 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                 </div>
 
                 <div className={kcClsx("kcFormGroupClass")}>
-                    <div className={kcClsx("kcLabelWrapperClass")}>
-                        <label htmlFor="password-confirm" className={kcClsx("kcLabelClass")}>
-                            {msg("passwordConfirm")}
-                        </label>
-                    </div>
-                    <div className={kcClsx("kcInputWrapperClass")}>
-                        <PasswordWrapper kcClsx={kcClsx} i18n={i18n} passwordInputId="password-confirm">
-                            <input
-                                type="password"
-                                id="password-confirm"
-                                name="password-confirm"
-                                className={kcClsx("kcInputClass")}
-                                autoComplete="new-password"
-                                aria-invalid={messagesPerField.existsError("password", "password-confirm")}
-                            />
-                        </PasswordWrapper>
-
+                    <FormControl variant="outlined"
+                                 error={messagesPerField.existsError("password-confirm")}
+                    >
+                        <InputLabel htmlFor="password-confirm">{msg("passwordConfirm")}</InputLabel>
+                        <OutlinedInput
+                            label={msg("passwordConfirm")}
+                            id="password-confirm"
+                            className={kcClsx("kcInputClass")}
+                            name="password-confirm"
+                            type={showPassword ? 'text' : 'password'}
+                            autoComplete="new-password"
+                            aria-invalid={messagesPerField.existsError("password", "password-confirm")}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label={
+                                            showPassword ? 'hide the password' : 'display the password'
+                                        }
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        onMouseUp={handleMouseUpPassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
                         {messagesPerField.existsError("password-confirm") && (
-                            <span
-                                id="input-error-password-confirm"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.get("password-confirm"))
-                                }}
-                            />
+                            <FormHelperText>
+                                            <span
+                                                id="input-error-password-confirm"
+                                                className={kcClsx("kcInputErrorMessageClass")}
+                                                aria-live="polite"
+                                                dangerouslySetInnerHTML={{
+                                                    __html: kcSanitize(messagesPerField.get("password-confirm"))
+                                                }}
+                                            />
+                            </FormHelperText>
                         )}
-                    </div>
+                    </FormControl>
                 </div>
                 <div className={kcClsx("kcFormGroupClass")}>
                     <LogoutOtherSessions kcClsx={kcClsx} i18n={i18n} />
