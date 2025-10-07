@@ -63,15 +63,15 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
                         >{msgStr("doSubmit")}
                         </Button>
                         {isAppInitiatedAction && (
-                            <button
-                                className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
-                                type="submit"
-                                name="cancel-aia"
-                                value="true"
-                                formNoValidate
-                            >
+                            <Button variant="outlined"
+                                    sx={{width: "100%"}}
+                                    className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
+                                    type="submit"
+                                    name="cancel-aia"
+                                    value="true"
+                                    formNoValidate>
                                 {msg("doCancel")}
-                            </button>
+                            </Button>
                         )}
                     </div>
                 </div>
