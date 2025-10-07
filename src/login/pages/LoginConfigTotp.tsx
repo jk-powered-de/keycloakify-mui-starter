@@ -7,6 +7,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
+import { TextField } from "@mui/material";
 
 export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pageId: "login-config-totp.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -100,31 +101,29 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                 <form action={url.loginAction} className={kcClsx("kcFormClass")} id="kc-totp-settings-form" method="post">
                     <div className={kcClsx("kcFormGroupClass")}>
                         <div className={kcClsx("kcInputWrapperClass")}>
-                            <label htmlFor="totp" className={kcClsx("kcLabelClass")}>
-                                {msg("authenticatorCode")}
-                            </label>{" "}
-                            <span className="required">*</span>
-                        </div>
-                        <div className={kcClsx("kcInputWrapperClass")}>
-                            <input
+                            <TextField
+                                label={msg("authenticatorCode")}
+                                required
+                                variant="outlined"
                                 type="text"
                                 id="totp"
                                 name="totp"
                                 autoComplete="off"
                                 className={kcClsx("kcInputClass")}
                                 aria-invalid={messagesPerField.existsError("totp")}
-                            />
 
-                            {messagesPerField.existsError("totp") && (
-                                <span
-                                    id="input-error-otp-code"
-                                    className={kcClsx("kcInputErrorMessageClass")}
-                                    aria-live="polite"
-                                    dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(messagesPerField.get("totp"))
-                                    }}
-                                />
-                            )}
+                                error={messagesPerField.existsError("totp")}
+                                helperText={messagesPerField.existsError("totp") && (
+                                    <span
+                                        id="input-error-otp-code"
+                                        className={kcClsx("kcInputErrorMessageClass")}
+                                        aria-live="polite"
+                                        dangerouslySetInnerHTML={{
+                                            __html: kcSanitize(messagesPerField.get("totp"))
+                                        }}
+                                    />
+                                )}
+                            />
                         </div>
                         <input type="hidden" id="totpSecret" name="totpSecret" value={totp.totpSecret} />
                         {mode && <input type="hidden" id="mode" value={mode} />}
