@@ -9,6 +9,8 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from '@mui/material/Button';
+import { FormGroup, FormControlLabel } from "@mui/material";
+import Checkbox from '@mui/material/Checkbox';
 
 type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -87,18 +89,19 @@ export default function Register(props: RegisterProps) {
 
                     {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
                         <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                            <button
-                                className={clsx(
-                                    kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass"),
-                                    "g-recaptcha"
-                                )}
-                                data-sitekey={recaptchaSiteKey}
-                                data-callback="onSubmitRecaptcha"
-                                data-action={recaptchaAction}
-                                type="submit"
+                            <Button variant="contained"
+                                    sx={{width: "100%"}}
+                                    className={clsx(
+                                        kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass"),
+                                        "g-recaptcha"
+                                    )}
+                                    data-sitekey={recaptchaSiteKey}
+                                    data-callback="onSubmitRecaptcha"
+                                    data-action={recaptchaAction}
+                                    type="submit"
                             >
                                 {msg("doRegister")}
-                            </button>
+                            </Button>
                         </div>
                     ) : (
                         <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
