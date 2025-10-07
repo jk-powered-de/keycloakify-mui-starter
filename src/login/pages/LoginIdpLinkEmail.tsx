@@ -25,7 +25,7 @@ export default function LoginIdpLinkEmail(props: PageProps<Extract<KcContext, { 
                 {msg("emailLinkIdp2")} <Button variant="text" href={url.loginAction}>{msg("doClickHere")}</Button> {msg("emailLinkIdp3")}
             </p>
             <p id="instruction3" className="instruction">
-                {msg("emailLinkIdp4")} <a href={url.loginAction}>{msg("doClickHere")}</a> {msg("emailLinkIdp5")}
+                {msg("emailLinkIdp4")} <Button variant="text" href={url.loginAction}>{msg("doClickHere")}</Button> {msg("emailLinkIdp5")}
             </p>
         </Template>
     );
