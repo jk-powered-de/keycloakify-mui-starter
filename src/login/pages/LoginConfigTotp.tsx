@@ -84,9 +84,10 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                             <img id="kc-totp-secret-qr-code" src={`data:image/png;base64, ${totp.totpSecretQrCode}`} alt="Figure: Barcode" />
                             <br />
                             <p>
-                                <a href={totp.manualUrl} id="mode-manual">
-                                    {msg("loginTotpUnableToScan")}
-                                </a>
+                                <Button variant="text"
+                                        href={totp.manualUrl}
+                                        id="mode-manual">{msg("loginTotpUnableToScan")}
+                                </Button>
                             </p>
                         </li>
                     )}
