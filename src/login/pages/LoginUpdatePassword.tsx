@@ -1,5 +1,3 @@
-import type { JSX } from "keycloakify/tools/JSX";
-import { useIsPasswordRevealed } from "keycloakify/tools/useIsPasswordRevealed";
 import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import { getKcClsx, type KcClsx } from "keycloakify/login/lib/kcClsx";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
@@ -55,35 +53,48 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
         >
             <form id="kc-passwd-update-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
                 <div className={kcClsx("kcFormGroupClass")}>
-                    <div className={kcClsx("kcLabelWrapperClass")}>
-                        <label htmlFor="password-new" className={kcClsx("kcLabelClass")}>
-                            {msg("passwordNew")}
-                        </label>
-                    </div>
-                    <div className={kcClsx("kcInputWrapperClass")}>
-                        <PasswordWrapper kcClsx={kcClsx} i18n={i18n} passwordInputId="password-new">
-                            <input
-                                type="password"
-                                id="password-new"
-                                name="password-new"
-                                className={kcClsx("kcInputClass")}
-                                autoFocus
-                                autoComplete="new-password"
-                                aria-invalid={messagesPerField.existsError("password", "password-confirm")}
-                            />
-                        </PasswordWrapper>
-
+                    <FormControl variant="outlined"
+                                 error={messagesPerField.existsError("password")}
+                    >
+                        <InputLabel htmlFor="password-new">{msg("passwordNew")}</InputLabel>
+                        <OutlinedInput
+                            label={msg("passwordNew")}
+                            id="password-new"
+                            className={kcClsx("kcInputClass")}
+                            name="password-new"
+                            type={showPassword ? 'text' : 'password'}
+                            autoFocus
+                            autoComplete="new-password"
+                            aria-invalid={messagesPerField.existsError("password", "password-confirm")}
+                            endAdornment={
+                                <InputAdornment position="end">
+                                    <IconButton
+                                        aria-label={
+                                            showPassword ? 'hide the password' : 'display the password'
+                                        }
+                                        onClick={handleClickShowPassword}
+                                        onMouseDown={handleMouseDownPassword}
+                                        onMouseUp={handleMouseUpPassword}
+                                        edge="end"
+                                    >
+                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                    </IconButton>
+                                </InputAdornment>
+                            }
+                        />
                         {messagesPerField.existsError("password") && (
-                            <span
-                                id="input-error-password"
-                                className={kcClsx("kcInputErrorMessageClass")}
-                                aria-live="polite"
-                                dangerouslySetInnerHTML={{
-                                    __html: kcSanitize(messagesPerField.get("password"))
-                                }}
-                            />
+                            <FormHelperText>
+                                            <span
+                                                id="input-error-password"
+                                                className={kcClsx("kcInputErrorMessageClass")}
+                                                aria-live="polite"
+                                                dangerouslySetInnerHTML={{
+                                                    __html: kcSanitize(messagesPerField.get("password"))
+                                                }}
+                                            />
+                            </FormHelperText>
                         )}
-                    </div>
+                    </FormControl>
                 </div>
 
                 <div className={kcClsx("kcFormGroupClass")}>
@@ -175,29 +186,6 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
                     />
                 </FormGroup>
             </div>
-        </div>
-    );
-}
-
-function PasswordWrapper(props: { kcClsx: KcClsx; i18n: I18n; passwordInputId: string; children: JSX.Element }) {
-    const { kcClsx, i18n, passwordInputId, children } = props;
-
-    const { msgStr } = i18n;
-
-    const { isPasswordRevealed, toggleIsPasswordRevealed } = useIsPasswordRevealed({ passwordInputId });
-
-    return (
-        <div className={kcClsx("kcInputGroup")}>
-            {children}
-            <button
-                type="button"
-                className={kcClsx("kcFormPasswordVisibilityButtonClass")}
-                aria-label={msgStr(isPasswordRevealed ? "hidePassword" : "showPassword")}
-                aria-controls={passwordInputId}
-                onClick={toggleIsPasswordRevealed}
-            >
-                <i className={kcClsx(isPasswordRevealed ? "kcFormPasswordVisibilityIconHide" : "kcFormPasswordVisibilityIconShow")} aria-hidden />
-            </button>
         </div>
     );
 }
