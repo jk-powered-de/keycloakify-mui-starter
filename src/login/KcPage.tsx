@@ -17,6 +17,8 @@ const LoginPasskeysConditionalAuthenticate = lazy(() => import("./pages/LoginPas
 const Terms = lazy(() => import("./pages/Terms"));
 const Error = lazy(() => import("./pages/Error"));
 const Code = lazy(() => import("./pages/Code"));
+const SelectAuthenticator = lazy(() => import("./pages/SelectAuthenticator"));
+
 
 const doMakeUserConfirmPassword = true;
 
@@ -106,6 +108,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "delete-account-confirm.ftl":
                         return (
                             <DeleteAccountConfirm
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "select-authenticator.ftl":
+                        return (
+                            <SelectAuthenticator
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
