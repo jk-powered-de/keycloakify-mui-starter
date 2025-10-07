@@ -4,6 +4,7 @@ import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
+import { Button } from "@mui/material";
 
 export default function LoginOtp(props: PageProps<Extract<KcContext, { pageId: "login-otp.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -99,14 +100,13 @@ export default function LoginOtp(props: PageProps<Extract<KcContext, { pageId: "
                         <div className={kcClsx("kcFormOptionsWrapperClass")}></div>
                     </div>
                     <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <input
-                            className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                            name="login"
-                            id="kc-login"
-                            type="submit"
-                            value={msgStr("doLogIn")}
-                            disabled={isSubmitting}
-                        />
+                        <Button variant="contained"
+                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                                name="login"
+                                id="kc-login"
+                                type="submit"
+                                disabled={isSubmitting}
+                        >{msgStr("doLogIn")}</Button>
                     </div>
                 </div>
             </form>
