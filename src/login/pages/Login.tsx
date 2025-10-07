@@ -151,10 +151,10 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                             )}
 
                             <div className={kcClsx("kcFormGroupClass")}>
-                                <FormControl variant="outlined">
-                                    <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
+                                <FormControl variant="outlined"
+                                             error={usernameHidden && messagesPerField.existsError("username", "password")}>
+                                    <InputLabel htmlFor="password">{msg("password")}</InputLabel>
                                     <OutlinedInput
-                                        error={messagesPerField.existsError("username", "password")}
                                         label={msg("password")}
                                         tabIndex={3}
                                         id="password"
