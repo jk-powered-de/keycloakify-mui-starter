@@ -105,12 +105,14 @@ export default function Register(props: RegisterProps) {
                         </div>
                     ) : (
                         <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                            <input
-                                disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
-                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                                type="submit"
-                                value={msgStr("doRegister")}
-                            />
+                            <Button variant="contained"
+                                    sx={{width: "100%"}}
+                                    disabled={!isFormSubmittable || (termsAcceptanceRequired && !areTermsAccepted)}
+                                    className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                                    type="submit"
+                            >
+                                {msgStr("doRegister")}
+                            </Button>
                         </div>
                     )}
                 </div>
