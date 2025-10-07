@@ -13,6 +13,17 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { Attribute } from "keycloakify/login/KcContext";
 import type { KcContext } from "./KcContext";
 import type { I18n } from "./i18n";
+import TextField from "@mui/material/TextField";
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import IconButton from "@mui/material/IconButton";
+import FormHelperText from "@mui/material/FormHelperText";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import React from "react";
+
 
 export default function UserProfileFormFields(props: UserProfileFormFieldsProps<KcContext, I18n>) {
     const { kcContext, i18n, kcClsx, onIsFormSubmittableValueChange, doMakeUserConfirmPassword, BeforeField, AfterField } = props;
@@ -60,12 +71,15 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
                                         : undefined
                             }}
                         >
+                            {/*
+                            // not necessary with mui
                             <div className={kcClsx("kcLabelWrapperClass")}>
                                 <label htmlFor={attribute.name} className={kcClsx("kcLabelClass")}>
                                     {advancedMsg(attribute.displayName ?? "")}
                                 </label>
                                 {attribute.required && <> *</>}
                             </div>
+                            */}
                             <div className={kcClsx("kcInputWrapperClass")}>
                                 {attribute.annotations.inputHelperTextBefore !== undefined && (
                                     <div
@@ -76,7 +90,7 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
                                         {advancedMsg(attribute.annotations.inputHelperTextBefore)}
                                     </div>
                                 )}
-                                <InputFieldByType
+                                <InputFieldByTypeMaterial
                                     attribute={attribute}
                                     valueOrValues={valueOrValues}
                                     displayableErrors={displayableErrors}
@@ -84,7 +98,7 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
                                     kcClsx={kcClsx}
                                     i18n={i18n}
                                 />
-                                <FieldErrors attribute={attribute} displayableErrors={displayableErrors} kcClsx={kcClsx} fieldIndex={undefined} />
+                                {/*<FieldErrors attribute={attribute} displayableErrors={displayableErrors} kcClsx={kcClsx} fieldIndex={undefined} />
                                 {attribute.annotations.inputHelperTextAfter !== undefined && (
                                     <div
                                         className={kcClsx("kcInputHelperTextAfterClass")}
@@ -103,7 +117,7 @@ export default function UserProfileFormFields(props: UserProfileFormFieldsProps<
                                         kcClsx={kcClsx}
                                         i18n={i18n}
                                     />
-                                )}
+                                )}*/}
                                 {/* NOTE: Downloading of html5DataAnnotations scripts is done in the useUserProfileForm hook */}
                             </div>
                         </div>
@@ -647,6 +661,182 @@ function SelectTag(props: InputFieldByTypeProps) {
                 ));
             })()}
         </select>
+    );
+}
+
+function InputFieldByTypeMaterial(props: InputFieldByTypeProps) {
+    const { attribute, valueOrValues } = props;
+
+    switch (attribute.annotations.inputType) {
+        case "hidden":
+            return <input type="hidden" name={attribute.name} value={valueOrValues} />;
+        case "textarea":
+            return <TextareaTag {...props} />;
+        case "select":
+        case "multiselect":
+            return <SelectTag {...props} />;
+        case "select-radiobuttons":
+        case "multiselect-checkboxes":
+            return <InputTagSelects {...props} />;
+        default: {
+            if (valueOrValues instanceof Array) {
+                return (
+                    <>
+                        {valueOrValues.map((...[, i]) => (
+                            <InputTagMaterial key={i} {...props} fieldIndex={i} />
+                        ))}
+                    </>
+                );
+            }
+
+            const inputNode = <InputTagMaterial {...props} fieldIndex={undefined} />;
+
+            if (attribute.name === "password" || attribute.name === "password-confirm") {
+                return (
+                    <PasswordWrapperMaterial
+                        kcClsx={props.kcClsx}
+                        i18n={props.i18n}
+                        passwordInputId={attribute.name}
+                        attribute={attribute}
+                        valueOrValues={valueOrValues}
+                        dispatchFormAction={props.dispatchFormAction}
+                        displayableErrors={props.displayableErrors}
+                    />
+                );
+            }
+
+            return inputNode;
+        }
+    }
+}
+
+
+function InputTagMaterial(props: InputFieldByTypeProps & { fieldIndex: number | undefined }) {
+    const { attribute, fieldIndex, valueOrValues, dispatchFormAction, i18n, displayableErrors } = props;
+
+    const { advancedMsgStr } = i18n;
+
+    const value = fieldIndex !== undefined
+        ? (valueOrValues as string[])[fieldIndex]
+        : (valueOrValues as string);
+
+    return (
+        <TextField
+            id={attribute.name}
+            name={attribute.name}
+            required={attribute.required}
+            label={advancedMsgStr(attribute.displayName ?? "")}
+            value={value}
+            onChange={event =>
+                dispatchFormAction({
+                    action: "update",
+                    name: attribute.name,
+                    valueOrValues: fieldIndex !== undefined
+                        ? (valueOrValues as string[]).map((v, i) =>
+                            i === fieldIndex ? event.target.value : v
+                        )
+                        : event.target.value
+                })
+            }
+            onBlur={() =>
+                dispatchFormAction({
+                    action: "focus lost",
+                    name: attribute.name,
+                    fieldIndex
+                })
+            }
+            placeholder={
+                attribute.annotations.inputTypePlaceholder === undefined
+                    ? undefined
+                    : advancedMsgStr(attribute.annotations.inputTypePlaceholder)
+            }
+            disabled={attribute.readOnly}
+            error={displayableErrors.length > 0}
+            helperText={
+                displayableErrors.length > 0 && (
+                    <>
+                        {displayableErrors.map((err, i) => (
+                            <Fragment key={i}>
+                                {err.errorMessage}
+                                {i < displayableErrors.length - 1 && <br />}
+                            </Fragment>
+                        ))}
+                    </>
+                )
+            }
+            fullWidth
+            variant="outlined"
+            type={
+                attribute.annotations.inputType?.startsWith("html5-")
+                    ? attribute.annotations.inputType.slice(6)
+                    : attribute.annotations.inputType ?? "text"
+            }
+        />
+    );
+}
+
+function PasswordWrapperMaterial(props: {
+    kcClsx: KcClsx;
+    i18n: I18n;
+    passwordInputId: string;
+    attribute: Attribute;
+    valueOrValues: string;
+    dispatchFormAction: React.Dispatch<FormAction>;
+    displayableErrors?: FormFieldError[];
+}) {
+    const { i18n, passwordInputId, attribute, valueOrValues, dispatchFormAction, displayableErrors = [] } = props;
+    const { msg } = i18n;
+    const [showPassword, setShowPassword] = React.useState(false);
+
+    return (
+        <FormControl variant="outlined" fullWidth error={displayableErrors.length > 0} required={attribute.required}>
+            <InputLabel htmlFor={passwordInputId}>
+                {msg(passwordInputId === "password-confirm" ? "passwordConfirm" : "password")}
+            </InputLabel>
+            <OutlinedInput
+                id={passwordInputId}
+                name={passwordInputId}
+                type={showPassword ? "text" : "password"}
+                autoComplete="on"
+                value={valueOrValues}
+                onChange={event =>
+                    dispatchFormAction({
+                        action: "update",
+                        name: attribute.name,
+                        valueOrValues: event.target.value
+                    })
+                }
+                onBlur={() =>
+                    dispatchFormAction({
+                        action: "focus lost",
+                        name: attribute.name,
+                        fieldIndex: undefined
+                    })
+                }
+                label={msg(passwordInputId === "password-confirm" ? "passwordConfirm" : "password")}
+                endAdornment={
+                    <InputAdornment position="end">
+                        <IconButton
+                            aria-label={showPassword ? msg("hidePassword") : msg("showPassword")}
+                            onClick={() => setShowPassword(show => !show)}
+                            edge="end"
+                        >
+                            {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                    </InputAdornment>
+                }
+            />
+            {displayableErrors.length > 0 && (
+                <FormHelperText error>
+                    {displayableErrors.map((err, i) => (
+                        <Fragment key={i}>
+                            {err.errorMessage}
+                            {i < displayableErrors.length - 1 && <br />}
+                        </Fragment>
+                    ))}
+                </FormHelperText>
+            )}
+        </FormControl>
     );
 }
 
