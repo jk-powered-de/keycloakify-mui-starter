@@ -42,6 +42,7 @@ const LoginOauth2DeviceVerifyUserCode = lazy(
 );
 const WebauthnAuthenticate = lazy(() => import("./pages/WebauthnAuthenticate"));
 const WebauthnRegister = lazy(() => import("./pages/WebauthnRegister"));
+const LoginConfigTotp = lazy(() => import("./pages/LoginConfigTotp"));
 
 const doMakeUserConfirmPassword = true;
 
@@ -163,6 +164,14 @@ export default function KcPage(props: { kcContext: KcContext }) {
                     case "delete-account-confirm.ftl":
                         return (
                             <DeleteAccountConfirm
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                            />
+                        );
+                    case "login-config-totp.ftl":
+                        return (
+                            <LoginConfigTotp
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
