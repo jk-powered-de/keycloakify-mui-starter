@@ -171,6 +171,7 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                     type="submit"
                                     className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
                                     id="saveTOTPBtn"
+                                    sx={{width: "100%"}}
                             >{msgStr("doSubmit")}</Button>
                             <Button variant="outlined"
                                     type="submit"
@@ -185,6 +186,7 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                 type="submit"
                                 className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
                                 id="saveTOTPBtn"
+                                sx={{width: "100%"}}
                         >{msgStr("doSubmit")}</Button>
                     )}
                 </form>

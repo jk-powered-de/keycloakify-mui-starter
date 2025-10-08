@@ -151,7 +151,8 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                     !isAppInitiatedAction && "kcButtonBlockClass",
                                     "kcButtonLargeClass"
                                 )}
-                                type="submit">
+                                type="submit"
+                                sx={{ width: "100%" }}>
                             {msgStr("doSubmit")}
                         </Button>
                         {isAppInitiatedAction && (
@@ -159,7 +160,8 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                     className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
                                     type="submit"
                                     name="cancel-aia"
-                                    value="true">{msg("doCancel")}
+                                    value="true"
+                                    sx={{ width: "100%" }}>{msg("doCancel")}
                             </Button>
                         )}
                     </div>

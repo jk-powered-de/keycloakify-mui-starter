@@ -121,6 +121,7 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
                                 className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
                                 id="saveRecoveryAuthnCodesBtn"
                                 disabled
+                                sx={{width:"100%"}}
                         >{msgStr("recovery-codes-action-complete")}</Button>
 
                         <Button variant="outlined"
@@ -129,6 +130,7 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
                                 id="cancelRecoveryAuthnCodesBtn"
                                 name="cancel-aia"
                                 value="true"
+                                sx={{width:"100%"}}
                         >{msg("recovery-codes-action-cancel")}</Button>
                     </>
                 ) : (
@@ -136,6 +138,7 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
                             type="submit"
                             className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
                             id="saveRecoveryAuthnCodesBtn"
+                            sx={{width:"100%"}}
                     >{msgStr("recovery-codes-action-complete")}</Button>
                 )}
             </form>

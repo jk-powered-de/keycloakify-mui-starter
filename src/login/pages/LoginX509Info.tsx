@@ -67,6 +67,7 @@ export default function LoginX509Info(props: PageProps<Extract<KcContext, { page
                                     name="login"
                                     id="kc-login"
                                     type="submit"
+                                    sx={{ width: "100%" }}
                             >
                                 {msgStr("doContinue")}
                             </Button>
@@ -75,7 +76,9 @@ export default function LoginX509Info(props: PageProps<Extract<KcContext, { page
                                         className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
                                         name="cancel"
                                         id="kc-cancel"
-                                        type="submit">
+                                        type="submit"
+                                        sx={{ width: "100%" }}
+                                >
                                     {msgStr("doIgnore")}
                                 </Button>
                             )}
