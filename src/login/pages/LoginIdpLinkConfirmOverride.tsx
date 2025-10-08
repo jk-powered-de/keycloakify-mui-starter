@@ -23,8 +23,9 @@ export default function LoginIdpLinkConfirmOverride(props: PageProps<Extract<KcC
                 {msg("pageExpiredMsg1")}{" "}
                 <Button
                     id="loginRestartLink"
-                    variant="contained"
+                    variant="text"
                     href={url.loginRestartFlowUrl}
+                    sx={{textTransform: 'none'}}
                 >
                     {msg("doClickHere")}
                 </Button>

@@ -45,6 +45,7 @@ export default function LogoutConfirm(props: PageProps<Extract<KcContext, { page
                         <Button
                             variant="text"
                             href={client.baseUrl}
+                            sx={{textTransform: 'none'}}
                         >
                             {msg("backToApplication")}
                         </Button>

@@ -26,8 +26,9 @@ export default function Error(props: PageProps<Extract<KcContext, { pageId: "err
                 {!skipLink && client !== undefined && client.baseUrl !== undefined && (
                     <Button
                         id="backToApplication"
-                        variant="outlined"
+                        variant="text"
                         href={client.baseUrl}
+                        sx={{textTransform: 'none'}}
                     >
                         {msg("backToApplication")}
                     </Button>

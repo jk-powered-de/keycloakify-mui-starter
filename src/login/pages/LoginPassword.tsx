@@ -112,7 +112,8 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
                             <div id="kc-form-options" />
                             <div className={kcClsx("kcFormOptionsWrapperClass")}>
                                 {realm.resetPasswordAllowed && (
-                                    <Button tabIndex={5} variant="text" href={url.loginResetCredentialsUrl}>
+                                    <Button tabIndex={5} variant="text" href={url.loginResetCredentialsUrl}
+                                            sx={{textTransform: 'none'}}>
                                         {msg("doForgotPassword")}
                                     </Button>
                                 )}

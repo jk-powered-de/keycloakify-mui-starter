@@ -66,8 +66,9 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
                             <span>
                                 <Button
-                                    variant="outlined"
+                                    variant="text"
                                     href={url.loginUrl}
+                                    sx={{textTransform: 'none'}}
                                 >
                                     {msg("backToLogin")}
                                 </Button>

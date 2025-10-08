@@ -53,6 +53,7 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                 <p>
                                     <Button variant="text"
                                             href={totp.qrUrl}
+                                            sx={{textTransform: 'none'}}
                                             id="mode-barcode">
                                         {msg("loginTotpScanBarcode")}
                                     </Button>
@@ -90,7 +91,8 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                             <p>
                                 <Button variant="text"
                                         href={totp.manualUrl}
-                                        id="mode-manual">{msg("loginTotpUnableToScan")}
+                                        id="mode-manual"
+                                        sx={{textTransform: 'none'}}>{msg("loginTotpUnableToScan")}
                                 </Button>
                             </p>
                         </li>

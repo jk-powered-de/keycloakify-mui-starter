@@ -26,6 +26,7 @@ export default function LoginVerifyEmail(props: PageProps<Extract<KcContext, { p
                     <Button
                         variant="text"
                         href={url.loginAction}
+                        sx={{textTransform: 'none'}}
                     >
                         {msg("doClickHere")}
                     </Button>
