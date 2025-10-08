@@ -152,8 +152,14 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                             )}
 
                             <div className={kcClsx("kcFormGroupClass")}>
+                                {/*
+                                Original keycloak condition:
+                                usernameHidden && messagesPerField.existsError("username", "password")}
+
+                                 Is changed here for better visual feedback
+                                */}
                                 <FormControl variant="outlined"
-                                             error={usernameHidden && messagesPerField.existsError("username", "password")}>
+                                             error={messagesPerField.existsError("username", "password")}>
                                     <InputLabel htmlFor="password">{msg("password")}</InputLabel>
                                     <OutlinedInput
                                         label={msg("password")}
@@ -180,7 +186,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             </InputAdornment>
                                         }
                                     />
-                                    {usernameHidden && messagesPerField.existsError("username", "password") && (
+                                    {/*
+                                        Original keycloak condition:
+                                        usernameHidden && messagesPerField.existsError("username", "password")}
+
+                                        Is changed here for better visual feedback
+                                    */}
+                                    {messagesPerField.existsError("username", "password") && (
                                         <FormHelperText>
                                             <span
                                             className={kcClsx("kcInputErrorMessageClass")}
