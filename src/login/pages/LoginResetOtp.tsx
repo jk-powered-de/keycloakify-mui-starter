@@ -1,0 +1,69 @@
+import { getKcClsx } from "keycloakify/login/lib/kcClsx";
+
+import type { PageProps } from "keycloakify/login/pages/PageProps";
+import type { KcContext } from "../KcContext";
+import type { I18n } from "../i18n";
+import { Button } from "@mui/material";
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+
+export default function LoginResetOtp(props: PageProps<Extract<KcContext, { pageId: "login-reset-otp.ftl" }>, I18n>) {
+    const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
+
+    const { kcClsx } = getKcClsx({
+        doUseDefaultCss,
+        classes
+    });
+
+    const { url, messagesPerField, configuredOtpCredentials } = kcContext;
+
+    const { msg, msgStr } = i18n;
+
+    return (
+        <Template
+            kcContext={kcContext}
+            i18n={i18n}
+            doUseDefaultCss={doUseDefaultCss}
+            classes={classes}
+            displayMessage={!messagesPerField.existsError("totp")}
+            headerNode={msg("doLogIn")}
+        >
+            <form id="kc-otp-reset-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
+                <div className={kcClsx("kcInputWrapperClass")}>
+                    <div className={kcClsx("kcInfoAreaWrapperClass")}>
+                        <p id="kc-otp-reset-form-description">{msg("otp-reset-description")}</p>
+                        <FormControl>
+                            <RadioGroup
+                                defaultValue={configuredOtpCredentials.selectedCredentialId}
+                            >
+                        {configuredOtpCredentials.userOtpCredentials.map((otpCredential, index) => (
+                            <FormControlLabel key={otpCredential.id}
+                                              control={<Radio />}
+                                              label={otpCredential.userLabel}
+                                              id={`kc-otp-credential-${index}`}
+                                              className={kcClsx("kcLoginOTPListInputClass")}
+                                              name="selectedCredentialId"
+                                              value={otpCredential.id}
+                            />
+                        ))}
+                        <div className={kcClsx("kcFormGroupClass")}>
+                            <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                                <Button variant="contained"
+                                        id="kc-otp-reset-form-submit"
+                                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                                        type="submit"
+                                >{msgStr("doSubmit")}
+                                </Button>
+                            </div>
+                        </div>
+                            </RadioGroup>
+                        </FormControl>
+                    </div>
+                </div>
+            </form>
+            <div className="clearfix" />
+        </Template>
+    );
+}
