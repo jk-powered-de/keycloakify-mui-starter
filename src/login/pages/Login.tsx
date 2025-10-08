@@ -65,7 +65,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                             <Button
                                 sx={{ width: "100%" }}
                                 tabIndex={8}
-                                variant="contained"
+                                variant="outlined"
                                 name="register"
                                 href={url.registrationUrl}
                             >
