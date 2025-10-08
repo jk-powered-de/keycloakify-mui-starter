@@ -68,21 +68,21 @@ export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<Kc
 
             {/* actions */}
             <div className={kcClsx("kcRecoveryCodesActions")}>
-                <Button variant="contained"
+                <Button variant="outlined"
                         id="printRecoveryCodes"
                         className={clsx("pf-c-button", "pf-m-link")}
                         type="button"
                         endIcon={<PrintIcon />}>
                     {msg("recovery-codes-print")}
                 </Button>
-                <Button variant="contained"
+                <Button variant="outlined"
                         id="downloadRecoveryCodes"
                         className={clsx("pf-c-button", "pf-m-link")}
                         type="button"
                         endIcon={<DownloadIcon />}>
                     {msg("recovery-codes-download")}
                 </Button>
-                <Button variant="contained"
+                <Button variant="outlined"
                         id="copyRecoveryCodes"
                         className={clsx("pf-c-button", "pf-m-link")}
                         type="button"
