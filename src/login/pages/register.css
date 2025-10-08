@@ -1,0 +1,16 @@
+/* Page-specific layout for register page */
+
+/* Options (back to login link aligned left) */
+.kcFormOptionsClass {
+  display: flex;
+  align-items: center;
+}
+
+.kcFormOptionsWrapperClass {
+  margin-left: auto; /* keep any right-aligned content pushed to the right if present */
+}
+
+/* Ensure the button block follows default layout spacing */
+.kcFormButtonsClass {
+  margin-top: var(--kc-space-4);
+}
