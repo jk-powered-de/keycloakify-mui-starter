@@ -49,18 +49,19 @@ export default function LoginResetOtp(props: PageProps<Extract<KcContext, { page
                                               value={otpCredential.id}
                             />
                         ))}
-                        <div className={kcClsx("kcFormGroupClass")}>
-                            <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                                <Button variant="contained"
-                                        id="kc-otp-reset-form-submit"
-                                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                                        type="submit"
-                                >{msgStr("doSubmit")}
-                                </Button>
-                            </div>
-                        </div>
                             </RadioGroup>
                         </FormControl>
+                    </div>
+                </div>
+                <div className={kcClsx("kcFormGroupClass")}>
+                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                        <Button variant="contained"
+                                id="kc-otp-reset-form-submit"
+                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                                type="submit"
+                                sx={{width: "100%"}}
+                        >{msgStr("doSubmit")}
+                        </Button>
                     </div>
                 </div>
             </form>
