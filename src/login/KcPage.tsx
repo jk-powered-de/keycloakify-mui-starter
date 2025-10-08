@@ -7,6 +7,7 @@ import Template from "./Template";
 import "./main.css";
 
 import DeleteAccountConfirm from "./pages/DeleteAccountConfirm.tsx";
+import { createTheme, ThemeProvider } from "@mui/material";
 const UserProfileFormFields = lazy(() => import("./UserProfileFormFields"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
@@ -57,12 +58,25 @@ const LoginOauthGrant = lazy(() => import("./pages/LoginOauthGrant"));
 
 const doMakeUserConfirmPassword = true;
 
+function getCssVar(name: string, fallback: string) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name) || fallback;
+}
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: getCssVar("--kc-primary", "#2e88e1").trim(),
+        },
+    },
+});
+
 export default function KcPage(props: { kcContext: KcContext }) {
     const { kcContext } = props;
 
     const { i18n } = useI18n({ kcContext });
 
     return (
+        <ThemeProvider theme={theme}>
         <Suspense>
             {(() => {
                 switch (kcContext.pageId) {
@@ -378,6 +392,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 }
             })()}
         </Suspense>
+        </ThemeProvider>
     );
 }
 

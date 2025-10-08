@@ -1,0 +1,147 @@
+:root {
+  /* Primary color hook (used optionally by your CSS); change here or via MUI theme */
+  --kc-primary: #219b00;
+  --kc-space-1: 0.25rem;
+  --kc-space-2: 0.5rem;
+  --kc-space-3: 0.75rem;
+  --kc-space-4: 1rem;
+  --kc-space-5: 1.5rem;
+  --kc-space-6: 2rem;
+  --kc-max-card-width: 28rem; /* ~448px, close to Keycloak default */
+}
+
+/* Base document classes applied via Template (kcClsx) */
+.kcHtmlClass,
+.kcBodyClass {
+  height: 100%;
+}
+
+.kcBodyClass {
+  margin: 0;
+  display: block;
+}
+
+/* Overall login page container */
+.kcLoginClass {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header section */
+.kcHeaderClass {
+  display: block;
+}
+
+.kcHeaderWrapperClass {
+  max-width: var(--kc-max-card-width);
+  margin: 0 auto;
+  padding: var(--kc-space-6) var(--kc-space-4) var(--kc-space-4);
+}
+
+/* Card (main form wrapper) */
+.kcFormCardClass {
+  width: 100%;
+  max-width: var(--kc-max-card-width);
+  margin: 0 auto;
+  padding: var(--kc-space-6) var(--kc-space-4);
+  display: block;
+}
+
+/* Form header */
+.kcFormHeaderClass {
+  margin-bottom: var(--kc-space-4);
+}
+
+/* Content area */
+#kc-content {
+  display: block;
+}
+
+#kc-content-wrapper {
+  display: block;
+}
+
+/* Content wrapper with a label + content columns on some screens */
+.kcContentWrapperClass {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--kc-space-3);
+  align-items: center;
+}
+
+/* Form groups and fields */
+.kcFormGroupClass {
+  margin-bottom: var(--kc-space-4);
+}
+
+.kcInputClass {
+  width: 100%;
+}
+
+.kcInputErrorMessageClass {
+  display: block;
+  margin-top: var(--kc-space-2);
+}
+
+/* Buttons */
+.kcButtonBlockClass {
+  width: 100%;
+}
+
+.kcFormButtonsClass {
+  margin-top: var(--kc-space-4);
+}
+
+/* Options row under password field on login page */
+.kcFormOptionsClass,
+.kcFormSettingClass {
+  display: flex;
+  align-items: center;
+}
+
+.kcFormOptionsWrapperClass {
+  margin-left: auto;
+}
+
+/* Social providers */
+.kcFormSocialAccountSectionClass h2 {
+  margin: var(--kc-space-5) 0 var(--kc-space-3);
+}
+
+.kcFormSocialAccountListClass {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--kc-space-3);
+}
+
+.kcFormSocialAccountListGridClass {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 560px) {
+  .kcFormSocialAccountListGridClass {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Username banner when resetting credentials */
+#kc-username {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--kc-space-3);
+}
+
+/* Alert title spacing */
+.kcAlertTitleClass {
+  margin-right: var(--kc-space-2);
+}
+
+/* Locale switcher basic positioning */
+.kcLocaleMainClass {}
+.kcLocaleWrapperClass {}
+.kcLocaleDropDownClass {}
+.kcLocaleListClass {}
+.kcLocaleListItemClass {}
+.kcLocaleItemClass {}
