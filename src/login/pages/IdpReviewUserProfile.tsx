@@ -7,6 +7,7 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import "./IdpReviewUserProfile.css";
 
 type IdpReviewUserProfileProps = PageProps<Extract<KcContext, { pageId: "idp-review-user-profile.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -62,3 +63,4 @@ export default function IdpReviewUserProfile(props: IdpReviewUserProfileProps) {
         </Template>
     );
 }
+

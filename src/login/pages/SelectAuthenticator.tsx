@@ -9,6 +9,7 @@ import SmartphoneIcon from "@mui/icons-material/Smartphone";
 import SecurityIcon from "@mui/icons-material/Security";
 import LockIcon from "@mui/icons-material/Lock";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import "./SelectAuthenticator.css";
 
 function getAuthenticatorIcon(iconCssClass: string | undefined) {
     switch (iconCssClass) {
@@ -85,3 +86,4 @@ export default function SelectAuthenticator(props: PageProps<Extract<KcContext, 
         </Template>
     );
 }
+

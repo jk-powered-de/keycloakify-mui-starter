@@ -8,6 +8,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import "./LoginResetOtp.css";
 
 export default function LoginResetOtp(props: PageProps<Extract<KcContext, { pageId: "login-reset-otp.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -67,3 +68,4 @@ export default function LoginResetOtp(props: PageProps<Extract<KcContext, { page
         </Template>
     );
 }
+

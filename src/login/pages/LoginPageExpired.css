@@ -1,0 +1,11 @@
+/* Styling for LoginPageExpired page */
+
+.instruction {
+  line-height: 1.5;
+  margin-bottom: var(--kc-space-5);
+}
+
+/* Add margin to buttons within text */
+.instruction button {
+  margin: 0 var(--kc-space-2);
+}

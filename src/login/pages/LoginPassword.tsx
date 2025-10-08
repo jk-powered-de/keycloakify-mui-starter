@@ -15,6 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { FormHelperText } from "@mui/material";
+import "./LoginPassword.css";
 
 export default function LoginPassword(props: PageProps<Extract<KcContext, { pageId: "login-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -136,3 +137,4 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
         </Template>
     );
 }
+

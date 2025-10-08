@@ -6,6 +6,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
 import { Checkbox, FormControlLabel, FormGroup, TextField } from "@mui/material";
+import "./LoginUsername.css";
 
 export default function LoginUsername(props: PageProps<Extract<KcContext, { pageId: "login-username.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;

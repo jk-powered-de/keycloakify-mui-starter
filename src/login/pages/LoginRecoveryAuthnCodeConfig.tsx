@@ -14,6 +14,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { List, ListItem, ListItemText, Typography } from "@mui/material";
+import "./LoginRecoveryAuthnCodeConfig.css";
 
 
 export default function LoginRecoveryAuthnCodeConfig(props: PageProps<Extract<KcContext, { pageId: "login-recovery-authn-code-config.ftl" }>, I18n>) {
@@ -163,3 +164,4 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
         </div>
     );
 }
+

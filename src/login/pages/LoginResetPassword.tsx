@@ -5,6 +5,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
+import "./LoginResetPassword.css";
 
 export default function LoginResetPassword(props: PageProps<Extract<KcContext, { pageId: "login-reset-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;

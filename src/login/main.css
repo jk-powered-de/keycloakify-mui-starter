@@ -46,6 +46,9 @@
   margin: 0 auto;
   padding: var(--kc-space-6) var(--kc-space-4);
   display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+  background-color: #ffffff;
 }
 
 /* Form header */
@@ -87,21 +90,55 @@
 /* Buttons */
 .kcButtonBlockClass {
   width: 100%;
+  margin-top: var(--kc-space-3);
 }
 
 .kcFormButtonsClass {
   margin-top: var(--kc-space-4);
 }
 
+/* Common button styling */
+button {
+  margin: var(--kc-space-2);
+}
+
+button:first-of-type {
+  margin-left: 0;
+}
+
+button:last-of-type {
+  margin-right: 0;
+}
+
+/* Improve text readability */
+p, .instruction {
+  line-height: 1.5;
+  margin-bottom: var(--kc-space-4);
+}
+
+/* Add spacing to inline buttons within text */
+p button, .instruction button {
+  margin: 0 var(--kc-space-2);
+}
+
 /* Options row under password field on login page */
 .kcFormOptionsClass,
 .kcFormSettingClass {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: var(--kc-space-3);
 }
 
 .kcFormOptionsWrapperClass {
   margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .kcFormSettingClass {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 /* Social providers */

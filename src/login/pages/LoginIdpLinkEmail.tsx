@@ -2,6 +2,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from '@mui/material/Button';
+import "./LoginIdpLinkEmail.css";
 
 export default function LoginIdpLinkEmail(props: PageProps<Extract<KcContext, { pageId: "login-idp-link-email.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -30,3 +31,4 @@ export default function LoginIdpLinkEmail(props: PageProps<Extract<KcContext, { 
         </Template>
     );
 }
+

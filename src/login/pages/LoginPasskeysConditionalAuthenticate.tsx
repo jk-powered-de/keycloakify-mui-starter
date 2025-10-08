@@ -7,6 +7,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import "./LoginPasskeysConditionalAuthenticate.css";
 
 export default function LoginPasskeysConditionalAuthenticate(
     props: PageProps<Extract<KcContext, { pageId: "login-passkeys-conditional-authenticate.ftl" }>, I18n>
@@ -180,3 +181,4 @@ export default function LoginPasskeysConditionalAuthenticate(
         </Template>
     );
 }
+

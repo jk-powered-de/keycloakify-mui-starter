@@ -8,6 +8,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import KeyIcon from '@mui/icons-material/Key';
+import "./WebauthnRegister.css";
 
 export default function WebauthnRegister(props: PageProps<Extract<KcContext, { pageId: "webauthn-register.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -91,3 +92,4 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
         </div>
     );
 }
+

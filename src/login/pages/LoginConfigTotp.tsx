@@ -8,6 +8,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import { TextField } from "@mui/material";
+import "./LoginConfigTotp.css";
 
 export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pageId: "login-config-totp.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -211,3 +212,4 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
         </div>
     );
 }
+

@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import "./LoginUpdatePassword.css";
 
 export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, { pageId: "login-update-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -189,3 +190,4 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
         </div>
     );
 }
+
