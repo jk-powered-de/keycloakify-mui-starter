@@ -75,17 +75,16 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                             </span>
                         </div>
                     </div>
-
-                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <Button
-                            className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                            sx={{ width: "100%" }}
-                            variant="contained"
-                            type="submit"
-                        >
-                            {msgStr("doSubmit")}
-                        </Button>
-                    </div>
+                </div>
+                <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                    <Button
+                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                        sx={{ width: "100%" }}
+                        variant="contained"
+                        type="submit"
+                    >
+                        {msgStr("doSubmit")}
+                    </Button>
                 </div>
             </form>
         </Template>
