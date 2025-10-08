@@ -1,0 +1,40 @@
+/* Page-specific layout for login page: match Keycloak default positioning/behavior */
+
+/* Options (remember me on left, forgot password on right) */
+.kcFormSettingClass {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--kc-space-3);
+}
+
+#kc-form-options {
+  display: flex;
+  align-items: center;
+}
+
+.kcFormOptionsWrapperClass {
+  margin-left: auto;
+}
+
+/* Social providers section */
+.kcFormSocialAccountSectionClass {
+  margin-top: var(--kc-space-6);
+}
+
+.kcFormSocialAccountListClass {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--kc-space-3);
+}
+
+/* When more than 3 providers, switch to grid layout */
+.kcFormSocialAccountListGridClass {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 560px) {
+  .kcFormSocialAccountListGridClass {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
