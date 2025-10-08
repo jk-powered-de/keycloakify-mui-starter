@@ -19,6 +19,7 @@ const LoginPasskeysConditionalAuthenticate = lazy(
 const Terms = lazy(() => import("./pages/Terms"));
 const Error = lazy(() => import("./pages/Error"));
 const Code = lazy(() => import("./pages/Code"));
+const LoginUpdateProfile = lazy(() => import("./pages/LoginUpdateProfile"));
 const LoginUpdatePassword = lazy(() => import("./pages/LoginUpdatePassword"));
 const LoginResetOtp = lazy(() => import("./pages/LoginResetOtp"));
 const LoginPageExpired = lazy(() => import("./pages/LoginPageExpired"));
@@ -174,6 +175,16 @@ export default function KcPage(props: { kcContext: KcContext }) {
                                 {...{ kcContext, i18n, classes }}
                                 Template={Template}
                                 doUseDefaultCss={false}
+                            />
+                        );
+                    case "login-update-profile.ftl":
+                        return (
+                            <LoginUpdateProfile
+                                {...{ kcContext, i18n, classes }}
+                                Template={Template}
+                                doUseDefaultCss={false}
+                                UserProfileFormFields={UserProfileFormFields}
+                                doMakeUserConfirmPassword={doMakeUserConfirmPassword}
                             />
                         );
                     case "login-update-password.ftl":
