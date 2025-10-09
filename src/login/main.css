@@ -214,6 +214,10 @@ p button, .instruction button {
   margin: var(--kc-space-5) 0 var(--kc-space-3);
 }
 
+.kcFormSocialAccountSectionClass {
+    margin-bottom: var(--kc-space-3);
+}
+
 .kcFormSocialAccountListClass {
   display: grid;
   grid-template-columns: 1fr;
