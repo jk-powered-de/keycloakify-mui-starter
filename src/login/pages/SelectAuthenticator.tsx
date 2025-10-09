@@ -70,7 +70,7 @@ export default function SelectAuthenticator(props: PageProps<Extract<KcContext, 
                                     }
                                     secondary={
                                         authenticationSelection.helpText ? (
-                                            <Typography variant="body2" color="text.secondary">
+                                            <Typography variant="body2">
                                                 {advancedMsg(authenticationSelection.helpText)}
                                             </Typography>
                                         ) : null
