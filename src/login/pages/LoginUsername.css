@@ -2,16 +2,6 @@
 
 /* Page-specific styles */
 
-/* Style the registration section */
-#kc-registration {
-  margin-top: var(--kc-space-4);
-}
-
-#kc-registration span {
-  display: block;
-  margin-bottom: var(--kc-space-3);
-}
-
 /* Social providers section */
 .kcFormSocialAccountSectionClass {
   margin-top: var(--kc-space-5);

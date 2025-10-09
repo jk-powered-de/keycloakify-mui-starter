@@ -34,7 +34,7 @@ export default function LoginUsername(props: PageProps<Extract<KcContext, { page
                 <div id="kc-registration">
                     <span>
                         {msg("noAccount")}
-                        <Button sx={{ width: "100%" }} tabIndex={6} variant="contained" href={url.registrationUrl}>
+                        <Button sx={{ width: "100%" }} tabIndex={6} variant="outlined" href={url.registrationUrl}>
                             {msg("doRegister")}
                         </Button>
                     </span>
