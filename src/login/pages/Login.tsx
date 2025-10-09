@@ -159,13 +159,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                  Is changed here for better visual feedback
                                 */}
                                 <FormControl variant="outlined"
-                                             error={messagesPerField.existsError("username", "password")}>
+                                             error={messagesPerField.existsError("username", "password")}
+                                             className={kcClsx("kcInputClass")}>
                                     <InputLabel htmlFor="password">{msg("password")}</InputLabel>
                                     <OutlinedInput
                                         label={msg("password")}
                                         tabIndex={3}
                                         id="password"
-                                        className={kcClsx("kcInputClass")}
                                         name="password"
                                         type={showPassword ? 'text' : 'password'}
                                         autoComplete="current-password"
