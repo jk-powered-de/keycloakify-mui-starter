@@ -238,12 +238,10 @@ p button, .instruction button {
   margin-right: var(--kc-space-2);
 }
 
-/* Locale switcher styling: top-right inside the element box */
+/* Locale switcher styling: bottom-right inside the element box */
 .kcLocaleMainClass {
-  position: absolute;
-  top: var(--kc-space-1);
-  right: var(--kc-space-2);
-  z-index: 1000;
+    display: flex;
+    justify-content: flex-end;
 }
 
 /* Style the MUI components within the locale menu */

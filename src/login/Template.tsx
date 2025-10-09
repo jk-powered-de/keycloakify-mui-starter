@@ -62,15 +62,6 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             </div>
             <div className={kcClsx("kcFormCardClass")}>
                 <header className={kcClsx("kcFormHeaderClass")}>
-                    {enabledLanguages.length > 1 && (
-                        <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
-                            <LocaleMenu
-                                enabledLanguages={enabledLanguages}
-                                currentLanguage={currentLanguage}
-                                msgStr={msgStr}
-                            />
-                        </div>
-                    )}
                     {(() => {
                         const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
                             <h1 id="kc-page-title">{headerNode}</h1>
@@ -146,6 +137,15 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                             </div>
                         )}
                     </div>
+                    {enabledLanguages.length > 1 && (
+                        <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
+                            <LocaleMenu
+                                enabledLanguages={enabledLanguages}
+                                currentLanguage={currentLanguage}
+                                msgStr={msgStr}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
