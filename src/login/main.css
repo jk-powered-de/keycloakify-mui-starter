@@ -96,7 +96,7 @@
   width: 100%;
   max-width: var(--kc-max-card-width);
   margin: 0 auto;
-  padding: var(--kc-space-6) var(--kc-space-4);
+  padding: 0 var(--kc-space-8) var(--kc-space-6) var(--kc-space-8);
   box-sizing: border-box;
   display: block;
   position: relative;
