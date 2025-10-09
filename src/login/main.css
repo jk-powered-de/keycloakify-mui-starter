@@ -317,7 +317,7 @@ p button, .instruction button {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     font-size: 2rem;
-    padding: var(--kc-space-5) var(--kc-space-4);
+    padding: var(--kc-space-8) var(--kc-space-4);
   }
 
   /* Card fills width and remaining height; scroll internally if needed */
