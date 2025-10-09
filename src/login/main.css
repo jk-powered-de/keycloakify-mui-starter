@@ -192,10 +192,6 @@ p button, .instruction button {
   gap: var(--kc-space-3);
 }
 
-.kcFormOptionsWrapperClass {
-  margin-left: auto;
-}
-
 #kc-delete-text {
     margin-bottom: var(--kc-space-4);
 }
