@@ -179,6 +179,7 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                     id="cancelTOTPBtn"
                                     name="cancel-aia"
                                     value="true"
+                                    sx={{width: "100%"}}
                             >{msg("doCancel")}</Button>
                         </>
                     ) : (
