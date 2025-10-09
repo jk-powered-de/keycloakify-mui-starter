@@ -104,6 +104,14 @@ const theme = createTheme({
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                         borderColor: getCssVar("--kc-primary", "#2e88e1").trim(),
                     },
+
+                    // EndAdornment-Icon - Password only
+                    "&.MuiOutlinedInput-root": {
+                        "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd .MuiIconButton-root .MuiSvgIcon-root":
+                            {
+                                color: "var(--kc-inactive)"
+                            }
+                    }
                 },
             },
         },
@@ -144,13 +152,6 @@ const theme = createTheme({
                     "&.Mui-checked .MuiSvgIcon-root": {
                         color: "inherit",
                     },
-                },
-            },
-        },
-        MuiSvgIcon: {
-            styleOverrides: {
-                root: {
-                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
                 },
             },
         },
