@@ -299,6 +299,16 @@ p button, .instruction button {
     margin-bottom: var(--kc-space-1);
 }
 
+a {
+    color: var(--kc-primary);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+a:hover {
+    color: var(--kc-primary);
+}
+
 /* Mobile-first responsive adjustments to mimic Keycloak behavior */
 @media (max-width: 767px) {
   /* Fill full device height and width, no background visible */
