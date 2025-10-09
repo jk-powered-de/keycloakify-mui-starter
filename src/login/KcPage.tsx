@@ -68,6 +68,93 @@ const theme = createTheme({
             main: getCssVar("--kc-primary", "#2e88e1").trim(),
         },
     },
+    components: {
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    "&.Mui-focused": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    // Textfarbe
+                    "& .MuiInputBase-input": {
+                        color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    },
+                    "&.Mui-focused .MuiInputBase-input": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                    // Placeholder
+                    "& input::placeholder": {
+                        color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                        opacity: 1,
+                    },
+                    // Border
+                    "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: getCssVar("--kc-hover", "#ffffff").trim(),
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                },
+            },
+        },
+        MuiCheckbox: {
+            styleOverrides: {
+                root: {
+                    // unchecked color
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    // make the svg inherit color from the root
+                    "& .MuiSvgIcon-root": {
+                        color: "inherit",
+                    },
+                    // checked -> primary
+                    "&.Mui-checked": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                    // ensure svg also inherits when checked (defensive)
+                    "&.Mui-checked .MuiSvgIcon-root": {
+                        color: "inherit",
+                    },
+                },
+            },
+        },
+
+        /* Radio */
+        MuiRadio: {
+            styleOverrides: {
+                root: {
+                    // unchecked color
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    "& .MuiSvgIcon-root": {
+                        color: "inherit",
+                    },
+                    // checked -> primary
+                    "&.Mui-checked": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                    "&.Mui-checked .MuiSvgIcon-root": {
+                        color: "inherit",
+                    },
+                },
+            },
+        },
+        MuiSvgIcon: {
+            styleOverrides: {
+                root: {
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                },
+            },
+        },
+    },
 });
 
 export default function KcPage(props: { kcContext: KcContext }) {

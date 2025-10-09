@@ -1,6 +1,8 @@
 :root {
   /* Primary color hook (used optionally by your CSS); change here or via MUI theme */
   --kc-primary: #219b00;
+  --kc-inactive: #8e918f;
+  --kc-hover: #ffffff;
   --kc-space-1: 0.25rem;
   --kc-space-2: 0.5rem;
   --kc-space-3: 0.75rem;
