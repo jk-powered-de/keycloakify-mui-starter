@@ -196,6 +196,10 @@ p button, .instruction button {
   margin-left: auto;
 }
 
+#kc-delete-text {
+    margin-bottom: var(--kc-space-4);
+}
+
 @media (min-width: 768px) {
   .kcFormSettingClass {
     flex-direction: row;
