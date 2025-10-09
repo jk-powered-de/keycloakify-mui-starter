@@ -69,6 +69,17 @@ const theme = createTheme({
         },
     },
     components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    "&.Mui-disabled": {
+                        backgroundColor: "#219b00",
+                        color: "#ffffff",
+                        opacity: 0.3,
+                    }
+                },
+            },
+        },
         MuiInputLabel: {
             styleOverrides: {
                 root: {
