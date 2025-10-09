@@ -58,6 +58,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                 <div className={kcClsx("kcFormGroupClass")}>
                     <FormControl variant="outlined"
                                  error={messagesPerField.existsError("password")}
+                                 sx={{ width: "100%" }}
                     >
                         <InputLabel htmlFor="password-new">{msg("passwordNew")}</InputLabel>
                         <OutlinedInput
@@ -103,6 +104,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                 <div className={kcClsx("kcFormGroupClass")}>
                     <FormControl variant="outlined"
                                  error={messagesPerField.existsError("password-confirm")}
+                                 sx={{ width: "100%" }}
                     >
                         <InputLabel htmlFor="password-confirm">{msg("passwordConfirm")}</InputLabel>
                         <OutlinedInput
