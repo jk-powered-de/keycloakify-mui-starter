@@ -3,6 +3,7 @@
   --kc-primary: #219b00;
   --kc-inactive: #8e918f;
   --kc-hover: #ffffff;
+  --kc-space-05: 0.125rem;
   --kc-space-1: 0.25rem;
   --kc-space-2: 0.5rem;
   --kc-space-3: 0.75rem;
@@ -289,10 +290,15 @@ p button, .instruction button {
     margin-top: var(--kc-space-1);
     margin-right: var(--kc-space-1);
   }
-  
+
   .kcLocaleMainClass .MuiListItemButton-root {
     padding: var(--kc-space-1) var(--kc-space-2);
   }
+}
+
+.MuiButton-root:not(.MuiIconButton-root) {
+  margin-top: var(--kc-space-1);
+    margin-bottom: var(--kc-space-1);
 }
 
 /* Mobile-first responsive adjustments to mimic Keycloak behavior */
