@@ -7,6 +7,7 @@ import Menu from "@mui/material/Menu";
 import { MessageKey } from "keycloakify/login/i18n/messages_defaultSet/types";
 import { ListItemIcon } from "@mui/material";
 import { ArrowDropDown } from "@mui/icons-material";
+import "./LocaleMenu.css";
 
 type Language = {
     languageTag: string;
@@ -37,7 +38,7 @@ export function LocaleMenu({ enabledLanguages, currentLanguage, msgStr }: Locale
 
     return (
         <div id="kc-locale">
-            <List component="nav" aria-label={msgStr("languages")} sx={{ bgcolor: "background.paper" }}>
+            <List component="nav" aria-label={msgStr("languages")}>
                 <ListItemButton
                     id="kc-current-locale-link"
                     aria-haspopup="true"

@@ -155,6 +155,63 @@ const theme = createTheme({
                 },
             },
         },
+
+        // === ListItemButton (Language Picker Container) ===
+        MuiListItemButton: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    "&:hover, &.Mui-focusVisible, &:focus": {
+                        color: getCssVar("--kc-page-content-color", "#8e918f").trim(),
+                        borderColor: getCssVar("--kc-inactive", "#8e918f"),
+                    },
+                },
+            },
+        },
+
+        // === ArrowDropDown Icon ===
+        MuiListItemIcon: {
+            styleOverrides: {
+                root: {
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    ".MuiListItemButton-root:hover &": {
+                        color: getCssVar("--kc-page-content-color", "#8e918f").trim(),
+                    },
+                },
+            },
+        },
+
+        // === Menu Paper ===
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    "&.MuiMenu-paper": {
+                        backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                        border: `1px solid ${getCssVar("--kc-inactive", "#8e918f").trim()}`,
+                        boxShadow: "none",
+                    },
+                },
+            },
+        },
+
+        // === Menu Items ===
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    "&:hover": {
+                        color: getCssVar("--kc-page-content-color", "#8e918f").trim(),
+                        backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                    },
+                    "&.Mui-selected": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                        backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                    },
+                },
+            },
+        },
     },
 });
 
