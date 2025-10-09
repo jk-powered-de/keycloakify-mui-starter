@@ -39,7 +39,7 @@ export default function WebauthnAuthenticate(props: PageProps<Extract<KcContext,
                             <Button
                                 sx={{ width: "100%" }}
                                 tabIndex={6}
-                                variant="contained"
+                                variant="outlined"
                                 href={url.registrationUrl}
                             >
                                     {msg("doRegister")}
