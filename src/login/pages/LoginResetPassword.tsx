@@ -25,8 +25,8 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
             i18n={i18n}
             doUseDefaultCss={doUseDefaultCss}
             classes={classes}
+            displayInfo
             displayMessage={!messagesPerField.existsError("username")}
-            infoNode={realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}
             headerNode={msg("emailForgotTitle")}
         >
             <form id="kc-reset-password-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
