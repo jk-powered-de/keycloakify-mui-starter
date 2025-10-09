@@ -223,6 +223,17 @@ const theme = createTheme({
                 },
             },
         },
+        MuiList: {
+            styleOverrides: {
+                root: {
+                    "&.kcRecoveryCodesList": {
+                        backgroundColor: getCssVar("--kc-list-background", "#202020").trim(),
+                        borderRadius: "4px",
+                        padding: "1rem",
+                    },
+                },
+            },
+        },
     },
 });
 
