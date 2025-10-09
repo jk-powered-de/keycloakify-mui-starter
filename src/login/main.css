@@ -352,7 +352,6 @@ p button, .instruction button {
 
   /* Locale menu stays inside padding and doesn’t overlap */
   .kcLocaleMainClass {
-    top: var(--kc-space-3);
     right: var(--kc-space-3);
   }
 
