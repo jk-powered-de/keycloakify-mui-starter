@@ -196,6 +196,10 @@ p button, .instruction button {
     margin-bottom: var(--kc-space-4);
 }
 
+.MuiAlert-colorError {
+  margin-bottom: var(--kc-space-3);
+}
+
 @media (min-width: 768px) {
   .kcFormSettingClass {
     flex-direction: row;
