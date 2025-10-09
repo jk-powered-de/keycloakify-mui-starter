@@ -240,8 +240,8 @@ p button, .instruction button {
 /* Locale switcher styling: top-right inside the element box */
 .kcLocaleMainClass {
   position: absolute;
-  top: var(--kc-space-4);
-  right: var(--kc-space-4);
+  top: var(--kc-space-1);
+  right: var(--kc-space-2);
   z-index: 1000;
 }
 
