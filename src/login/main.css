@@ -7,7 +7,7 @@
   --kc-space-2: 0.5rem;
   --kc-space-3: 0.75rem;
   --kc-space-4: 1rem;
-  --kc-space-5: 1.5rem;
+  --kc-space-5: 3rem;
   --kc-space-6: 2rem;
   --kc-max-card-width: 28rem; /* ~448px, close to Keycloak default */
   --kc-header-background: #000000; /* Black header background */
@@ -76,7 +76,7 @@
   max-width: var(--kc-max-card-width);
   width: 100%;
   margin: 0 auto;
-  padding: var(--kc-space-4) var(--kc-space-4);
+  padding: var(--kc-space-5) var(--kc-space-4);
   box-sizing: border-box;
   background-color: var(--kc-header-background);
   color: var(--kc-primary);
@@ -315,7 +315,7 @@ p button, .instruction button {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     font-size: 2rem;
-    padding: var(--kc-space-4) var(--kc-space-4);
+    padding: var(--kc-space-5) var(--kc-space-4);
   }
 
   /* Card fills width and remaining height; scroll internally if needed */
