@@ -7,8 +7,10 @@
   --kc-space-2: 0.5rem;
   --kc-space-3: 0.75rem;
   --kc-space-4: 1rem;
-  --kc-space-5: 3rem;
+  --kc-space-5: 1.5rem;
   --kc-space-6: 2rem;
+  --kc-space-7: 2.5rem;
+  --kc-space-8: 3rem;
   --kc-max-card-width: 28rem; /* ~448px, close to Keycloak default */
   --kc-header-background: #000000; /* Black header background */
   --kc-page-title-color: #e3e3e3;
@@ -76,7 +78,7 @@
   max-width: var(--kc-max-card-width);
   width: 100%;
   margin: 0 auto;
-  padding: var(--kc-space-5) var(--kc-space-4);
+  padding: var(--kc-space-8) var(--kc-space-4);
   box-sizing: border-box;
   background-color: var(--kc-header-background);
   color: var(--kc-primary);
