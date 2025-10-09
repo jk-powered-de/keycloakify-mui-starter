@@ -201,7 +201,7 @@ p button, .instruction button {
 }
 
 .MuiAlert-colorError {
-  margin-bottom: var(--kc-space-3);
+  margin-bottom: var(--kc-space-4);
 }
 
 @media (min-width: 768px) {
