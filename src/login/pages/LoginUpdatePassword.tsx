@@ -30,9 +30,11 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
     const { url, messagesPerField, isAppInitiatedAction } = kcContext;
 
     // Password visibility #start
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [showPasswordNew, setShowPasswordNew] = React.useState(false);
+    const [showPasswordConfirm, setShowPasswordConfirm] = React.useState(false);
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleClickShowPasswordNew = () => setShowPasswordNew((show) => !show);
+    const handleClickShowPasswordConfirm = () => setShowPasswordConfirm((show) => !show);
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -63,7 +65,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                             id="password-new"
                             className={kcClsx("kcInputClass")}
                             name="password-new"
-                            type={showPassword ? 'text' : 'password'}
+                            type={showPasswordNew ? 'text' : 'password'}
                             autoFocus
                             autoComplete="new-password"
                             aria-invalid={messagesPerField.existsError("password", "password-confirm")}
@@ -71,14 +73,14 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                 <InputAdornment position="end">
                                     <IconButton
                                         aria-label={
-                                            showPassword ? 'hide the password' : 'display the password'
+                                            showPasswordNew ? 'hide the password' : 'display the password'
                                         }
-                                        onClick={handleClickShowPassword}
+                                        onClick={handleClickShowPasswordNew}
                                         onMouseDown={handleMouseDownPassword}
                                         onMouseUp={handleMouseUpPassword}
                                         edge="end"
                                     >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {showPasswordNew ? <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
                             }
@@ -108,21 +110,21 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                             id="password-confirm"
                             className={kcClsx("kcInputClass")}
                             name="password-confirm"
-                            type={showPassword ? 'text' : 'password'}
+                            type={showPasswordConfirm ? 'text' : 'password'}
                             autoComplete="new-password"
                             aria-invalid={messagesPerField.existsError("password", "password-confirm")}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
                                         aria-label={
-                                            showPassword ? 'hide the password' : 'display the password'
+                                            showPasswordConfirm ? 'hide the password' : 'display the password'
                                         }
-                                        onClick={handleClickShowPassword}
+                                        onClick={handleClickShowPasswordConfirm}
                                         onMouseDown={handleMouseDownPassword}
                                         onMouseUp={handleMouseUpPassword}
                                         edge="end"
                                     >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {showPasswordConfirm ? <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
                             }
