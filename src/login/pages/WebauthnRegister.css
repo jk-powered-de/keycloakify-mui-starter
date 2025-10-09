@@ -2,3 +2,9 @@
 
 /* Page-specific styles can be added here */
 
+.icon-wrapper {
+    display: inline-block;
+    position: relative;
+    top: 5px;
+    right: 5px;
+}

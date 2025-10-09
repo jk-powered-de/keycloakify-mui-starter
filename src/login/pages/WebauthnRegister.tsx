@@ -35,8 +35,10 @@ export default function WebauthnRegister(props: PageProps<Extract<KcContext, { p
             classes={classes}
             headerNode={
                 <>
-                    <KeyIcon fontSize={"large"}/>
-                    {msg("webauthn-registration-title")}
+                    <span className="icon-wrapper">
+                     <KeyIcon fontSize="large" />
+                    </span>
+                    <span>{msg("webauthn-registration-title")}</span>
                 </>
             }
         >
