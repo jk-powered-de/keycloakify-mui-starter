@@ -12,6 +12,34 @@
   --kc-max-card-width: 28rem; /* ~448px, close to Keycloak default */
 }
 
+/* Load fonts from assets */
+@font-face {
+  font-family: 'RobotoCustom';
+  src: url('./assets/fonts/roboto/Roboto_SemiCondensed-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'RobotoCustom';
+  src: url('./assets/fonts/roboto/Roboto_SemiCondensed-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'RalewayCustom';
+  src: url('./assets/fonts/raleway/Raleway-SemiBold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Set default font */
+.kcHtmlClass, .kcBodyClass, body, html {
+  font-family: 'RobotoCustom', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
 /* Base document classes applied via Template (kcClsx) */
 .kcHtmlClass,
 .kcBodyClass {
@@ -39,6 +67,9 @@
   max-width: var(--kc-max-card-width);
   margin: 0 auto;
   padding: var(--kc-space-6) var(--kc-space-4) var(--kc-space-4);
+  font-family: 'RalewayCustom', 'RobotoCustom', Arial, sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
 }
 
 /* Card (main form wrapper) */
