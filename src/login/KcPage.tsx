@@ -87,6 +87,9 @@ const theme = createTheme({
                     "&.Mui-focused": {
                         color: getCssVar("--kc-primary", "#2e88e1").trim(),
                     },
+                    "&.Mui-disabled": {
+                        color: getCssVar("--kc-disabled-color-1", "#3f3f3f").trim(),
+                    },
                 },
             },
         },
@@ -114,6 +117,16 @@ const theme = createTheme({
                     },
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                         borderColor: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+
+                    // === Disabled ===
+                    "&.Mui-disabled .MuiInputBase-input": {
+                        color: getCssVar("--kc-disabled", "#6b6b6b").trim(),
+                        WebkitTextFillColor: getCssVar("--kc-disabled", "#6b6b6b").trim(),
+                        cursor: "not-allowed",
+                    },
+                    "&.Mui-disabled .MuiOutlinedInput-notchedOutline": {
+                        borderColor: getCssVar("--kc-disabled-border", "#3f3f3f").trim(),
                     },
 
                     // EndAdornment-Icon - Password only
