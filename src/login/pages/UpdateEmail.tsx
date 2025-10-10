@@ -66,13 +66,16 @@ export default function UpdateEmail(props: UpdateEmailProps) {
                                     !isAppInitiatedAction && "kcButtonBlockClass",
                                     "kcButtonLargeClass"
                                 )}
-                                type="submit">{msgStr("doSubmit")}</Button>
+                                type="submit"
+                                sx={{width: "100%"}}
+                        >{msgStr("doSubmit")}</Button>
                         {isAppInitiatedAction && (
                             <Button variant="outlined"
                                     className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
                                     type="submit"
                                     name="cancel-aia"
                                     value="true"
+                                    sx={{width: "100%"}}
                             >{msg("doCancel")}
                             </Button>
                         )}
