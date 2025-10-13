@@ -130,6 +130,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                         variant="outlined"
                                         tabIndex={2}
                                         id="username"
+                                        name="username"
                                         defaultValue={login.username ?? ""}
                                         type={"text"}
                                         autoComplete={"username"}
