@@ -83,14 +83,6 @@ export default function Register(props: RegisterProps) {
                     </div>
                 )}
                 <div className={kcClsx("kcFormGroupClass")}>
-                    <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
-                        <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                            <span>
-                                <Button variant="text" href={url.loginUrl} sx={{textTransform: 'none'}}>{msg("backToLogin")}</Button>
-                            </span>
-                        </div>
-                    </div>
-
                     {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
                         <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
                             <Button variant="contained"
@@ -119,6 +111,13 @@ export default function Register(props: RegisterProps) {
                             </Button>
                         </div>
                     )}
+                    <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
+                        <div className={kcClsx("kcFormOptionsWrapperClass")}>
+                            <span>
+                                <Button variant="text" href={url.loginUrl} sx={{textTransform: 'none'}}>{msg("backToLogin")}</Button>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </form>
         </Template>
