@@ -175,6 +175,7 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                             >{msgStr("doSubmit")}</Button>
                             <Button variant="outlined"
                                     type="submit"
+                                    formNoValidate
                                     className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass", "kcButtonLargeClass")}
                                     id="cancelTOTPBtn"
                                     name="cancel-aia"
