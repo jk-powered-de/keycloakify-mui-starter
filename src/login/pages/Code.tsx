@@ -34,6 +34,7 @@ export default function Code(props: PageProps<Extract<KcContext, { pageId: "code
                                    className={kcClsx("kcTextareaClass")}
                                    variant="outlined"
                                    defaultValue={code.code}
+                                   sx={{width: '100%'}}
                                    slotProps={{
                                        input: {
                                            readOnly: true,
