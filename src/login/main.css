@@ -14,7 +14,7 @@
   --kc-space-6: 2rem;
   --kc-space-7: 2.5rem;
   --kc-space-8: 3rem;
-  --kc-max-card-width: 28rem; /* ~448px, close to Keycloak default */
+  --kc-max-card-width: 35rem; /* ~448px, close to Keycloak default */
   --kc-header-background: #000000; /* Black header background */
   --kc-page-title-color: #e3e3e3;
   --kc-page-content-color: #e3e3e3;
