@@ -60,6 +60,19 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                         />
                     </div>
                 </div>
+                <div>
+                    {realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}
+                </div>
+                <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                    <Button
+                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                        sx={{ width: "100%" }}
+                        variant="contained"
+                        type="submit"
+                    >
+                        {msgStr("doSubmit")}
+                    </Button>
+                </div>
                 <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
@@ -74,19 +87,6 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                             </span>
                         </div>
                     </div>
-                </div>
-                <div>
-                {realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}
-                    </div>
-                <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                    <Button
-                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                        sx={{ width: "100%" }}
-                        variant="contained"
-                        type="submit"
-                    >
-                        {msgStr("doSubmit")}
-                    </Button>
                 </div>
             </form>
         </Template>
