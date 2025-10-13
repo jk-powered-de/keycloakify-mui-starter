@@ -55,6 +55,7 @@ export default function DeleteAccountConfirm(props: PageProps<Extract<KcContext,
                                 name="cancel-aia"
                                 value="true"
                                 sx={{ width: "100%" }}
+                                formNoValidate
                         >{msgStr("doCancel")}
                         </Button>
                     )}

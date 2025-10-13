@@ -42,6 +42,7 @@ export default function DeleteCredential(props: PageProps<Extract<KcContext, { p
                         id="kc-decline"
                         type="submit"
                         sx={{ width: "100%" }}
+                        formNoValidate
                 >{msgStr("doCancel")}
                 </Button>
             </form>

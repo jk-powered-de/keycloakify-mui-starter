@@ -165,6 +165,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                     type="submit"
                                     name="cancel-aia"
                                     value="true"
+                                    formNoValidate
                                     sx={{ width: "100%" }}>{msg("doCancel")}
                             </Button>
                         )}

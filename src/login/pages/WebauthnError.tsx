@@ -53,6 +53,7 @@ export default function WebauthnError(props: PageProps<Extract<KcContext, { page
                             className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonBlockClass", "kcButtonLargeClass")}
                             id="cancelWebAuthnAIA"
                             name="cancel-aia"
+                            formNoValidate
                             value="true">{msgStr("doCancel")}</Button>
                 </form>
             )}

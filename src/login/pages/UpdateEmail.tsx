@@ -76,6 +76,7 @@ export default function UpdateEmail(props: UpdateEmailProps) {
                                     name="cancel-aia"
                                     value="true"
                                     sx={{width: "100%"}}
+                                    formNoValidate
                             >{msg("doCancel")}
                             </Button>
                         )}
