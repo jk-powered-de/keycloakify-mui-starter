@@ -11,6 +11,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import "./UpdateEmail.css";
+import { Typography } from "@mui/material";
 
 type UpdateEmailProps = PageProps<Extract<KcContext, { pageId: "update-email.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -38,7 +39,6 @@ export default function UpdateEmail(props: UpdateEmailProps) {
             doUseDefaultCss={doUseDefaultCss}
             classes={classes}
             displayMessage={messagesPerField.exists("global")}
-            displayRequiredFields
             headerNode={msg("updateEmailTitle")}
         >
             <form id="kc-update-email-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
@@ -49,6 +49,12 @@ export default function UpdateEmail(props: UpdateEmailProps) {
                     onIsFormSubmittableValueChange={setIsFormSubmittable}
                     doMakeUserConfirmPassword={doMakeUserConfirmPassword}
                 />
+                <Typography
+                    variant="caption"
+                    className="kc-caption-info"
+                >
+                    {"*"}{  msg("requiredFields")}
+                </Typography>
 
                 <div className={kcClsx("kcFormGroupClass")}>
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
