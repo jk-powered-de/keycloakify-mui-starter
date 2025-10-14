@@ -7,7 +7,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
 import "./LoginConfigTotp.css";
 
 export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pageId: "login-config-totp.ftl" }>, I18n>) {
@@ -158,6 +158,12 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                     />
                                 )}
                             />
+                            <Typography
+                                variant="caption"
+                                className="kc-caption-info"
+                            >
+                                {"*"}{  msg("requiredFields")}
+                            </Typography>
                         </div>
                     </div>
 
