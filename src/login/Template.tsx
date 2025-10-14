@@ -136,6 +136,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                             <Alert
                                 severity={message.type}
                                 variant="outlined"
+                                className={"kcAlertClass"}
                             >
                                 <span
                                     className={kcClsx("kcAlertTitleClass")}

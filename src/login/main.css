@@ -249,6 +249,10 @@ p button, .instruction button {
   margin-right: var(--kc-space-2);
 }
 
+.kcAlertClass {
+    margin-bottom: var(--kc-space-4);
+}
+
 /* Locale switcher styling: bottom-right inside the element box */
 .kcLocaleMainClass {
     display: flex;
