@@ -8,6 +8,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
 import "./IdpReviewUserProfile.css";
+import { Typography } from "@mui/material";
 
 type IdpReviewUserProfileProps = PageProps<Extract<KcContext, { pageId: "idp-review-user-profile.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -35,7 +36,6 @@ export default function IdpReviewUserProfile(props: IdpReviewUserProfileProps) {
             doUseDefaultCss={doUseDefaultCss}
             classes={classes}
             displayMessage={messagesPerField.exists("global")}
-            displayRequiredFields
             headerNode={msg("loginIdpReviewProfileTitle")}
         >
             <form id="kc-idp-review-profile-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
@@ -46,6 +46,12 @@ export default function IdpReviewUserProfile(props: IdpReviewUserProfileProps) {
                     kcClsx={kcClsx}
                     doMakeUserConfirmPassword={doMakeUserConfirmPassword}
                 />
+                <Typography
+                    variant="caption"
+                    className="kc-caption-info"
+                >
+                    {"*"}{  msg("requiredFields")}
+                </Typography>
                 <div className={kcClsx("kcFormGroupClass")}>
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")} />
