@@ -6,7 +6,7 @@ import type { UserProfileFormFieldsProps } from "keycloakify/login/UserProfileFo
 import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import "./LoginUpdateProfile.css";
 
 type LoginUpdateProfileProps = PageProps<Extract<KcContext, { pageId: "login-update-profile.ftl" }>, I18n> & {
@@ -34,7 +34,6 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
             i18n={i18n}
             doUseDefaultCss={doUseDefaultCss}
             classes={classes}
-            displayRequiredFields
             headerNode={msg("loginProfileTitle")}
             displayMessage={messagesPerField.exists("global")}
         >
@@ -46,6 +45,12 @@ export default function LoginUpdateProfile(props: LoginUpdateProfileProps) {
                     onIsFormSubmittableValueChange={setIsFormSubmittable}
                     doMakeUserConfirmPassword={doMakeUserConfirmPassword}
                 />
+                <Typography
+                    variant="caption"
+                    className="kc-caption-info"
+                >
+                    {"*"}{  msg("requiredFields")}
+                </Typography>
                 <div className={kcClsx("kcFormGroupClass")}>
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")} />
