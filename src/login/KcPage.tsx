@@ -80,6 +80,19 @@ const theme = createTheme({
                 },
             },
         },
+        MuiTypography: {
+            styleOverrides: {
+                root: {
+                    "&.kc-caption-info": {
+                        lineHeight: 1.4,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        marginTop: 12, // theme.spacing(1.5)
+                        color: getCssVar("--kc-text-info", "#8e918f").trim(),
+                    },
+                },
+            },
+        },
         MuiInputLabel: {
             styleOverrides: {
                 root: {
