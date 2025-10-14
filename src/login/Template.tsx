@@ -9,6 +9,7 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import { Alert } from "@mui/material";
 import { LocaleMenu } from "./helper-components/LocaleMenu.tsx";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -35,6 +36,25 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
     useEffect(() => {
         document.title = documentTitle ?? msgStr("loginTitle", realm.displayName);
+
+        const showLoader = () => {
+            const el = document.getElementById("jk-loading");
+            if (el) (el as HTMLElement).style.display = "block";
+        };
+
+        const onSubmit = (e: Event) => {
+            showLoader();
+            // optional: doppelte Submits verhindern
+            const form = e.target as HTMLFormElement;
+            const btn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+            if (btn) btn.disabled = true;
+        };
+
+        document.addEventListener("submit", onSubmit, true);
+
+        return () => {
+            document.removeEventListener("submit", onSubmit, true);
+        };
     }, []);
 
     useSetClassName({
@@ -56,8 +76,23 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     return (
         <div className={kcClsx("kcLoginClass")}>
             <div id="kc-header" className={kcClsx("kcHeaderClass")}>
-                <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
+                <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")} style={{ position: "relative" }}>
                     {msg("loginTitleHtml", realm.displayNameHtml)}
+                    <LinearProgress
+                        id="jk-loading"
+                        sx={{
+                            display: "none",
+                            width: "100%",
+                            position: "absolute",
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            zIndex: 1400,
+                            pointerEvents: "none",
+                            bgcolor: "transparent",
+                            "&.MuiLinearProgress-root": { height: 4 },
+                        }}
+                    />
                 </div>
             </div>
             <div className={kcClsx("kcFormCardClass")}>

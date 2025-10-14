@@ -93,6 +93,17 @@ const theme = createTheme({
                 },
             },
         },
+        MuiLinearProgress: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "transparent"
+                },
+                bar: {
+                    backgroundColor: getCssVar("--kc-primary", "#8e918f").trim()
+                },
+            },
+
+        },
         MuiInputLabel: {
             styleOverrides: {
                 root: {
