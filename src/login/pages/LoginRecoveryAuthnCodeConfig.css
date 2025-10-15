@@ -1,0 +1,22 @@
+/* Styling for LoginRecoveryAuthnCodeConfig page */
+
+/* Page-specific styles */
+.kcRecoveryCodesWarning {
+  margin-bottom: var(--kc-space-4);
+}
+
+.kcRecoveryCodesList {
+  margin-bottom: var(--kc-space-4);
+  padding: var(--kc-space-3);
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.kcRecoveryCodesActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--kc-space-2);
+  margin-bottom: var(--kc-space-4);
+}

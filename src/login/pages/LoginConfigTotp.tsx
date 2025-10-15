@@ -7,7 +7,8 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import { TextField } from "@mui/material";
+import { TextField, Typography } from "@mui/material";
+import "./LoginConfigTotp.css";
 
 export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pageId: "login-config-totp.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -52,6 +53,7 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                 <p>
                                     <Button variant="text"
                                             href={totp.qrUrl}
+                                            sx={{textTransform: 'none'}}
                                             id="mode-barcode">
                                         {msg("loginTotpScanBarcode")}
                                     </Button>
@@ -89,7 +91,8 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                             <p>
                                 <Button variant="text"
                                         href={totp.manualUrl}
-                                        id="mode-manual">{msg("loginTotpUnableToScan")}
+                                        id="mode-manual"
+                                        sx={{textTransform: 'none'}}>{msg("loginTotpUnableToScan")}
                                 </Button>
                             </p>
                         </li>
@@ -155,6 +158,12 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                     />
                                 )}
                             />
+                            <Typography
+                                variant="caption"
+                                className="kc-caption-info"
+                            >
+                                {"*"}{  msg("requiredFields")}
+                            </Typography>
                         </div>
                     </div>
 
@@ -168,13 +177,16 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                     type="submit"
                                     className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
                                     id="saveTOTPBtn"
+                                    sx={{width: "100%"}}
                             >{msgStr("doSubmit")}</Button>
                             <Button variant="outlined"
                                     type="submit"
+                                    formNoValidate
                                     className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass", "kcButtonLargeClass")}
                                     id="cancelTOTPBtn"
                                     name="cancel-aia"
                                     value="true"
+                                    sx={{width: "100%"}}
                             >{msg("doCancel")}</Button>
                         </>
                     ) : (
@@ -182,6 +194,7 @@ export default function LoginConfigTotp(props: PageProps<Extract<KcContext, { pa
                                 type="submit"
                                 className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonLargeClass")}
                                 id="saveTOTPBtn"
+                                sx={{width: "100%"}}
                         >{msgStr("doSubmit")}</Button>
                     )}
                 </form>
@@ -211,3 +224,4 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
         </div>
     );
 }
+

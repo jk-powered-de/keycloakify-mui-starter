@@ -1,0 +1,7 @@
+/* LocaleMenu.css */
+
+/* === Container === */
+#kc-locale .MuiListItemButton-root {
+    background-color: var(--kc-box-background);
+    color: var(--kc-inactive);
+}

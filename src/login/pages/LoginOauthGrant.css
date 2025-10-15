@@ -1,0 +1,6 @@
+/* Styling for LoginOauthGrant page */
+
+/* Page-specific styles can be added here */
+.form-actions {
+    margin-top: var(--kc-space-4);
+}

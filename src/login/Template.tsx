@@ -9,6 +9,7 @@ import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
 import { Alert } from "@mui/material";
 import { LocaleMenu } from "./helper-components/LocaleMenu.tsx";
+import LinearProgress from "@mui/material/LinearProgress";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -35,6 +36,25 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
 
     useEffect(() => {
         document.title = documentTitle ?? msgStr("loginTitle", realm.displayName);
+
+        const showLoader = () => {
+            const el = document.getElementById("jk-loading");
+            if (el) (el as HTMLElement).style.display = "block";
+        };
+
+        const onSubmit = (e: Event) => {
+            showLoader();
+            // optional: doppelte Submits verhindern
+            const form = e.target as HTMLFormElement;
+            const btn = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
+            if (btn) btn.disabled = true;
+        };
+
+        document.addEventListener("submit", onSubmit, true);
+
+        return () => {
+            document.removeEventListener("submit", onSubmit, true);
+        };
     }, []);
 
     useSetClassName({
@@ -56,53 +76,27 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     return (
         <div className={kcClsx("kcLoginClass")}>
             <div id="kc-header" className={kcClsx("kcHeaderClass")}>
-                <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")}>
+                <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")} style={{ position: "relative" }}>
                     {msg("loginTitleHtml", realm.displayNameHtml)}
+                    <LinearProgress
+                        id="jk-loading"
+                        sx={{
+                            display: "none",
+                            width: "100%",
+                            position: "absolute",
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            zIndex: 1400,
+                            pointerEvents: "none",
+                            bgcolor: "transparent",
+                            "&.MuiLinearProgress-root": { height: 4 },
+                        }}
+                    />
                 </div>
             </div>
             <div className={kcClsx("kcFormCardClass")}>
                 <header className={kcClsx("kcFormHeaderClass")}>
-                    {enabledLanguages.length > 1 && (
-                        <LocaleMenu
-                            enabledLanguages={enabledLanguages}
-                            currentLanguage={currentLanguage}
-                            msgStr={msgStr}
-                        />
-
-                        /* ToDo: Remove if its working */
-                        /*<div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
-                            <div id="kc-locale-wrapper" className={kcClsx("kcLocaleWrapperClass")}>
-                                <div id="kc-locale-dropdown" className={clsx("menu-button-links", kcClsx("kcLocaleDropDownClass"))}>
-                                    <button
-                                        tabIndex={1}
-                                        id="kc-current-locale-link"
-                                        aria-label={msgStr("languages")}
-                                        aria-haspopup="true"
-                                        aria-expanded="false"
-                                        aria-controls="language-switch1"
-                                    >
-                                        {currentLanguage.label}
-                                    </button>
-                                    <ul
-                                        role="menu"
-                                        tabIndex={-1}
-                                        aria-labelledby="kc-current-locale-link"
-                                        aria-activedescendant=""
-                                        id="language-switch1"
-                                        className={kcClsx("kcLocaleListClass")}
-                                    >
-                                        {enabledLanguages.map(({ languageTag, label, href }, i) => (
-                                            <li key={languageTag} className={kcClsx("kcLocaleListItemClass")} role="none">
-                                                <a role="menuitem" id={`language-${i + 1}`} className={kcClsx("kcLocaleItemClass")} href={href}>
-                                                    {label}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>*/
-                    )}
                     {(() => {
                         const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
                             <h1 id="kc-page-title">{headerNode}</h1>
@@ -142,6 +136,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                             <Alert
                                 severity={message.type}
                                 variant="outlined"
+                                className={"kcAlertClass"}
                             >
                                 <span
                                     className={kcClsx("kcAlertTitleClass")}
@@ -178,6 +173,15 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
                             </div>
                         )}
                     </div>
+                    {enabledLanguages.length > 1 && (
+                        <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
+                            <LocaleMenu
+                                enabledLanguages={enabledLanguages}
+                                currentLanguage={currentLanguage}
+                                msgStr={msgStr}
+                            />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

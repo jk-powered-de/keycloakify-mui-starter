@@ -1,0 +1,19 @@
+/* Page-specific layout for register page */
+
+/* Page-specific styles */
+
+/* Style the back to login button */
+#kc-form-options button {
+  margin-right: var(--kc-space-3);
+}
+
+/* Terms acceptance section */
+#kc-registration-terms-text {
+  margin: var(--kc-space-3) 0;
+  line-height: 1.5;
+}
+
+/* Checkbox alignment */
+.kcCheckboxInputClass {
+  margin-right: var(--kc-space-2);
+}

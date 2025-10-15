@@ -18,6 +18,7 @@ import {
 import * as React from "react";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import "./login.css";
 
 export default function Login(props: PageProps<Extract<KcContext, { pageId: "login.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -64,7 +65,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                             <Button
                                 sx={{ width: "100%" }}
                                 tabIndex={8}
-                                variant="contained"
+                                variant="outlined"
                                 name="register"
                                 href={url.registrationUrl}
                             >
@@ -129,6 +130,7 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                         variant="outlined"
                                         tabIndex={2}
                                         id="username"
+                                        name="username"
                                         defaultValue={login.username ?? ""}
                                         type={"text"}
                                         autoComplete={"username"}
@@ -151,14 +153,20 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                             )}
 
                             <div className={kcClsx("kcFormGroupClass")}>
+                                {/*
+                                Original keycloak condition:
+                                usernameHidden && messagesPerField.existsError("username", "password")}
+
+                                 Is changed here for better visual feedback
+                                */}
                                 <FormControl variant="outlined"
-                                             error={usernameHidden && messagesPerField.existsError("username", "password")}>
+                                             error={messagesPerField.existsError("username", "password")}
+                                             className={kcClsx("kcInputClass")}>
                                     <InputLabel htmlFor="password">{msg("password")}</InputLabel>
                                     <OutlinedInput
                                         label={msg("password")}
                                         tabIndex={3}
                                         id="password"
-                                        className={kcClsx("kcInputClass")}
                                         name="password"
                                         type={showPassword ? 'text' : 'password'}
                                         autoComplete="current-password"
@@ -179,7 +187,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                             </InputAdornment>
                                         }
                                     />
-                                    {usernameHidden && messagesPerField.existsError("username", "password") && (
+                                    {/*
+                                        Original keycloak condition:
+                                        usernameHidden && messagesPerField.existsError("username", "password")}
+
+                                        Is changed here for better visual feedback
+                                    */}
+                                    {messagesPerField.existsError("username", "password") && (
                                         <FormHelperText>
                                             <span
                                             className={kcClsx("kcInputErrorMessageClass")}
@@ -195,6 +209,13 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
 
                             <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
                                 <div id="kc-form-options">
+                                    {realm.resetPasswordAllowed && (
+                                        <Button tabIndex={6} variant="text" href={url.loginResetCredentialsUrl} sx={{textTransform: 'none'}}>
+                                            {msg("doForgotPassword")}
+                                        </Button>
+                                    )}
+                                </div>
+                                <div className={kcClsx("kcFormOptionsWrapperClass")}>
                                     {realm.rememberMe && !usernameHidden && (
                                         <FormGroup>
                                             <FormControlLabel
@@ -203,13 +224,6 @@ export default function Login(props: PageProps<Extract<KcContext, { pageId: "log
                                                 name="rememberMe"
                                                 control={<Checkbox defaultChecked={!!login.rememberMe} />} label={msg("rememberMe")} />
                                         </FormGroup>
-                                    )}
-                                </div>
-                                <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                                    {realm.resetPasswordAllowed && (
-                                        <Button tabIndex={6} variant="text" href={url.loginResetCredentialsUrl}>
-                                            {msg("doForgotPassword")}
-                                        </Button>
                                     )}
                                 </div>
                             </div>

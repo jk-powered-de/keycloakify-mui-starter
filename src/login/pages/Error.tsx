@@ -3,6 +3,7 @@ import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import "./Error.css";
 
 export default function Error(props: PageProps<Extract<KcContext, { pageId: "error.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -25,8 +26,9 @@ export default function Error(props: PageProps<Extract<KcContext, { pageId: "err
                 {!skipLink && client !== undefined && client.baseUrl !== undefined && (
                     <Button
                         id="backToApplication"
-                        variant="outlined"
+                        variant="text"
                         href={client.baseUrl}
+                        sx={{textTransform: 'none'}}
                     >
                         {msg("backToApplication")}
                     </Button>
@@ -35,3 +37,4 @@ export default function Error(props: PageProps<Extract<KcContext, { pageId: "err
         </Template>
     );
 }
+

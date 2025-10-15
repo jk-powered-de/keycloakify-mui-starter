@@ -2,6 +2,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import "./LoginVerifyEmail.css";
 
 export default function LoginVerifyEmail(props: PageProps<Extract<KcContext, { pageId: "login-verify-email.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -25,6 +26,7 @@ export default function LoginVerifyEmail(props: PageProps<Extract<KcContext, { p
                     <Button
                         variant="text"
                         href={url.loginAction}
+                        sx={{textTransform: 'none'}}
                     >
                         {msg("doClickHere")}
                     </Button>
@@ -37,3 +39,4 @@ export default function LoginVerifyEmail(props: PageProps<Extract<KcContext, { p
         </Template>
     );
 }
+

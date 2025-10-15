@@ -3,6 +3,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import "./WebauthnError.css";
 
 export default function WebauthnError(props: PageProps<Extract<KcContext, { pageId: "webauthn-error.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -52,9 +53,11 @@ export default function WebauthnError(props: PageProps<Extract<KcContext, { page
                             className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonBlockClass", "kcButtonLargeClass")}
                             id="cancelWebAuthnAIA"
                             name="cancel-aia"
+                            formNoValidate
                             value="true">{msgStr("doCancel")}</Button>
                 </form>
             )}
         </Template>
     );
 }
+

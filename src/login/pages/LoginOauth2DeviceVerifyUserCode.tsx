@@ -4,6 +4,7 @@ import { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
+import "./LoginOauth2DeviceVerifyUserCode.css";
 
 export default function LoginOauth2DeviceVerifyUserCode(
     props: PageProps<Extract<KcContext, { pageId: "login-oauth2-device-verify-user-code.ftl" }>, I18n>
@@ -65,3 +66,4 @@ export default function LoginOauth2DeviceVerifyUserCode(
         </Template>
     );
 }
+

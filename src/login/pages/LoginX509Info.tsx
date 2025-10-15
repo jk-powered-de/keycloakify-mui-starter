@@ -3,6 +3,7 @@ import type { PageProps } from "keycloakify/login/pages/PageProps";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import "./LoginX509Info.css";
 
 export default function LoginX509Info(props: PageProps<Extract<KcContext, { pageId: "login-x509-info.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -66,6 +67,7 @@ export default function LoginX509Info(props: PageProps<Extract<KcContext, { page
                                     name="login"
                                     id="kc-login"
                                     type="submit"
+                                    sx={{ width: "100%" }}
                             >
                                 {msgStr("doContinue")}
                             </Button>
@@ -74,7 +76,9 @@ export default function LoginX509Info(props: PageProps<Extract<KcContext, { page
                                         className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
                                         name="cancel"
                                         id="kc-cancel"
-                                        type="submit">
+                                        type="submit"
+                                        sx={{ width: "100%" }}
+                                >
                                     {msgStr("doIgnore")}
                                 </Button>
                             )}
@@ -85,3 +89,4 @@ export default function LoginX509Info(props: PageProps<Extract<KcContext, { page
         </Template>
     );
 }
+

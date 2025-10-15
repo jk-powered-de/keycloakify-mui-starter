@@ -5,6 +5,7 @@ import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import { TextField } from "@mui/material";
 import Button from "@mui/material/Button";
+import "./LoginResetPassword.css";
 
 export default function LoginResetPassword(props: PageProps<Extract<KcContext, { pageId: "login-reset-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -26,7 +27,6 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
             classes={classes}
             displayInfo
             displayMessage={!messagesPerField.existsError("username")}
-            infoNode={realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}
             headerNode={msg("emailForgotTitle")}
         >
             <form id="kc-reset-password-form" className={kcClsx("kcFormClass")} action={url.loginAction} method="post">
@@ -60,29 +60,32 @@ export default function LoginResetPassword(props: PageProps<Extract<KcContext, {
                         />
                     </div>
                 </div>
+                <div>
+                    {realm.duplicateEmailsAllowed ? msg("emailInstructionUsername") : msg("emailInstruction")}
+                </div>
+                <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                    <Button
+                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                        sx={{ width: "100%" }}
+                        variant="contained"
+                        type="submit"
+                    >
+                        {msgStr("doSubmit")}
+                    </Button>
+                </div>
                 <div className={kcClsx("kcFormGroupClass", "kcFormSettingClass")}>
                     <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
                         <div className={kcClsx("kcFormOptionsWrapperClass")}>
                             <span>
                                 <Button
-                                    variant="outlined"
+                                    variant="text"
                                     href={url.loginUrl}
+                                    sx={{textTransform: 'none'}}
                                 >
                                     {msg("backToLogin")}
                                 </Button>
                             </span>
                         </div>
-                    </div>
-
-                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                        <Button
-                            className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                            sx={{ width: "100%" }}
-                            variant="contained"
-                            type="submit"
-                        >
-                            {msgStr("doSubmit")}
-                        </Button>
                     </div>
                 </div>
             </form>

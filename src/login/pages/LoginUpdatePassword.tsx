@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import "./LoginUpdatePassword.css";
 
 export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, { pageId: "login-update-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -29,9 +30,11 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
     const { url, messagesPerField, isAppInitiatedAction } = kcContext;
 
     // Password visibility #start
-    const [showPassword, setShowPassword] = React.useState(false);
+    const [showPasswordNew, setShowPasswordNew] = React.useState(false);
+    const [showPasswordConfirm, setShowPasswordConfirm] = React.useState(false);
 
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
+    const handleClickShowPasswordNew = () => setShowPasswordNew((show) => !show);
+    const handleClickShowPasswordConfirm = () => setShowPasswordConfirm((show) => !show);
 
     const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
@@ -55,6 +58,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                 <div className={kcClsx("kcFormGroupClass")}>
                     <FormControl variant="outlined"
                                  error={messagesPerField.existsError("password")}
+                                 sx={{ width: "100%" }}
                     >
                         <InputLabel htmlFor="password-new">{msg("passwordNew")}</InputLabel>
                         <OutlinedInput
@@ -62,7 +66,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                             id="password-new"
                             className={kcClsx("kcInputClass")}
                             name="password-new"
-                            type={showPassword ? 'text' : 'password'}
+                            type={showPasswordNew ? 'text' : 'password'}
                             autoFocus
                             autoComplete="new-password"
                             aria-invalid={messagesPerField.existsError("password", "password-confirm")}
@@ -70,14 +74,14 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                 <InputAdornment position="end">
                                     <IconButton
                                         aria-label={
-                                            showPassword ? 'hide the password' : 'display the password'
+                                            showPasswordNew ? 'hide the password' : 'display the password'
                                         }
-                                        onClick={handleClickShowPassword}
+                                        onClick={handleClickShowPasswordNew}
                                         onMouseDown={handleMouseDownPassword}
                                         onMouseUp={handleMouseUpPassword}
                                         edge="end"
                                     >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {showPasswordNew ? <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
                             }
@@ -100,6 +104,7 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                 <div className={kcClsx("kcFormGroupClass")}>
                     <FormControl variant="outlined"
                                  error={messagesPerField.existsError("password-confirm")}
+                                 sx={{ width: "100%" }}
                     >
                         <InputLabel htmlFor="password-confirm">{msg("passwordConfirm")}</InputLabel>
                         <OutlinedInput
@@ -107,21 +112,21 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                             id="password-confirm"
                             className={kcClsx("kcInputClass")}
                             name="password-confirm"
-                            type={showPassword ? 'text' : 'password'}
+                            type={showPasswordConfirm ? 'text' : 'password'}
                             autoComplete="new-password"
                             aria-invalid={messagesPerField.existsError("password", "password-confirm")}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <IconButton
                                         aria-label={
-                                            showPassword ? 'hide the password' : 'display the password'
+                                            showPasswordConfirm ? 'hide the password' : 'display the password'
                                         }
-                                        onClick={handleClickShowPassword}
+                                        onClick={handleClickShowPasswordConfirm}
                                         onMouseDown={handleMouseDownPassword}
                                         onMouseUp={handleMouseUpPassword}
                                         edge="end"
                                     >
-                                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                                        {showPasswordConfirm ? <VisibilityOff /> : <Visibility />}
                                     </IconButton>
                                 </InputAdornment>
                             }
@@ -150,7 +155,8 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                     !isAppInitiatedAction && "kcButtonBlockClass",
                                     "kcButtonLargeClass"
                                 )}
-                                type="submit">
+                                type="submit"
+                                sx={{ width: "100%" }}>
                             {msgStr("doSubmit")}
                         </Button>
                         {isAppInitiatedAction && (
@@ -158,7 +164,9 @@ export default function LoginUpdatePassword(props: PageProps<Extract<KcContext, 
                                     className={kcClsx("kcButtonClass", "kcButtonDefaultClass", "kcButtonLargeClass")}
                                     type="submit"
                                     name="cancel-aia"
-                                    value="true">{msg("doCancel")}
+                                    value="true"
+                                    formNoValidate
+                                    sx={{ width: "100%" }}>{msg("doCancel")}
                             </Button>
                         )}
                     </div>
@@ -189,3 +197,4 @@ function LogoutOtherSessions(props: { kcClsx: KcClsx; i18n: I18n }) {
         </div>
     );
 }
+

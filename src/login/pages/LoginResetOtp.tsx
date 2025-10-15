@@ -8,6 +8,7 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import "./LoginResetOtp.css";
 
 export default function LoginResetOtp(props: PageProps<Extract<KcContext, { pageId: "login-reset-otp.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -48,18 +49,19 @@ export default function LoginResetOtp(props: PageProps<Extract<KcContext, { page
                                               value={otpCredential.id}
                             />
                         ))}
-                        <div className={kcClsx("kcFormGroupClass")}>
-                            <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
-                                <Button variant="contained"
-                                        id="kc-otp-reset-form-submit"
-                                        className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
-                                        type="submit"
-                                >{msgStr("doSubmit")}
-                                </Button>
-                            </div>
-                        </div>
                             </RadioGroup>
                         </FormControl>
+                    </div>
+                </div>
+                <div className={kcClsx("kcFormGroupClass")}>
+                    <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
+                        <Button variant="contained"
+                                id="kc-otp-reset-form-submit"
+                                className={kcClsx("kcButtonClass", "kcButtonPrimaryClass", "kcButtonBlockClass", "kcButtonLargeClass")}
+                                type="submit"
+                                sx={{width: "100%"}}
+                        >{msgStr("doSubmit")}
+                        </Button>
                     </div>
                 </div>
             </form>
@@ -67,3 +69,4 @@ export default function LoginResetOtp(props: PageProps<Extract<KcContext, { page
         </Template>
     );
 }
+

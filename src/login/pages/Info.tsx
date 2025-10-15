@@ -3,6 +3,7 @@ import { kcSanitize } from "keycloakify/lib/kcSanitize";
 import type { KcContext } from "../KcContext";
 import type { I18n } from "../i18n";
 import Button from "@mui/material/Button";
+import "./Info.css";
 
 export default function Info(props: PageProps<Extract<KcContext, { pageId: "info.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -57,6 +58,7 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
                             <Button
                                 variant="text"
                                 href={pageRedirectUri}
+                                sx={{textTransform: 'none'}}
                             >
                                 {msg("backToApplication")}
                             </Button>
@@ -67,6 +69,7 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
                             <Button
                                 variant="text"
                                 href={actionUri}
+                                sx={{textTransform: 'none'}}
                             >
                                 {msg("proceedWithAction")}
                             </Button>
@@ -78,6 +81,7 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
                             <Button
                                 variant="text"
                                 href={client.baseUrl}
+                                sx={{textTransform: 'none'}}
                             >
                                 {msg("backToApplication")}
                             </Button>
@@ -88,3 +92,4 @@ export default function Info(props: PageProps<Extract<KcContext, { pageId: "info
         </Template>
     );
 }
+

@@ -14,6 +14,8 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
+import "./register.css";
+import {Typography } from "@mui/material";
 
 type RegisterProps = PageProps<Extract<KcContext, { pageId: "register.ftl" }>, I18n> & {
     UserProfileFormFields: LazyOrNot<(props: UserProfileFormFieldsProps) => JSX.Element>;
@@ -55,7 +57,6 @@ export default function Register(props: RegisterProps) {
             classes={classes}
             headerNode={messageHeader !== undefined ? advancedMsg(messageHeader) : msg("registerTitle")}
             displayMessage={messagesPerField.exists("global")}
-            displayRequiredFields
         >
             <form id="kc-register-form" className={kcClsx("kcFormClass")} action={url.registrationAction} method="post">
                 <UserProfileFormFields
@@ -65,6 +66,13 @@ export default function Register(props: RegisterProps) {
                     onIsFormSubmittableValueChange={setIsFormSubmittable}
                     doMakeUserConfirmPassword={doMakeUserConfirmPassword}
                 />
+
+                    <Typography
+                        variant="caption"
+                        className="kc-caption-info"
+                    >
+                        {"*"}{  msg("requiredFields")}
+                    </Typography>
                 {termsAcceptanceRequired && (
                     <TermsAcceptance
                         i18n={i18n}
@@ -82,14 +90,6 @@ export default function Register(props: RegisterProps) {
                     </div>
                 )}
                 <div className={kcClsx("kcFormGroupClass")}>
-                    <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
-                        <div className={kcClsx("kcFormOptionsWrapperClass")}>
-                            <span>
-                                <Button variant="text" href={url.loginUrl}>{msg("backToLogin")}</Button>
-                            </span>
-                        </div>
-                    </div>
-
                     {recaptchaRequired && !recaptchaVisible && recaptchaAction !== undefined ? (
                         <div id="kc-form-buttons" className={kcClsx("kcFormButtonsClass")}>
                             <Button variant="contained"
@@ -118,6 +118,13 @@ export default function Register(props: RegisterProps) {
                             </Button>
                         </div>
                     )}
+                    <div id="kc-form-options" className={kcClsx("kcFormOptionsClass")}>
+                        <div className={kcClsx("kcFormOptionsWrapperClass")}>
+                            <span>
+                                <Button variant="text" href={url.loginUrl} sx={{textTransform: 'none'}}>{msg("backToLogin")}</Button>
+                            </span>
+                        </div>
+                    </div>
                 </div>
             </form>
         </Template>

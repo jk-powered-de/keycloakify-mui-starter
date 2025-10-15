@@ -7,6 +7,7 @@ import Template from "./Template";
 import "./main.css";
 
 import DeleteAccountConfirm from "./pages/DeleteAccountConfirm.tsx";
+import { createTheme, ThemeProvider } from "@mui/material";
 const UserProfileFormFields = lazy(() => import("./UserProfileFormFields"));
 const Login = lazy(() => import("./pages/Login"));
 const Register = lazy(() => import("./pages/Register"));
@@ -57,12 +58,229 @@ const LoginOauthGrant = lazy(() => import("./pages/LoginOauthGrant"));
 
 const doMakeUserConfirmPassword = true;
 
+function getCssVar(name: string, fallback: string) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name) || fallback;
+}
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: getCssVar("--kc-primary", "#2e88e1").trim(),
+        },
+    },
+    components: {
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    "&.Mui-disabled": {
+                        backgroundColor: "#219b00",
+                        color: "#ffffff",
+                        opacity: 0.3,
+                    }
+                },
+            },
+        },
+        MuiTypography: {
+            styleOverrides: {
+                root: {
+                    "&.kc-caption-info": {
+                        lineHeight: 1.4,
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        marginTop: 12, // theme.spacing(1.5)
+                        color: getCssVar("--kc-text-info", "#8e918f").trim(),
+                    },
+                },
+            },
+        },
+        MuiLinearProgress: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "transparent"
+                },
+                bar: {
+                    backgroundColor: getCssVar("--kc-primary", "#8e918f").trim()
+                },
+            },
+
+        },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    "&.Mui-focused": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                    "&.Mui-disabled": {
+                        color: getCssVar("--kc-disabled-color-1", "#3f3f3f").trim(),
+                    },
+                },
+            },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    // Textfarbe
+                    "& .MuiInputBase-input": {
+                        color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    },
+                    "&.Mui-focused .MuiInputBase-input": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                    // Placeholder
+                    "& input::placeholder": {
+                        color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                        opacity: 1,
+                    },
+                    // Border
+                    "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: getCssVar("--kc-hover", "#ffffff").trim(),
+                    },
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+
+                    // === Disabled ===
+                    "&.Mui-disabled .MuiInputBase-input": {
+                        color: getCssVar("--kc-disabled", "#6b6b6b").trim(),
+                        WebkitTextFillColor: getCssVar("--kc-disabled", "#6b6b6b").trim(),
+                        cursor: "not-allowed",
+                    },
+                    "&.Mui-disabled .MuiOutlinedInput-notchedOutline": {
+                        borderColor: getCssVar("--kc-disabled-border", "#3f3f3f").trim(),
+                    },
+
+                    // EndAdornment-Icon - Password only
+                    "&.MuiOutlinedInput-root": {
+                        "& .MuiInputAdornment-root.MuiInputAdornment-positionEnd .MuiIconButton-root .MuiSvgIcon-root":
+                            {
+                                color: "var(--kc-inactive)"
+                            }
+                    }
+                },
+            },
+        },
+        MuiCheckbox: {
+            styleOverrides: {
+                root: {
+                    // unchecked color
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    // make the svg inherit color from the root
+                    "& .MuiSvgIcon-root": {
+                        color: "inherit",
+                    },
+                    // checked -> primary
+                    "&.Mui-checked": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                    // ensure svg also inherits when checked (defensive)
+                    "&.Mui-checked .MuiSvgIcon-root": {
+                        color: "inherit",
+                    },
+                },
+            },
+        },
+
+        /* Radio */
+        MuiRadio: {
+            styleOverrides: {
+                root: {
+                    // unchecked color
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    "& .MuiSvgIcon-root": {
+                        color: "inherit",
+                    },
+                    // checked -> primary
+                    "&.Mui-checked": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                    },
+                    "&.Mui-checked .MuiSvgIcon-root": {
+                        color: "inherit",
+                    },
+                },
+            },
+        },
+
+        // === ListItemButton (Language Picker Container) ===
+        MuiListItemButton: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    "&:hover, &.Mui-focusVisible, &:focus": {
+                        color: getCssVar("--kc-page-content-color", "#8e918f").trim(),
+                        borderColor: getCssVar("--kc-inactive", "#8e918f"),
+                    },
+                },
+            },
+        },
+
+        // === ArrowDropDown Icon ===
+        MuiListItemIcon: {
+            styleOverrides: {
+                root: {
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    ".MuiListItemButton-root:hover &": {
+                        color: getCssVar("--kc-page-content-color", "#8e918f").trim(),
+                    },
+                },
+            },
+        },
+
+        // === Menu Paper ===
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    "&.MuiMenu-paper": {
+                        backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                        border: `1px solid ${getCssVar("--kc-inactive", "#8e918f").trim()}`,
+                        boxShadow: "none",
+                    },
+                },
+            },
+        },
+
+        // === Menu Items ===
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                    color: getCssVar("--kc-inactive", "#8e918f").trim(),
+                    "&:hover": {
+                        color: getCssVar("--kc-page-content-color", "#8e918f").trim(),
+                        backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                    },
+                    "&.Mui-selected": {
+                        color: getCssVar("--kc-primary", "#2e88e1").trim(),
+                        backgroundColor: getCssVar("--kc-box-background", "#181818"),
+                    },
+                },
+            },
+        },
+        MuiList: {
+            styleOverrides: {
+                root: {
+                    "&.kcRecoveryCodesList": {
+                        backgroundColor: getCssVar("--kc-list-background", "#202020").trim(),
+                        borderRadius: "4px",
+                        padding: "1rem",
+                    },
+                },
+            },
+        },
+    },
+});
+
 export default function KcPage(props: { kcContext: KcContext }) {
     const { kcContext } = props;
 
     const { i18n } = useI18n({ kcContext });
 
     return (
+        <ThemeProvider theme={theme}>
         <Suspense>
             {(() => {
                 switch (kcContext.pageId) {
@@ -378,6 +596,7 @@ export default function KcPage(props: { kcContext: KcContext }) {
                 }
             })()}
         </Suspense>
+        </ThemeProvider>
     );
 }
 

@@ -15,6 +15,7 @@ import IconButton from "@mui/material/IconButton";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Visibility from "@mui/icons-material/Visibility";
 import { FormHelperText } from "@mui/material";
+import "./LoginPassword.css";
 
 export default function LoginPassword(props: PageProps<Extract<KcContext, { pageId: "login-password.ftl" }>, I18n>) {
     const { kcContext, i18n, doUseDefaultCss, Template, classes } = props;
@@ -66,7 +67,8 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
                     >
                         <div className={clsx(kcClsx("kcFormGroupClass"), "no-bottom-margin")}>
                             <FormControl variant="outlined"
-                                         error={messagesPerField.existsError("password")}>
+                                         error={messagesPerField.existsError("password")}
+                            sx={{width: '100%'}}>
                                 <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                                 <OutlinedInput
                                     label={msg("password")}
@@ -111,7 +113,8 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
                             <div id="kc-form-options" />
                             <div className={kcClsx("kcFormOptionsWrapperClass")}>
                                 {realm.resetPasswordAllowed && (
-                                    <Button tabIndex={5} variant="text" href={url.loginResetCredentialsUrl}>
+                                    <Button tabIndex={5} variant="text" href={url.loginResetCredentialsUrl}
+                                            sx={{textTransform: 'none'}}>
                                         {msg("doForgotPassword")}
                                     </Button>
                                 )}
@@ -136,3 +139,4 @@ export default function LoginPassword(props: PageProps<Extract<KcContext, { page
         </Template>
     );
 }
+
