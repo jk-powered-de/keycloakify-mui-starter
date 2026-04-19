@@ -7,9 +7,10 @@ import { useSetClassName } from "keycloakify/tools/useSetClassName";
 import { useInitialize } from "keycloakify/login/Template.useInitialize";
 import type { I18n } from "./i18n";
 import type { KcContext } from "./KcContext";
-import { Alert } from "@mui/material";
+import { Alert, Box,  Grid, Link } from "@mui/material";
 import { LocaleMenu } from "./helper-components/LocaleMenu.tsx";
 import LinearProgress from "@mui/material/LinearProgress";
+import heroImg from "./assets/img.png";
 
 export default function Template(props: TemplateProps<KcContext, I18n>) {
     const {
@@ -74,116 +75,134 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     }
 
     return (
-        <div className={kcClsx("kcLoginClass")}>
-            <div id="kc-header" className={kcClsx("kcHeaderClass")}>
-                <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")} style={{ position: "relative" }}>
-                    {msg("loginTitleHtml", realm.displayNameHtml)}
-                    <LinearProgress
-                        id="jk-loading"
+        <Box sx={{ minHeight: "100vh", backgroundColor: "white" }} className={kcClsx("kcLoginClass")}>
+            <Grid container sx={{ minHeight: "100vh" }}>
+                <Grid
+                    size={{ xs: 12, md: 7 }}
+                    sx={{
+                        display: { xs: "none", md: "block" }
+                    }}
+                >
+                    <Box
                         sx={{
-                            display: "none",
-                            width: "100%",
-                            position: "absolute",
-                            left: 0,
-                            right: 0,
-                            bottom: 0,
-                            zIndex: 1400,
-                            pointerEvents: "none",
-                            bgcolor: "transparent",
-                            "&.MuiLinearProgress-root": { height: 4 },
+                            minHeight: "100vh",
+                            backgroundImage: `url(${heroImg})`,
+                            backgroundSize: "cover",
+                            backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat"
                         }}
                     />
-                </div>
-            </div>
-            <div className={kcClsx("kcFormCardClass")}>
-                <header className={kcClsx("kcFormHeaderClass")}>
-                    {(() => {
-                        const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
-                            <h1 id="kc-page-title">{headerNode}</h1>
-                        ) : (
-                            <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
-                                <label id="kc-attempted-username">{auth.attemptedUsername}</label>
-                                <a id="reset-login" href={url.loginRestartFlowUrl} aria-label={msgStr("restartLoginTooltip")}>
-                                    <div className="kc-login-tooltip">
-                                        <i className={kcClsx("kcResetFlowIcon")}></i>
-                                        <span className="kc-tooltip-text">{msg("restartLoginTooltip")}</span>
-                                    </div>
-                                </a>
-                            </div>
-                        );
+                </Grid>
 
-                        if (displayRequiredFields) {
-                            return (
-                                <div className={kcClsx("kcContentWrapperClass")}>
-                                    <div className={clsx(kcClsx("kcLabelWrapperClass"), "subtitle")}>
-                                        <span className="subtitle">
-                                            <span className="required">*</span>
-                                            {msg("requiredFields")}
-                                        </span>
-                                    </div>
-                                    <div className="col-md-10">{node}</div>
-                                </div>
-                            );
-                        }
-
-                        return node;
-                    })()}
-                </header>
-                <div id="kc-content">
-                    <div id="kc-content-wrapper">
-                        {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
-                        {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
-                            <Alert
-                                severity={message.type}
-                                variant="outlined"
-                                className={"kcAlertClass"}
-                            >
-                                <span
-                                    className={kcClsx("kcAlertTitleClass")}
-                                    dangerouslySetInnerHTML={{
-                                        __html: kcSanitize(message.summary)
+                <Grid size={{ xs: 12, md: 5 }}>
+                    <div className={kcClsx("kcLoginClass")}>
+                        <Link href="http://app.localhost/" underline="hover" sx={{ fontWeight: 500 }}>
+                            ← Back to home
+                        </Link>
+                        <div id="kc-header" className={kcClsx("kcHeaderClass")}>
+                            <div id="kc-header-wrapper" className={kcClsx("kcHeaderWrapperClass")} style={{ position: "relative" }}>
+                                {msg("loginTitleHtml", realm.displayNameHtml)}
+                                <LinearProgress
+                                    id="jk-loading"
+                                    sx={{
+                                        display: "none",
+                                        width: "100%",
+                                        position: "absolute",
+                                        left: 0,
+                                        right: 0,
+                                        bottom: 0,
+                                        zIndex: 1400,
+                                        pointerEvents: "none",
+                                        bgcolor: "transparent",
+                                        "&.MuiLinearProgress-root": { height: 4 }
                                     }}
                                 />
-                            </Alert>
-                        )}
-                        {children}
-                        {auth !== undefined && auth.showTryAnotherWayLink && (
-                            <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
-                                <div className={kcClsx("kcFormGroupClass")}>
-                                    <input type="hidden" name="tryAnotherWay" value="on" />
-                                    <a
-                                        href="#"
-                                        id="try-another-way"
-                                        onClick={() => {
-                                            document.forms["kc-select-try-another-way-form" as never].requestSubmit();
-                                            return false;
-                                        }}
-                                    >
-                                        {msg("doTryAnotherWay")}
-                                    </a>
-                                </div>
-                            </form>
-                        )}
-                        {socialProvidersNode}
-                        {displayInfo && (
-                            <div id="kc-info" className={kcClsx("kcSignUpClass")}>
-                                <div id="kc-info-wrapper" className={kcClsx("kcInfoAreaWrapperClass")}>
-                                    {infoNode}
-                                </div>
                             </div>
-                        )}
-                    </div>
-                    {enabledLanguages.length > 1 && (
-                        <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
-                            <LocaleMenu
-                                enabledLanguages={enabledLanguages}
-                                currentLanguage={currentLanguage}
-                                msgStr={msgStr}
-                            />
                         </div>
-                    )}
-                </div>
-            </div>
-        </div>
+                        <div className={kcClsx("kcFormCardClass")}>
+                            <header className={kcClsx("kcFormHeaderClass")}>
+                                {(() => {
+                                    const node = !(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
+                                        <h1 id="kc-page-title">{headerNode}</h1>
+                                    ) : (
+                                        <div id="kc-username" className={kcClsx("kcFormGroupClass")}>
+                                            <label id="kc-attempted-username">{auth.attemptedUsername}</label>
+                                            <a id="reset-login" href={url.loginRestartFlowUrl} aria-label={msgStr("restartLoginTooltip")}>
+                                                <div className="kc-login-tooltip">
+                                                    <i className={kcClsx("kcResetFlowIcon")}></i>
+                                                    <span className="kc-tooltip-text">{msg("restartLoginTooltip")}</span>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    );
+
+                                    if (displayRequiredFields) {
+                                        return (
+                                            <div className={kcClsx("kcContentWrapperClass")}>
+                                                <div className={clsx(kcClsx("kcLabelWrapperClass"), "subtitle")}>
+                                                    <span className="subtitle">
+                                                        <span className="required">*</span>
+                                                        {msg("requiredFields")}
+                                                    </span>
+                                                </div>
+                                                <div className="col-md-10">{node}</div>
+                                            </div>
+                                        );
+                                    }
+
+                                    return node;
+                                })()}
+                            </header>
+                            <div id="kc-content">
+                                <div id="kc-content-wrapper">
+                                    {/* App-initiated actions should not see warning messages about the need to complete the action during login. */}
+                                    {displayMessage && message !== undefined && (message.type !== "warning" || !isAppInitiatedAction) && (
+                                        <Alert severity={message.type} variant="outlined" className={"kcAlertClass"}>
+                                            <span
+                                                className={kcClsx("kcAlertTitleClass")}
+                                                dangerouslySetInnerHTML={{
+                                                    __html: kcSanitize(message.summary)
+                                                }}
+                                            />
+                                        </Alert>
+                                    )}
+                                    {children}
+                                    {auth !== undefined && auth.showTryAnotherWayLink && (
+                                        <form id="kc-select-try-another-way-form" action={url.loginAction} method="post">
+                                            <div className={kcClsx("kcFormGroupClass")}>
+                                                <input type="hidden" name="tryAnotherWay" value="on" />
+                                                <a
+                                                    href="#"
+                                                    id="try-another-way"
+                                                    onClick={() => {
+                                                        document.forms["kc-select-try-another-way-form" as never].requestSubmit();
+                                                        return false;
+                                                    }}
+                                                >
+                                                    {msg("doTryAnotherWay")}
+                                                </a>
+                                            </div>
+                                        </form>
+                                    )}
+                                    {socialProvidersNode}
+                                    {displayInfo && (
+                                        <div id="kc-info" className={kcClsx("kcSignUpClass")}>
+                                            <div id="kc-info-wrapper" className={kcClsx("kcInfoAreaWrapperClass")}>
+                                                {infoNode}
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
+                                {enabledLanguages.length > 1 && (
+                                    <div className={kcClsx("kcLocaleMainClass")} id="kc-locale">
+                                        <LocaleMenu enabledLanguages={enabledLanguages} currentLanguage={currentLanguage} msgStr={msgStr} />
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </Grid>
+            </Grid>
+        </Box>
     );
 }

@@ -17,10 +17,13 @@
     "license": "MIT",
     "keywords": [],
     "dependencies": {
+        "@cloudflare/voprf-ts": "^1.0.0",
         "@emotion/react": "^11.14.0",
         "@emotion/styled": "^11.14.1",
         "@mui/icons-material": "^7.3.2",
         "@mui/material": "^7.3.2",
+        "@noble/hashes": "^2.0.1",
+        "@scure/base": "^2.0.0",
         "keycloakify": "^11.9.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"

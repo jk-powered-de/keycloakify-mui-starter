@@ -1,10 +1,32 @@
 :root {
   /* Primary color hook (used optionally by your CSS); change here or via MUI theme */
-  --kc-primary: #219b00;
-  --kc-disbaled: #6b6b6b;
-  --kc-disbaled-1: #3f3f3f;
-  --kc-inactive: #8e918f;
-  --kc-hover: #ffffff;
+  /* Primary (main brand / buttons) */
+  --kc-primary: #2563eb;        /* blue-600 */
+  --kc-primary-hover: #1d4ed8;  /* blue-700 */
+
+  /* Text colors */
+  --kc-text-primary: #111827;   /* gray-900 */
+  --kc-text-secondary: #4b5563; /* gray-600 */
+  --kc-text-muted: #9ca3af;     /* gray-400 */
+
+  /* Borders & inputs */
+  --kc-border: #e5e7eb;         /* gray-200 */
+  --kc-border-hover: #d1d5db;   /* gray-300 */
+  --kc-focus: #2563eb;
+
+  /* Backgrounds */
+  --kc-bg-page: #f9fafb;        /* subtle page bg */
+  --kc-bg-panel: #ffffff;       /* right login panel */
+  --kc-bg-input: #ffffff;
+
+  /* States */
+  --kc-disabled: #d1d5db;
+  --kc-disabled-text: #9ca3af;
+  --kc-error: #ef4444;
+  --kc-success: #10b981;
+
+  /* Hover */
+  --kc-hover-bg: #f3f4f6;
   --kc-space-05: 0.125rem;
   --kc-space-1: 0.25rem;
   --kc-space-2: 0.5rem;
@@ -15,11 +37,7 @@
   --kc-space-7: 2.5rem;
   --kc-space-8: 3rem;
   --kc-max-card-width: 35rem; /* ~448px, close to Keycloak default */
-  --kc-header-background: #000000; /* Black header background */
-  --kc-page-title-color: #e3e3e3;
-  --kc-page-content-color: #e3e3e3;
-  --kc-box-background: #181818;
-  --kc-list-background: #202020;
+
 }
 
 /* Load fonts from assets */
@@ -63,11 +81,7 @@
 
 /* Overall login page container */
 .kcLoginClass {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+
 }
 
 /* Header section: black strip with centered realm title, docked to the main box */
@@ -84,7 +98,7 @@
   margin: 0 auto;
   padding: var(--kc-space-8) var(--kc-space-4);
   box-sizing: border-box;
-  background-color: var(--kc-header-background);
+  background-color: transparent;
   color: var(--kc-primary);
   text-align: center;
   font-family: 'RalewayCustom', 'RobotoCustom', Arial, sans-serif;
@@ -104,8 +118,8 @@
   display: block;
   position: relative;
     border-radius: 0 0 8px 8px;
-    background-color: var(--kc-box-background);
-    color: var(--kc-page-content-color);
+    background-color: transparent;
+    color: var(--kc-text-primary);
 }
 
 /* Form header */
@@ -115,7 +129,7 @@
 }
 
 #kc-page-title {
-    color: var(--kc-page-title-color);
+    color: var(--kc-text-primary);
 }
 
 .kcFormHeaderClass h1, .kcFormHeaderClass h2, .kcFormHeaderClass h3 {
@@ -146,6 +160,30 @@
 
 .kcInputClass {
   width: 100%;
+  box-sizing: border-box;
+  border: 1px solid var(--kc-border);
+  background-color: var(--kc-bg-input);
+  color: var(--kc-text-primary);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.kcInputClass:hover {
+  border-color: var(--kc-border-hover);
+  background-color: var(--kc-bg-input);
+}
+
+.kcInputClass:focus {
+  border-color: var(--kc-focus);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+  background-color: var(--kc-bg-input);
+}
+
+.kcInputClass::placeholder {
+  color: var(--kc-text-muted);
 }
 
 .kcInputErrorMessageClass {
