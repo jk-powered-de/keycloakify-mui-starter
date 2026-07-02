@@ -26,7 +26,7 @@ import React from "react";
 
 
 export default function UserProfileFormFields(props: UserProfileFormFieldsProps<KcContext, I18n>) {
-    const { kcContext, i18n, kcClsx, onIsFormSubmittableValueChange, doMakeUserConfirmPassword, BeforeField, AfterField } = props;
+    const { kcContext, i18n, kcClsx, onIsFormSubmittableValueChange, doMakeUserConfirmPassword, BeforeField } = props;
 
     const { advancedMsg } = i18n;
 
@@ -265,6 +265,8 @@ function InputFieldByType(props: InputFieldByTypeProps) {
         }
     }
 }
+
+void InputFieldByType;
 
 function PasswordWrapper(props: { kcClsx: KcClsx; i18n: I18n; passwordInputId: string; children: JSX.Element }) {
     const { kcClsx, i18n, passwordInputId, children } = props;
@@ -785,7 +787,7 @@ function PasswordWrapperMaterial(props: {
     displayableErrors?: FormFieldError[];
 }) {
     const { i18n, passwordInputId, attribute, valueOrValues, dispatchFormAction, displayableErrors = [] } = props;
-    const { msg } = i18n;
+    const { msg, msgStr } = i18n;
     const [showPassword, setShowPassword] = React.useState(false);
 
     return (
@@ -817,7 +819,7 @@ function PasswordWrapperMaterial(props: {
                 endAdornment={
                     <InputAdornment position="end">
                         <IconButton
-                            aria-label={showPassword ? msg("hidePassword") : msg("showPassword")}
+                            aria-label={showPassword ? msgStr("hidePassword") : msgStr("showPassword")}
                             onClick={() => setShowPassword(show => !show)}
                             edge="end"
                         >
